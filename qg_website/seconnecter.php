@@ -89,6 +89,13 @@
                       <label class="form-label" for="form1Example2">Ton mot de passe</label>
                       <input type="password" id="form1Example2" class="form-control" />
                     </div>
+
+                    <!-- Confirmation mdp -->
+
+                    <div class="form-outline mb-4">
+                      <label class="form-label" for="">Confirme ton mot de passe</label>
+                      <input type="password" class="form-control" />
+                    </div>
   
                     <!-- Submit button -->
                     <button type="submit" class=" sinscrirebtn btn btn-primary btn-block mb-4">JE M'INSCRIS !</button>
