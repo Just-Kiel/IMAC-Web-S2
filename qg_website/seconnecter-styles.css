@@ -148,6 +148,12 @@ h1 { font-size:1.5em !important;
     padding-top:0.5em;
 }
 
+.villes{
+    font-family: 'Rubik-Light';
+    margin-left:1em;
+}
+
+
 .sinscrirebtn{
     background-color: #C4D61F !important;
     border : none !important;

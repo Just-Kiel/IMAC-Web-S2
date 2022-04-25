@@ -75,7 +75,16 @@
                     <!-- Text input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form6Example4">Ta ville</label>
-                      <input type="text" id="form6Example4" class="form-control" />
+                      <select class="villes select">
+                        <option value="1">Ville1</option>
+                        <option value="2">Ville2</option>
+                        <option value="3">Ville3</option>
+                        <option value="4">Ville4</option>
+                        <option value="5">Ville5</option>
+                        <option value="6">Ville6</option>
+                        <option value="7">Ville7</option>
+                        <option value="8">Ville8</option>
+                      </select>
                     </div>
   
                     <!-- Email input -->
