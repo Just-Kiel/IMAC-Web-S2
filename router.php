@@ -39,10 +39,6 @@ switch ($tab[4])
             viewLoginPage();
         }
         break;
-
-    case "goodplan":
-        viewGoodPlansPage();
-        break;
         
     case "addgoodplan":
         if($method == 'POST')

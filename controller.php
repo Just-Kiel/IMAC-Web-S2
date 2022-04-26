@@ -19,23 +19,6 @@ function view($temp, $datatab=array())
     include('views/'.$temp);
 }
 
-function viewGoodPlansPage(){
-    $data = getAllGoodPlans();
-    foreach($data as $key=>$goodplan){
-        if(!empty($goodplan['cityID'])){
-            $city = getOneCity($goodplan['cityID']);
-            $goodplan['cityID'] = $city[0]['name'];
-        }
-
-        $user = getOneUser($goodplan['userID']);
-        $goodplan['userID'] = $user[0]['firstname']." ".$user[0]['lastname'];
-
-        $data[$key] = $goodplan;
-    }
-
-    view('viewGoodPlans.php', $data);
-}
-
 function viewAddGoodPlanPage(){
     $data[0] = getAllCategories();
     $data[1] = getAllCities();
