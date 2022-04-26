@@ -41,43 +41,7 @@
     </nav>
 
 <header>
-<!------------  Tabs à relier a la bd et aux cartes d'en dessous -------->
-<nav class="categories">
 
-<ul class="nav nav-pills">
-<li class="nav-item">
-  <a class="nav-link active" aria-current="#" href="#">Cat1</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat2</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat3</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat4</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat5</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat6</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat7</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat8</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat9</a>
-</li> 
-<li class="nav-item">
-  <a class="nav-link" href="#">Cat10</a>
-</li>
-</ul>
-
-</nav>
 
 <!-----------FIL D'ARIANE DU BON PLAN --------->
 <!-- a compléter en php -->
