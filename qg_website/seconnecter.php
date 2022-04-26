@@ -34,9 +34,9 @@
 
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
-              <a class="home " href="index.php" target="blank"><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" target="blank"><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="seconnecter.php" target="blank"><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+              <a class="home " href="index.php" ><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
+              <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
+              <a class="connexion" href="seconnecter.php"><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
     </nav>
@@ -182,8 +182,8 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button" target="blank">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button" target="blank">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
