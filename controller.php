@@ -43,28 +43,75 @@ function viewAddGoodPlanPage(){
 }
 
 function addGoodPlan(){
+    $user = getCurrentUser();
+    $user = $user[0]['userID'];
+
+    $mediaID = null;
+    $media = $_FILES['media']['name'];
+    if(!empty($media)){        
+        $mediaID = addOneMedia($user, $media);
+    }
+
     $title = $_POST['title'];
     $textContent = $_POST['textContent'];
     $startingDate = $_POST['startingDate'];
     $endingDate = $_POST['endingDate'];
     $category = $_POST['categories'];
     $city = $_POST['cities'];
-    $user = getCurrentUser();
-    $user = $user[0]['userID'];
-
-    addOneGoodPlan($title, $textContent, $startingDate, $endingDate, $category, $city, $user);
     
+
+    addOneGoodPlan($title, $textContent, $startingDate, $endingDate, $category, $city, $user, $mediaID);
 }
 
 function viewHomePage()
 {
     if (getCurrentUser() == NULL)
     {
-        view('homepage.php');
+        $data[0] = null;
+        $data[1] = getAllGoodPlans();
+        foreach($data[1] as $key=>$goodplan){
+            if(!empty($goodplan['cityID'])){
+                $city = getOneCity($goodplan['cityID']);
+                $goodplan['cityID'] = $city[0]['name'];
+            }
+
+            if(!empty($goodplan['mediaID'])){
+                $media = getOneMedia($goodplan['mediaID']);
+                $goodplan['mediaID'] = $media[0]['url'];
+            }
+
+            $user = getOneUser($goodplan['userID']);
+            $goodplan['userID'] = $user[0]['firstname']." ".$user[0]['lastname'];
+
+            $data[1][$key] = $goodplan;
+        }
+        $data[2] = getAllCategories();
+        view('index.php', $data);
+        // view('homepage.php');
     }
     else
     {
-        view('homepage.php', getCurrentUser());
+        $data[0] = getCurrentUser();
+        $data[1] = getAllGoodPlans();
+        foreach($data[1] as $key=>$goodplan){
+            if(!empty($goodplan['cityID'])){
+                $city = getOneCity($goodplan['cityID']);
+                $goodplan['cityID'] = $city[0]['name'];
+            }
+            
+            if(!empty($goodplan['mediaID'])){
+                $media = getOneMedia($goodplan['mediaID']);
+                $goodplan['mediaID'] = $media[0]['url'];
+            }
+
+            $user = getOneUser($goodplan['userID']);
+            $goodplan['userID'] = $user[0]['firstname']." ".$user[0]['lastname'];
+
+            $data[1][$key] = $goodplan;
+        }
+        $data[2] = getAllCategories();
+        view('index.php', $data);
+        // view('homepage.php', getCurrentUser());
     }
 }
 

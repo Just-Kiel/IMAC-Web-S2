@@ -10,7 +10,7 @@
     <h1>Bienvenue sur Le QG et ses bons plans !</h1>
 
     <!-- Bons Plans -->
-    <form method='POST' action="addgoodplan">
+    <form method='POST' action="addgoodplan" enctype="multipart/form-data">
         <div class="container">
             <h1>Ajout d'un bon plan</h1>
             <div>
@@ -51,6 +51,11 @@
             ?>
             <option value="">En ligne</option>
             </select>
+            </div>
+
+            <div>
+            <label for="media">Photo :</label>
+            <input type="file" name="media" accept="image/*"/>
             </div>
 
             <div>
