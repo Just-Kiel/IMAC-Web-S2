@@ -49,8 +49,7 @@
 
 <ol class="breadcrumb">
   <li><a href="../accueil" title="Accueil">Accueil </a></li>
-  <!-- TODO redirect to right catégorie -->
-  <li><a href="" title=""><?php echo $datatab[0]['categoryID']; ?></a></li>
+  <li><a href="../category/<?php echo $datatab[0]['categoryID']['categoryID']; ?>" title=""><?php echo $datatab[0]['categoryID']['title']; ?></a></li>
   <li class="page-active"><?php echo $datatab[0]['title']; ?></li>
 </ol>
 
@@ -151,9 +150,9 @@
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
-              <!-- TODO je sais pas à quoi ça sert -->
+              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="#">QUI SOMMES-NOUS</a></h6>
           </div>
         </div>
 

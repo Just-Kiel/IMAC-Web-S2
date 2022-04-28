@@ -82,12 +82,6 @@
 <main>
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 <section class="container-fluid column">
-  <p>
-    Ici le contenu relatifs à la BdD : catégories et post relatifs
-  </p>
-  <?php
-
-  ?>
 
   <!------------  Tabs à relier a la bd et aux cartes d'en dessous -------->
   <nav class="categories">
@@ -100,7 +94,7 @@
     <li class="nav-item">
 
     <!-- TODO Il faut encore link les bons bons plans aux catégories et les afficher -->
-      <a class="nav-link" aria-current="#" href="#"><?php echo $category['title']; ?></a>
+      <a class="nav-link" aria-current="#" href="category/<?php echo $category['categoryID']; ?>"><?php echo $category['title']; ?></a>
     </li>
 
   <?php
@@ -149,7 +143,9 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
-              <i class="bi bi-chat-dots-fill btn" href="#"></i>
+            <!-- TODO link vers section commentaire du bon plan -->
+            <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <!-- TODO like possible partout -->
               <i class="bi bi-heart-fill btn" href=""></i>
               <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
           </div>
@@ -188,7 +184,9 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
+            <!-- TODO link vers section commentaire du bon plan -->
               <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <!-- TODO like possible partout -->
               <i class="bi bi-heart-fill btn" href=""></i>
               <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
           </div>
@@ -273,9 +271,9 @@
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
-              <!-- TODO je sais pas à quoi ça sert -->
+              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="#">QUI SOMMES-NOUS</a></h6>
           </div>
         </div>
 

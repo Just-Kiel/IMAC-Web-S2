@@ -44,6 +44,16 @@ function getAllGoodPlans(){
     return $data;
 }
 
+function getGoodPlansFromCategory($n){
+    try {
+        $data = connexion()->query('SELECT * FROM goodplans WHERE categoryID = '.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
 function getOneGoodPlan($n){
     try {
         $data = connexion()->query('SELECT * FROM goodplans WHERE goodplanID = '.$n)->fetchAll();
@@ -87,6 +97,26 @@ function getOneMedia($n){
 function getAllCategories(){
     try {
         $data = connexion()->query('SELECT * FROM categories')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllSubCategories($n){
+    try {
+        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = categories.categoryID AND subcategories.categoryID = 1')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getOnlyCategories(){
+    try {
+        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID != categories.categoryID')->fetchAll();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
