@@ -22,7 +22,29 @@ function view($temp, $datatab=array())
 function viewAddGoodPlanPage(){
     $data[0] = getAllCategories();
     $data[1] = getAllCities();
+
     view('addGoodPlan.php', $data);
+}
+
+function viewGoodPlanPage($n){
+    $data = getOneGoodPlan($n);
+    $category = getOneCategory($data[0]['categoryID']);
+    $data[0]['categoryID'] = $category[0]['title'];
+
+    if(!empty($data[0]['mediaID'])){
+        $media = getOneMedia($data[0]['mediaID']);
+        $data[0]['mediaID'] = $media[0]['url'];
+    }
+
+    if(!empty($data[0]['cityID'])){
+        $city = getOneCity($data[0]['cityID']);
+        $data[0]['cityID'] = $city[0]['name'];
+    }
+
+    $user = getOneUser($data[0]['userID']);
+    $data[0]['userID'] = $user[0];
+
+    view('bonplan.php', $data);
 }
 
 function addGoodPlan(){
@@ -64,7 +86,7 @@ function viewHomePage()
             }
 
             $user = getOneUser($goodplan['userID']);
-            $goodplan['userID'] = $user[0]['firstname']." ".$user[0]['lastname'];
+            $goodplan['userID'] = $user[0];
 
             $data[1][$key] = $goodplan;
         }
@@ -88,7 +110,7 @@ function viewHomePage()
             }
 
             $user = getOneUser($goodplan['userID']);
-            $goodplan['userID'] = $user[0]['firstname']." ".$user[0]['lastname'];
+            $goodplan['userID'] = $user[0];
 
             $data[1][$key] = $goodplan;
         }

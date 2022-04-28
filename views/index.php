@@ -38,14 +38,16 @@
 
     <div class="d-flex flex-column align-items-center">
     <br>
-    <a href="index.php"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+    <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
     </div>
 
     <div class="row d-none d-sm-block">
     <div class="res  align-items-center ">
-        <a class="home " href="index.php" target="blank"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
-        <a class="chat" href="#" target="blank"><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
-        <a class="connexion" href="seconnecter.php" target="blank"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+        <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+        <!-- TODO link vers messagerie -->
+        <a class="chat" href="#"><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+        <!-- TODO link vers mon compte si connecté sinon vers connexion -->
+        <a class="connexion" href="connexion"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
     </div>
   </div>
     </nav>
@@ -56,7 +58,7 @@
 
   <!---  HEADER -->
 
- <header>
+<header>
 <h1>BIENVENUE AU QG !</h1>
 <section class="banniere ">
   <div class="input-group ">
@@ -79,7 +81,7 @@
 
 <main>
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
-<section class=" categories container-fluid column">
+<section class="container-fluid column">
   <p>
     Ici le contenu relatifs à la BdD : catégories et post relatifs
   </p>
@@ -97,7 +99,7 @@
 
     <li class="nav-item">
 
-    <!-- Il faut encore link les bons bons plans aux catégories et les afficher -->
+    <!-- TODO Il faut encore link les bons bons plans aux catégories et les afficher -->
       <a class="nav-link" aria-current="#" href="#"><?php echo $category['title']; ?></a>
     </li>
 
@@ -110,7 +112,7 @@
 
   <!-- --- Pensez a relier les éléments fictifs au vrais de la BD 
 ++ voir comment faire le bouton like et l'ajout de commentaire -->
-
+<div class="listCards">
 <?php
   foreach ($datatab[1] as $key =>$goodplan) {
     if($key%2==0){
@@ -119,7 +121,15 @@
   <div class="card mb-3" style="max-width: 70em;">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="../views/img/cine.jpg" class="card-img invert img-fluid " alt="infos bon plan">
+        <img src=
+        <?php
+          if(empty($goodplan['mediaID'])){
+            echo "../views/img/cine.jpg";
+          } else {
+            echo "../views/".$goodplan['mediaID'];
+          }
+        ?>
+        class="card-img invert img-fluid" alt="infos bon plan">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -139,13 +149,19 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
-                <i class="bi bi-chat-dots-fill btn" href="#"></i>
-                <i class="bi bi-heart-fill btn" href="https://www.google.com/" target="blank"></i>
+              <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <i class="bi bi-heart-fill btn" href=""></i>
+              <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+          </div>
+          <div class="proprio">
+              <!-- link vers la pop up du profil  -->
+              <!-- TODO link la photo de profil -->
+              <a href=""><img src="../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+              <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
           </div>
         </div>
       </div>
     </div>
-    
   </div>
 
 <?php
@@ -172,8 +188,15 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
-                <i class="bi bi-chat-dots-fill btn" href="#"></i>
-                <i class="bi bi-heart-fill btn" href="https://www.google.com/" target="blank"></i>
+              <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <i class="bi bi-heart-fill btn" href=""></i>
+              <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+          </div>
+          <div class="proprio">
+              <!-- link vers la pop up du profil  -->
+              <!-- TODO link la photo de profil -->
+              <a href=""><img src="../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+              <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
           </div>
         </div>
       </div>
@@ -195,6 +218,7 @@
     }
   }
 ?>
+</div>
   
 </section>
 
@@ -236,17 +260,20 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="index.php">ACCUEIL</a></h6>
+                  <h6><a href="accueil">ACCUEIL</a></h6>
               </div>
 
+              <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MON COMPTE</a></h6>
               </div>
 
+              <!-- TODO link vers messagerie -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
+              <!-- TODO je sais pas à quoi ça sert -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">BONS PLANS</a></h6>
           </div>
@@ -260,13 +287,14 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button" target="blank">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button" target="blank">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="inscription" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="connexion" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
+        <!-- TODO link vers les mentions légales -->
         <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->

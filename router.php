@@ -51,6 +51,10 @@ switch ($tab[4])
         }
         break;
 
+    case "viewgoodplan":
+        viewGoodPlanPage($tab[5]);
+        break;
+
     default:
         echo "La requête n'a pas fonctionné";
         break;

@@ -44,6 +44,16 @@ function getAllGoodPlans(){
     return $data;
 }
 
+function getOneGoodPlan($n){
+    try {
+        $data = connexion()->query('SELECT * FROM goodplans WHERE goodplanID = '.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
 function getOneCity($n){
     try {
         $data = connexion()->query('SELECT * FROM cities WHERE cityID = '.$n)->fetchAll();
@@ -56,7 +66,7 @@ function getOneCity($n){
 
 function getOneUser($n){
     try {
-        $data = connexion()->query('SELECT userID, lastname, firstname FROM users WHERE userID = '.$n)->fetchAll();
+        $data = connexion()->query('SELECT * FROM users WHERE userID = '.$n)->fetchAll();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
@@ -77,6 +87,16 @@ function getOneMedia($n){
 function getAllCategories(){
     try {
         $data = connexion()->query('SELECT * FROM categories')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getOneCategory($n){
+    try {
+        $data = connexion()->query('SELECT * FROM categories WHERE categoryID = '.$n)->fetchAll();
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
