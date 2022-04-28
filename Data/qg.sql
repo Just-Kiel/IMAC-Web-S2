@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2022 at 06:11 PM
+-- Generation Time: Apr 25, 2022 at 11:47 AM
 -- Server version: 5.7.11
 -- PHP Version: 7.0.3
 
@@ -79,10 +79,11 @@ CREATE TABLE `goodplans` (
   `title` varchar(30) DEFAULT NULL,
   `textContent` text,
   `startingDate` date DEFAULT NULL,
-  `endindDate` date DEFAULT NULL,
+  `endingDate` date DEFAULT NULL,
   `userID` int(11) DEFAULT NULL,
   `categoryID` int(11) DEFAULT NULL,
-  `cityID` int(11) DEFAULT NULL
+  `cityID` int(11) DEFAULT NULL,
+  `mediaID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -96,8 +97,7 @@ CREATE TABLE `medias` (
   `type` varchar(30) DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
   `url` varchar(90) DEFAULT NULL,
-  `userID` int(11) DEFAULT NULL,
-  `goodplanID` int(11) DEFAULT NULL
+  `userID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -119,7 +119,8 @@ CREATE TABLE `messages` (
 --
 
 CREATE TABLE `subcategories` (
-  `subcategoryID` int(11) NOT NULL
+  `subcategoryID` int(11) NOT NULL,
+  `categoryID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -133,7 +134,7 @@ CREATE TABLE `users` (
   `lastname` varchar(30) DEFAULT NULL,
   `firstname` varchar(30) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `cityID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -174,15 +175,15 @@ ALTER TABLE `goodplans`
   ADD PRIMARY KEY (`goodplanID`),
   ADD KEY `userID` (`userID`),
   ADD KEY `categoryID` (`categoryID`),
-  ADD KEY `cityID` (`cityID`);
+  ADD KEY `cityID` (`cityID`),
+  ADD KEY `mediaID` (`mediaID`);
 
 --
 -- Indexes for table `medias`
 --
 ALTER TABLE `medias`
   ADD PRIMARY KEY (`mediaID`),
-  ADD KEY `userID` (`userID`),
-  ADD KEY `goodplanID` (`goodplanID`);
+  ADD KEY `userID` (`userID`);
 
 --
 -- Indexes for table `messages`
@@ -196,7 +197,8 @@ ALTER TABLE `messages`
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  ADD PRIMARY KEY (`subcategoryID`);
+  ADD PRIMARY KEY (`subcategoryID`),
+  ADD KEY `categoryID` (`categoryID`);
 
 --
 -- Indexes for table `users`
@@ -277,14 +279,14 @@ ALTER TABLE `friends`
 ALTER TABLE `goodplans`
   ADD CONSTRAINT `goodplans_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `goodplans_ibfk_2` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`),
-  ADD CONSTRAINT `goodplans_ibfk_3` FOREIGN KEY (`cityID`) REFERENCES `cities` (`cityID`);
+  ADD CONSTRAINT `goodplans_ibfk_3` FOREIGN KEY (`cityID`) REFERENCES `cities` (`cityID`),
+  ADD CONSTRAINT `goodplans_ibfk_4` FOREIGN KEY (`mediaID`) REFERENCES `medias` (`mediaID`);
 
 --
 -- Constraints for table `medias`
 --
 ALTER TABLE `medias`
-  ADD CONSTRAINT `medias_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
-  ADD CONSTRAINT `medias_ibfk_2` FOREIGN KEY (`goodplanID`) REFERENCES `goodplans` (`goodplanID`);
+  ADD CONSTRAINT `medias_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
 
 --
 -- Constraints for table `messages`
@@ -297,7 +299,7 @@ ALTER TABLE `messages`
 -- Constraints for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`subcategoryID`) REFERENCES `categories` (`categoryID`);
+  ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`);
 
 --
 -- Constraints for table `users`

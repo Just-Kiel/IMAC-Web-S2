@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,7 +10,7 @@
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bonplan-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
@@ -19,69 +18,70 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-<title> LE QG - ACCUEIL </title>
+<title> LE QG - BonPlan </title>
 
 </head>
 
 <body>
 
-<!---  : Picto chargement page -->
+    <nav class="navbar fixed-top  ">
 
-<!---  fin  Picto chargement page -->
+        <div class="d-flex flex-column align-items-center">
+          <br>
+          <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+          </div>
 
-
-
-<!---  NAVABAR -->
-
-
-<nav class="navbar fixed-top  ">
-
-    <div class="d-flex flex-column align-items-center">
-    <br>
-    <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
-    </div>
-
-    <div class="row d-none d-sm-block">
-    <div class="res  align-items-center ">
-        <a class="home " href="#" target="blank"><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-        <a class="chat" href="#" target="blank"><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-        <a class="connexion" href="seconnecter.php" target="blank"><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
-    </div>
-  </div>
+          <div class="row d-none d-sm-block">
+          <div class="res  align-items-center ">
+              <a class="home " href="index.php" ><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
+              <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
+              <a class="connexion" href="seconnecter.php" ><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+          </div>
+        </div>
     </nav>
 
-
-  <!---  FIN NAVBAR -->
-
-
-  <!---  HEADER -->
-
- <header>
-<h1>BIENVENUE AU QG !</h1>
-<section class="banniere ">
-  <div class="input-group ">
-    <div class="form-outline">
-      <input type="search" id="form1" class="form-control" placeholder="J'ai une petite question..."/>
-    </div>
-    <button type="button" class="btn btn-primary">
-      <i class="fas fa-search"></i>
-    </button>
-  </div>
-</section>
-</header> 
-
-<!---  FIN DU HEADER -->
+<header>
 
 
+<!-----------FIL D'ARIANE DU BON PLAN --------->
+<!-- a compléter en php -->
 
-<!-------- MAIN --------->
+<ol class="breadcrumb">
+  <li><a href="index.php" title="Accueil">Accueil </a></li>
+  <li><a href="" title="">Nom de la catégorie</a></li>
+  <li class="page-active">Nom du bon plan</li>
+</ol>
 
+<!-- FIN DU FIL D'ARIANE DU BON PLAN -->
+
+</header>
 
 <main>
-<!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 
+<!------------ CARTE BON PLAN ------------>
 
-  <!-- --- Boutons flottants à intégrer avec les filtres... -->
+<div class="card mb-3" style="max-width: 70em;">
+  <div class="row no-gutters">
+    <div class=" cardlike col-md-4">            
+    <i class="bi bi-heart-fill btn" href=""></i>
+    <img src="img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Nom du bon plan</h5>
+        <p class="card-text"><small class="text-muted">Date et lieu</small></p>
+        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
+        <div class="proprio">
+            <!-- link vers la pop up du profil  -->
+            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
+            <h6>Nom Prénom</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- --- Boutons flottants à intégrer avec les filtres... -->
 
 
 <section class="btn-flottants">
@@ -92,12 +92,6 @@
         <img src="img/top.png" alt="retourner en haut de la page" />
       </div>
 
-    <!-------- FILTRER - voir comment on fait ----------> 
-
-      <div class="filter btn">
-        <img src="img/filter.png" href="#" alt="filtrer les bons plans" />
-      </div>
-
         <!-------- AJOUTER BON PLAN  voir comment on fait ---------->
 
       <div class="add btn ">
@@ -105,10 +99,11 @@
       </div>
 
 </section>
-   
-</main>
+
 
     <!-- FIN Bouton flottants -->
+</main>
+
 
 <!-- Footer -->
 <footer class="page-footer container-fluid">
@@ -119,7 +114,7 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">ACCUEIL</a></h6>
+                  <h6><a href="index.php">ACCUEIL</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -143,8 +138,8 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="#" role="button" target="blank">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="#" role="button" target="blank">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
@@ -159,21 +154,14 @@
 <!-- Footer -->
 
 
-
-<!---------------------------------------SCRIPT----------------------->
-    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
 
-<!--<script> $('#MonCollapse').collapse({
-  show: true
-  })</script>-->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
 
-  <script>
 
-    /*FONCTION 
+       /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie
              nom : afficherSite
@@ -181,7 +169,7 @@
              paramètres:*/
                        
             
-                function afficherSite() {
+             function afficherSite() {
                 let load=document.querySelector(".loader-container");
                 load.classList.add("cache");
             }
@@ -198,12 +186,7 @@
                     behavior:"smooth"})
                 })
 
-            
-    </script>
+</script>
 
-  
-
-   </body>
-
-
+</body>
 </html>

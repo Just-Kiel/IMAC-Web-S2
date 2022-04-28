@@ -43,9 +43,9 @@
 
     <div class="row d-none d-sm-block">
     <div class="res  align-items-center ">
-        <a class="home " href="#" target="blank"><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-        <a class="chat" href="#" target="blank"><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-        <a class="connexion" href="seconnecter.php" target="blank"><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+        <a class="home " href="index.php"><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
+        <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
+        <a class="connexion" href="seconnecter.php" ><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
     </div>
   </div>
     </nav>
@@ -79,7 +79,7 @@
 
 <main>
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
-<section class=" categories container-fluid column">
+<section class=" container-fluid column">
   <p>
     Ici le contenu relatifs à la BdD : catégories et post relatifs
   </p>
@@ -128,36 +128,49 @@
   <!-- --- Pensez a relier les éléments fictifs au vrais de la BD 
 ++ voir comment faire le bouton like et l'ajout de commentaire -->
 
+<div class="listCards">
+
 <div class="card mb-3" style="max-width: 70em;">
   <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="img/cine.jpg" class="card-img invert img-fluid " alt="infos bon plan">
+  <div class=" col-md-4">
+    <img src="img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Nom du bon plan</h5>
         <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-        <p class="card-text">Description du bon plan</p>
+        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
         <div class="pictos">
               <i class="bi bi-chat-dots-fill btn" href="#"></i>
-              <i class="bi bi-heart-fill btn" href="https://www.google.com/" target="blank"></i>
+              <i class="bi bi-heart-fill btn" href=""></i>
+              <a href="bonplan.php" class="profiter btn btn-primary">J'EN PROFITE !</a>
+            </div>
+        <div class="proprio">
+            <!-- link vers la pop up du profil  -->
+            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
+            <h6>Nom Prénom</h6>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
-
+  
 <div class="card mb-3" style="max-width: 70em;">
   <div class="row no-gutters">
-    <div class="col-md-8">
+  <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Nom du bon plan</h5>
         <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-        <p class="card-text">Description du bon plan</p>
+        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
         <div class="pictos">
               <i class="bi bi-chat-dots-fill btn" href="#"></i>
-              <i class="bi bi-heart-fill btn" href="https://www.google.com/" target="blank"></i>
+              <i class="bi bi-heart-fill btn" href=""></i>
+              <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
+        </div>
+        <div class="proprio">
+            <!-- link vers la pop up du profil  -->
+            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
+            <h6>Nom Prénom</h6>
         </div>
       </div>
     </div>
@@ -166,6 +179,9 @@
     </div>
   </div>
 </div>
+</div>
+
+
   
 </section>
 
@@ -207,7 +223,7 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">ACCUEIL</a></h6>
+                  <h6><a href="index.php">ACCUEIL</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -231,8 +247,8 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="#" role="button" target="blank">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="#" role="button" target="blank">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
