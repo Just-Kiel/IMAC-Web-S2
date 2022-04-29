@@ -32,6 +32,25 @@ switch ($tab[4])
             viewSeconnecterPage();
         }
         break;
+    
+    case "addgoodplan":
+        if($method == 'POST')
+        {
+            addGoodPlan();
+        }
+        else
+        {
+            viewAddGoodPlanPage();
+        }
+        break;
+
+    case "viewgoodplan":
+        viewGoodPlanPage($tab[5]);
+        break;
+
+    case "category":
+        viewCategoryPage($tab[5]);
+        break;
 
     default:
         echo "La requête n'a pas fonctionné";

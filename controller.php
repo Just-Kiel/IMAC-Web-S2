@@ -19,16 +19,128 @@ function view($temp, $datatab=array())
     include('views/'.$temp);
 }
 
+function viewAddGoodPlanPage(){
+    $data[0] = getAllCategories();
+    $data[1] = getAllCities();
+
+    view('addGoodPlan.php', $data);
+}
+
+function viewGoodPlanPage($n){
+    $data = getOneGoodPlan($n);
+    $category = getOneCategory($data[0]['categoryID']);
+    $data[0]['categoryID'] = $category[0];
+
+    if(!empty($data[0]['mediaID'])){
+        $media = getOneMedia($data[0]['mediaID']);
+        $data[0]['mediaID'] = $media[0]['url'];
+    }
+
+    if(!empty($data[0]['cityID'])){
+        $city = getOneCity($data[0]['cityID']);
+        $data[0]['cityID'] = $city[0]['name'];
+    }
+
+    $user = getOneUser($data[0]['userID']);
+    $data[0]['userID'] = $user[0];
+
+    view('bonplan.php', $data);
+}
+
+function addGoodPlan(){
+    $user = getCurrentUser();
+    $user = $user[0]['userID'];
+
+    $mediaID = null;
+    $media = $_FILES['media']['name'];
+    if(!empty($media)){        
+        $mediaID = addOneMedia($user, $media);
+    }
+
+    $title = $_POST['title'];
+    $textContent = $_POST['textContent'];
+    $startingDate = $_POST['startingDate'];
+    $endingDate = $_POST['endingDate'];
+    $category = $_POST['categories'];
+    $city = $_POST['cities'];
+    
+
+    addOneGoodPlan($title, $textContent, $startingDate, $endingDate, $category, $city, $user, $mediaID);
+}
+
 function viewHomePage()
 {
     if (getCurrentUser() == NULL)
     {
-        view('index.php');
+        $data[0] = null;
+        $data[1] = getAllGoodPlans();
+        foreach($data[1] as $key=>$goodplan){
+            if(!empty($goodplan['cityID'])){
+                $city = getOneCity($goodplan['cityID']);
+                $goodplan['cityID'] = $city[0]['name'];
+            }
+
+            if(!empty($goodplan['mediaID'])){
+                $media = getOneMedia($goodplan['mediaID']);
+                $goodplan['mediaID'] = $media[0]['url'];
+            }
+
+            $user = getOneUser($goodplan['userID']);
+            $goodplan['userID'] = $user[0];
+
+            $data[1][$key] = $goodplan;
+        }
+        $data[2] = getOnlyCategories();
+        view('index.php', $data);
     }
     else
     {
-        view('index.php', getCurrentUser());
+        $data[0] = getCurrentUser();
+        $data[1] = getAllGoodPlans();
+        foreach($data[1] as $key=>$goodplan){
+            if(!empty($goodplan['cityID'])){
+                $city = getOneCity($goodplan['cityID']);
+                $goodplan['cityID'] = $city[0]['name'];
+            }
+            
+            if(!empty($goodplan['mediaID'])){
+                $media = getOneMedia($goodplan['mediaID']);
+                $goodplan['mediaID'] = $media[0]['url'];
+            }
+
+            $user = getOneUser($goodplan['userID']);
+            $goodplan['userID'] = $user[0];
+
+            $data[1][$key] = $goodplan;
+        }
+        $data[2] = getOnlyCategories();
+        view('index.php', $data);
     }
+}
+
+function viewCategoryPage($n){
+    $data[0] = getOneCategory($n);
+    $data[1] = getAllSubCategories($n);
+    $data[2] = getGoodPlansFromCategory($n);
+
+    foreach($data[2] as $key=>$goodplan){
+        if(!empty($goodplan['cityID'])){
+            $city = getOneCity($goodplan['cityID']);
+            $goodplan['cityID'] = $city[0]['name'];
+        }
+        
+        if(!empty($goodplan['mediaID'])){
+            $media = getOneMedia($goodplan['mediaID']);
+            $goodplan['mediaID'] = $media[0]['url'];
+        }
+
+        $user = getOneUser($goodplan['userID']);
+        $goodplan['userID'] = $user[0];
+
+        $data[2][$key] = $goodplan;
+    }
+
+    view('category.php', $data);
 }
 
 function viewSeconnecterPage()
