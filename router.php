@@ -8,35 +8,28 @@ $tab = explode("/", $uri);
 switch ($tab[4])
 {
     case "accueil":
-        if($method == 'POST')
+        if($method == 'POST' && $_POST['type'] == 'logout')
         {
             logout();
         }
-        else
-        {
-            viewHomePage();
-        }
+        viewHomePage();
         break;
 
-    case "inscription":
+    case "seconnecter":
         if($method == 'POST')
         {
-            register();
+            if ($_POST['type'] == 'login')
+            {
+                login();
+            }
+            else if ($_POST['type'] == 'register')
+            {
+                register();
+            }
         }
         else
         {
-            viewRegisterPage();
-        }
-        break;
-
-    case "connexion":
-        if($method == 'POST')
-        {
-            login();
-        }
-        else
-        {
-            viewLoginPage();
+            viewSeconnecterPage();
         }
         break;
 
