@@ -94,7 +94,8 @@ CREATE TABLE IF NOT EXISTS `goodplans` (
 
 CREATE TABLE IF NOT EXISTS `likes` (
 `likeID` int(11) NOT NULL,
-  `goodplanID` int(11) DEFAULT NULL
+  `goodplanID` int(11) DEFAULT NULL,
+  `userID` int(11) DEFAULT NULL  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -187,7 +188,7 @@ ALTER TABLE `goodplans`
 -- Index pour la table `likes`
 --
 ALTER TABLE `likes`
- ADD PRIMARY KEY (`likeID`), ADD KEY `likes_ibfk_1` (`goodplanID`);
+ ADD PRIMARY KEY (`likeID`), ADD KEY `goodplanID` (`goodplanID`),  ADD KEY `userID` (`userID`);
 
 --
 -- Index pour la table `medias`
@@ -297,7 +298,8 @@ ADD CONSTRAINT `goodplans_ibfk_4` FOREIGN KEY (`mediaID`) REFERENCES `medias` (`
 -- Contraintes pour la table `likes`
 --
 ALTER TABLE `likes`
-ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`goodplanID`) REFERENCES `goodplans` (`goodplanID`);
+ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`goodplanID`) REFERENCES `goodplans` (`goodplanID`),
+ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`);
 
 --
 -- Contraintes pour la table `medias`
