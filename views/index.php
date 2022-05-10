@@ -10,8 +10,8 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../views/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
@@ -38,14 +38,16 @@
 
     <div class="d-flex flex-column align-items-center">
     <br>
-    <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+    <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
     </div>
 
     <div class="row d-none d-sm-block">
     <div class="res  align-items-center ">
-        <a class="home " href="index.php"><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-        <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-        <a class="connexion" href="seconnecter.php" ><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+        <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+        <!-- TODO link vers messagerie -->
+        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+        <!-- TODO link vers mon compte si connecté sinon vers connexion -->
+        <a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
     </div>
   </div>
     </nav>
@@ -84,43 +86,37 @@
     Ici le contenu relatifs à la BdD : catégories et post relatifs
   </p>
   <?php
-
-  ?>
+    if (empty($datatab[0]))
+    {
+        echo "Vous n'êtes pas connecté <br/>";
+    }
+    else
+    {
+        echo "Vous êtes connecté en tant que " . $datatab[0][0]['lastname'] . " " . $datatab[0][0]['firstname'] . "<br/>
+        <form method='POST' action='accueil'>
+            <input type='hidden' name='type' value='logout'>
+            <input type='submit' value='Se déconnecter'>
+        </form>";
+    }
+    ?>
 
   <!------------  Tabs à relier a la bd et aux cartes d'en dessous -------->
   <nav class="categories">
 
   <ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="#" href="#">Cat1</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat2</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat3</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat4</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat5</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat6</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat7</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat8</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat9</a>
-  </li> 
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cat10</a>
-  </li>
+  <?php
+    foreach ($datatab[2] as $category) {
+  ?>
+
+    <li class="nav-item">
+
+    <!-- TODO Il faut encore link les bons bons plans aux catégories et les afficher -->
+      <a class="nav-link" aria-current="#" href="category/<?php echo $category['categoryID']; ?>"><?php echo $category['title']; ?></a>
+    </li>
+
+  <?php
+    }
+  ?>
 </ul>
 
 </nav>
@@ -129,59 +125,116 @@
 ++ voir comment faire le bouton like et l'ajout de commentaire -->
 
 <div class="listCards">
+<?php
+  foreach ($datatab[1] as $key =>$goodplan) {
+    if($key%2==0){
+?>
 
-<div class="card mb-3" style="max-width: 70em;">
-  <div class="row no-gutters">
-  <div class=" col-md-4">
-    <img src="img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Nom du bon plan</h5>
-        <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
-        <div class="pictos">
-              <i class="bi bi-chat-dots-fill btn" href="#"></i>
+  <div class="card mb-3" style="max-width: 70em;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src=
+        <?php
+          if(empty($goodplan['mediaID'])){
+            echo "../views/img/cine.jpg";
+          } else {
+            echo "../views/".$goodplan['mediaID'];
+          }
+        ?>
+        class="card-img invert img-fluid" alt="infos bon plan">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
+          <p class="card-text"><small class="text-muted">
+            <?php
+              $dateEtLieu = $goodplan['startingDate'];
+
+              if(empty($goodplan['cityID'])){
+                $dateEtLieu .= " en ligne";
+            } else {
+                $dateEtLieu .= " à : ".$goodplan['cityID'];
+            }
+
+              echo $dateEtLieu; 
+            ?>
+            </small></p>
+          <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
+          <div class="pictos">
+            <!-- TODO link vers section commentaire du bon plan -->
+            <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <!-- TODO like possible partout -->
               <i class="bi bi-heart-fill btn" href=""></i>
-              <a href="bonplan.php" class="profiter btn btn-primary">J'EN PROFITE !</a>
-            </div>
-        <div class="proprio">
-            <!-- link vers la pop up du profil  -->
-            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
-            <h6>Nom Prénom</h6>
+              <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+          </div>
+          <div class="proprio">
+              <!-- link vers la pop up du profil  -->
+              <!-- TODO link la photo de profil -->
+              <a href=""><img src="../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+              <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-  
-<div class="card mb-3" style="max-width: 70em;">
-  <div class="row no-gutters">
-  <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Nom du bon plan</h5>
-        <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
-        <div class="pictos">
+
+<?php
+    } else {
+?>
+
+  <div class="card mb-3" style="max-width: 70em;">
+    <div class="row no-gutters">
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
+          <p class="card-text"><small class="text-muted">
+            <?php
+              $dateEtLieu = $goodplan['startingDate'];
+
+              if(empty($goodplan['cityID'])){
+                $dateEtLieu .= " en ligne";
+            } else {
+                $dateEtLieu .= " à : ".$goodplan['cityID'];
+            }
+
+              echo $dateEtLieu; 
+            ?>
+            </small></p>
+          <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
+          <div class="pictos">
+            <!-- TODO link vers section commentaire du bon plan -->
               <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <!-- TODO like possible partout -->
               <i class="bi bi-heart-fill btn" href=""></i>
-              <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
-        </div>
-        <div class="proprio">
-            <!-- link vers la pop up du profil  -->
-            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
-            <h6>Nom Prénom</h6>
+              <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+          </div>
+          <div class="proprio">
+              <!-- link vers la pop up du profil  -->
+              <!-- TODO link la photo de profil -->
+              <a href=""><img src="../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+              <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <img src="img/jardiner.jpg" class="card-img invert img-fluid" alt="infos bon plan">
+      <div class="col-md-4">
+        <img src=
+        <?php
+          if(empty($goodplan['mediaID'])){
+            echo "../views/img/cine.jpg";
+          } else {
+            echo "../views/".$goodplan['mediaID'];
+          }
+        ?>
+        class="card-img invert img-fluid" alt="infos bon plan">
+      </div>
     </div>
   </div>
-</div>
-</div>
 
-
+<?php
+    }
+  }
+?>
+</div>
   
 </section>
 
@@ -193,19 +246,19 @@
   <!-------- SCROLL ---------->
 
       <div class="scroll btn">
-        <img src="img/top.png" alt="retourner en haut de la page" />
+        <img src="../views/img/top.png" alt="retourner en haut de la page" />
       </div>
 
     <!-------- FILTRER - voir comment on fait ----------> 
 
       <div class="filter btn">
-        <img src="img/filter.png" href="#" alt="filtrer les bons plans" />
+        <img src="../views/img/filter.png" href="#" alt="filtrer les bons plans" />
       </div>
 
         <!-------- AJOUTER BON PLAN  voir comment on fait ---------->
 
       <div class="add btn ">
-        <img src="img/add.png" href="#" alt="ajouter un bon plan" />
+        <a href="addGoodPlan"><img src="../views/img/add.png" alt="ajouter un bon plan" /></a>
       </div>
 
 </section>
@@ -223,7 +276,7 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="index.php">ACCUEIL</a></h6>
+                  <h6><a href="accueil">ACCUEIL</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -247,8 +300,8 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="seconnecter" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
