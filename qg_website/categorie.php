@@ -70,14 +70,13 @@
     </div>
     <div class="autrecategorie">
             <select class="quellecat select">
-                        <option value="1">Autre Catégorie</option>
-                        <option value="2">Cat</option>
-                        <option value="3">Cat3</option>
-                        <option value="4">Cat4</option>
-                        <option value="5">Cat5</option>
-                        <option value="6">Cat6</option>
-                        <option value="7">Cat7</option>
-                        <option value="8">Cat8</option>
+                        <option value="1"> <a href="#">Autre Catégorie</a></option>
+                        <option value="2"><a href="#">Autre Catégorie</a></option>
+                        <option value="3"><a href="#">Autre Catégorie</a></option>
+                        <option value="4"><a href="#">Autre Catégorie</a></option>
+                        <option value="5"><a href="#">Autre Catégorie</a></option>
+                        <option value="6"><a href="#">Autre Catégorie</a></option>
+                        <option value="7"><a href="#">Autre Catégorie</a></option>
             </select>
     </div>
 </div>

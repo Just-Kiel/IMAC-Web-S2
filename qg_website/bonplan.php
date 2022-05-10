@@ -81,6 +81,19 @@
   </div>
 </div>
 
+<!--------- ZONE DE COMMENTAIRE -------->
+
+<section class="coms mb-3">
+  <h2>Commentaires</h2>
+  <div class="list-coms">
+
+  </div>
+  <input class="ajoutcom" type="text" placeholder="Ajouter un commentaire">
+</section>
+
+<!--------- FIN ZONE DE COMMENTAIRE -------->
+
+
 <!-- --- Boutons flottants à intégrer avec les filtres... -->
 
 
