@@ -9,8 +9,8 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="../img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="../seconnecter-styles.css">
+    <link rel="icon" href="../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../views/seconnecter-styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
@@ -24,22 +24,22 @@
 </head>
 
 <body>
-
+<!--
     <nav class="navbar fixed-top  ">
 
         <div class="d-flex flex-column align-items-center">
           <br>
-          <a href="accueil"><img src="../img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+          <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
           </div>
 
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
-              <a class="home " href="accueil" ><img class="invert"  src="../img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="../img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="seconnecter"><img class="invert"  src="../img/sidentifier.png" alt="Connexion" width="50"></a>
+              <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+              <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+              <a class="connexion" href="seconnecter"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
-    </nav>
+    </nav> -->
 
     <h1>SE CONNECTER AU QG !</h1>
 
@@ -67,7 +67,7 @@
         <div class="contents">
             <div id="content1" class="content">
                 
-                <form method='POST' action="seconnecter">
+                <form method='POST' action="seconnecter" enctype="multipart/form-data">
                   <input type='hidden' name='type' value='register'>
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="row mb-4">
@@ -83,8 +83,8 @@
                       </div>
                       <div class="col">
                         <div class="avatarinput">
-                          <label for="avatar">Ajouter une photo de profil</label>
-                          <input type="file" class="avatar" name="avatar" accept="image/png, image/jpeg">
+                          <label for="media">Ajouter une photo de profil</label>
+                          <input type="file" name="media" accept="image/*"/>
                         </div>
                       </div>
                     </div>
@@ -155,7 +155,7 @@
 
 
     <div class="scroll btn">
-      <img src="../img/top.png" alt="retourner en haut de la page" />
+      <img src="../views/img/top.png" alt="retourner en haut de la page" />
     </div>
 </section>
 

@@ -134,7 +134,7 @@ function getOneCategory($n){
     return $data;
 }
 
-function addOneMedia($user, $t){
+function addOneMedia($t){
 
     $target_dir = "./views/usersData/";
     $target_bdd_dir = "usersData/";
@@ -145,9 +145,10 @@ function addOneMedia($user, $t){
     $data = [
         'title' => $t,
         'url' => $target_bdd_file,
-        'user' => $user,
     ];
-    $sql = "INSERT INTO medias (name, url, userID) VALUES (:title,:url,:user)";
+    $title = $data['title'];
+    $url = $data['url'];
+    $sql = "INSERT INTO medias (name, url) VALUES ('$title','$url')";
 
     try {
         $stmt= connexion()->prepare($sql);
@@ -168,7 +169,13 @@ function addOneMedia($user, $t){
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
+
+    if (empty($data[0][0]))
+    {
+        return 1;
+    }
     return $data[0][0];
+    
 }
 
 function addOneGoodPlan($t, $content, $sD, $eD, $cat, $city, $user, $mediaID){

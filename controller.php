@@ -157,6 +157,12 @@ function register()
     $confirmpassword = $_POST['confirmpassword'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $city = $_POST['cities'];
+
+    $mediaID = null;
+    $media = $_FILES['media']['name'];
+    if(!empty($media)){        
+        $mediaID = addOneMedia($media);
+    }
     
     $stmt = connexion()->prepare("SELECT * FROM users WHERE email=?");
     $stmt->execute([$email]); 
@@ -172,7 +178,7 @@ function register()
         }
         else
         {
-            $sql = "INSERT INTO users (lastname, firstname, email, password, cityID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city')";
+            $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
             try {
                 connexion()->query($sql);
             } catch (PDOException $e) {
