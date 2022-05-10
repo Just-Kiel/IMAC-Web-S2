@@ -320,7 +320,8 @@ ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`firstuserID`) REFERENCES `users` 
 -- Contraintes pour la table `subcategories`
 --
 ALTER TABLE `subcategories`
-ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`);
+ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`),
+ADD CONSTRAINT `subcategories_ibfk_2` FOREIGN KEY (`subcategoryID`) REFERENCES `categories` (`categoryID`);
 
 --
 -- Contraintes pour la table `users`
