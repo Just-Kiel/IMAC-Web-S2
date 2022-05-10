@@ -235,7 +235,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
           </div>
         </div>
 

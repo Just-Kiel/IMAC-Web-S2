@@ -42,7 +42,7 @@
     </nav>
 
 
-    <h1>SE CONNECTER AU QG !</h1>
+    <h1>ENTRER AU QG !</h1>
     <div class="tabs">
         <ul class="list">
             <li class="tab active" data-target="#content1">INSCRIPTION</li>
@@ -170,7 +170,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
           </div>
         </div>
 
