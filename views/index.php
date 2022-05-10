@@ -45,9 +45,9 @@
     <div class="res  align-items-center ">
         <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
         <!-- TODO link vers messagerie -->
-        <a class="chat" href="#"><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
         <!-- TODO link vers mon compte si connecté sinon vers connexion -->
-        <a class="connexion" href="connexion"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+        <a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
     </div>
   </div>
     </nav>
@@ -58,7 +58,7 @@
 
   <!---  HEADER -->
 
-<header>
+ <header>
 <h1>BIENVENUE AU QG !</h1>
 <section class="banniere ">
   <div class="input-group ">
@@ -81,7 +81,24 @@
 
 <main>
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
-<section class="container-fluid column">
+<section class=" container-fluid column">
+  <p>
+    Ici le contenu relatifs à la BdD : catégories et post relatifs
+  </p>
+  <?php
+    if (empty($datatab[0]))
+    {
+        echo "Vous n'êtes pas connecté <br/>";
+    }
+    else
+    {
+        echo "Vous êtes connecté en tant que " . $datatab[0][0]['lastname'] . " " . $datatab[0][0]['firstname'] . "<br/>
+        <form method='POST' action='accueil'>
+            <input type='hidden' name='type' value='logout'>
+            <input type='submit' value='Se déconnecter'>
+        </form>";
+    }
+    ?>
 
   <!------------  Tabs à relier a la bd et aux cartes d'en dessous -------->
   <nav class="categories">
@@ -106,6 +123,7 @@
 
   <!-- --- Pensez a relier les éléments fictifs au vrais de la BD 
 ++ voir comment faire le bouton like et l'ajout de commentaire -->
+
 <div class="listCards">
 <?php
   foreach ($datatab[1] as $key =>$goodplan) {
@@ -261,19 +279,16 @@
                   <h6><a href="accueil">ACCUEIL</a></h6>
               </div>
 
-              <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MON COMPTE</a></h6>
               </div>
 
-              <!-- TODO link vers messagerie -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
-              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS</a></h6>
+                  <h6><a href="#">BONS PLANS</a></h6>
           </div>
         </div>
 
@@ -285,14 +300,13 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="inscription" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="connexion" role="button">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="seconnecter" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <!-- TODO link vers les mentions légales -->
         <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->

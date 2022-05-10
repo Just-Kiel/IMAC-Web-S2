@@ -92,7 +92,6 @@ function viewHomePage()
         }
         $data[2] = getOnlyCategories();
         view('index.php', $data);
-        // view('homepage.php');
     }
     else
     {
@@ -116,7 +115,6 @@ function viewHomePage()
         }
         $data[2] = getOnlyCategories();
         view('index.php', $data);
-        // view('homepage.php', getCurrentUser());
     }
 }
 
@@ -145,14 +143,9 @@ function viewCategoryPage($n){
     view('category.php', $data);
 }
 
-function viewRegisterPage()
+function viewSeconnecterPage()
 {
-    view('register.php', getAllCities());
-}
-
-function viewLoginPage()
-{
-    view('login.php');
+    view('seconnecter.php', getAllCities());
 }
 
 function register()
@@ -169,13 +162,13 @@ function register()
     $stmt->execute([$email]); 
     $user = $stmt->fetch();
     if ($user) {
-        viewRegisterPage();
-        echo "Cette addresse email existe déjà.";
+        $_SESSION['error'] = "Cette addresse email existe déjà.";
+        viewSeconnecterPage();
     } else {
         if ($password != $confirmpassword)
         {
-            viewRegisterPage();
-            echo "Vos mots de passe ne correspondent pas.";
+            $_SESSION['error'] = "Vos mots de passe ne correspondent pas.";
+            viewSeconnecterPage();
         }
         else
         {
@@ -186,8 +179,8 @@ function register()
                 print "Erreur !: " . $e->getMessage() . "<br/>";
                 die();
             }
-            echo "Votre compte a bien été créé.<br/>
-            <a href='accueil'>Accueil</a>";
+            $_SESSION['success'] = "Votre compte a bien été créé.";
+            viewSeconnecterPage();
         }
     }
 }
@@ -207,20 +200,19 @@ function login()
                 session_start();
               }
             $_SESSION['currentUserID'] = $user['userID'];
-            echo "Nous sommes heureux de vous revoir, " . getCurrentUser()[0]['lastname'] . " " . getCurrentUser()[0]['firstname'] . "<br/>
-            <a href='accueil'>Accueil</a>";
+            viewHomePage();
         } else {
-            viewLoginPage();
-            echo "Votre mot de passe est incorrect.";
+            $_SESSION['error'] = "Votre mot de passe est incorrect.";
+            viewSeconnecterPage();
         }
     } else {
-        viewLoginPage();
-        echo "Cette addresse email n'existe pas.";
+        $_SESSION['error'] = "Cette addresse email n'existe pas.";
+        viewSeconnecterPage();
     }
 }
 
 function logout()
 {
+    session_unset();
     session_destroy();
-    echo "Vous vous êtes déconnecté.<br/> <a href='accueil'>Accueil</a>";
 }
