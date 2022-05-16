@@ -135,11 +135,30 @@ function getOneCategory($n){
 }
 
 function addOneMedia($t){
-
     $target_dir = "./views/usersData/";
     $target_bdd_dir = "usersData/";
-    $target_file = $target_dir.basename($t);
-    $target_bdd_file = $target_bdd_dir.basename($t);
+    $target_file = null;
+    $target_bdd_file = null;
+    $ext = pathinfo($t, PATHINFO_EXTENSION);
+
+    try {
+        $maxMedia = connexion()->query('SELECT MAX(mediaID) FROM medias')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+
+    if (empty($maxMedia[0][0]))
+    {
+        $target_file = $target_dir."picture0".".$ext";
+        $target_bdd_file = $target_bdd_dir."picture0".".$ext";
+    }
+    else
+    {
+        $target_file = $target_dir."picture".$maxMedia[0][0].".$ext";
+        $target_bdd_file = $target_bdd_dir."picture".$maxMedia[0][0].".$ext";
+    }
+
     $uploadOk=1;
 
     $data = [
@@ -163,18 +182,11 @@ function addOneMedia($t){
         die();
     }
 
-    try {
-        $data = connexion()->query('SELECT MAX(mediaID) FROM medias')->fetchAll();
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
-        die();
-    }
-
-    if (empty($data[0][0]))
+    if (empty($maxMedia[0][0]))
     {
         return 1;
     }
-    return $data[0][0];
+    return $maxMedia[0][0];
     
 }
 

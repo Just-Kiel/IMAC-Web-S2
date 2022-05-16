@@ -44,6 +44,14 @@ switch ($tab[4])
         }
         break;
 
+    case "moncompte":
+        viewMonComptePage();
+        break;
+
+    case "modifiercompte":
+        viewModifierComptePage();
+        break;
+
     case "viewgoodplan":
         viewGoodPlanPage($tab[5]);
         break;

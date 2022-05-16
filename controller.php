@@ -148,6 +148,16 @@ function viewSeconnecterPage()
     view('seconnecter.php', getAllCities());
 }
 
+function viewMonComptePage()
+{
+    view('moncompte.php');
+}
+
+function viewModifierComptePage()
+{
+    view('moncompte-modif.php');
+}
+
 function register()
 {
     $lastname = $_POST['lastname'];

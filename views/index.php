@@ -47,7 +47,15 @@
         <!-- TODO link vers messagerie -->
         <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
         <!-- TODO link vers mon compte si connecté sinon vers connexion -->
-        <a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+        <?php
+        if (!isset($_SESSION['currentUserID']))
+        {
+          echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+        } else
+        {
+          echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+        }
+        ?>
     </div>
   </div>
     </nav>
