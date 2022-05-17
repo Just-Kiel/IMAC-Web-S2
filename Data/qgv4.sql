@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `likes` (
 
 CREATE TABLE IF NOT EXISTS `medias` (
 `mediaID` int(11) NOT NULL,
-  `type` varchar(30) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `url` varchar(90) DEFAULT NULL
+  `type` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `url` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
