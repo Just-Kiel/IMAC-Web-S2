@@ -25,15 +25,7 @@
 
 <body>
 
-<!---  : Picto chargement page -->
-
-<!---  fin  Picto chargement page -->
-
-
-
 <!---  NAVABAR -->
-
-
 <nav class="navbar fixed-top  ">
 
     <div class="d-flex flex-column align-items-center">
@@ -50,9 +42,7 @@
         <a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
     </div>
   </div>
-    </nav>
-
-
+</nav>
   <!---  FIN NAVBAR -->
 
 
@@ -73,6 +63,27 @@
 </header> 
 
 <!---  FIN DU HEADER -->
+
+<!-- Filtres temporaires -->
+
+<h2>Filtres</h2>
+
+<form action="accueil" method="post">
+
+  <select name="myfilters">
+    <option value="city">Par ville - A à Z</option>
+    <option value="like">Par popularité - décroissant</option>
+    <option value="date">Par date - plus récent au moins récent</option>
+    <option value="null">Pas de filtre</option>
+  </select>
+
+  <input type='hidden' name='type' value='filters'>
+
+  <input type="submit" value="Valider">
+
+</form>
+
+<!-- Fin filtres -->
 
 
 

@@ -61,7 +61,6 @@
 <main>
 
 <!-----------FIL D'ARIANE DU BON PLAN --------->
-<!-- a compléter en php -->
 <div class="categorieschoice">
     <div class="arianne">
             <ol class="breadcrumb">
@@ -70,13 +69,16 @@
              </ol>
     </div>
     <div class="autrecategorie">
-      <select class="quellecat select">
+      <form name="myform">
+      <select class="quellecat select" name="mylist" onChange="nav()">
         <?php
+          echo '<option value="../category/'.$datatab[0][0]['categoryID'].'">'.$datatab[0][0]['title'].'</option>';
           foreach($datatab[3] as $category){
-            echo '<option value="'.$category['categoryID'].'">'.$category['title'].'</option>';
+            echo '<option value="../category/'.$category['categoryID'].'">'.$category['title'].'</option>';
           }
         ?>
       </select>
+      </form>
     </div>
 </div>
 
@@ -95,7 +97,6 @@
 
 <ul class="nav nav-pills">
   <li class="nav-item">
-      <!-- TODO comment on fait pour les sous catégories ?? -->
       <a href="../subcategory/<?php echo $subcategory['categoryID']; ?>" class="nav-link"><?php echo $subcategory['title']; ?></a>
   </li>
 </ul>
@@ -321,6 +322,13 @@
              nom : afficherSite
              retourne: - 
              paramètres:*/
+
+             function nav()
+              {
+              var w = document.myform.mylist.selectedIndex;
+              var url_add = document.myform.mylist.options[w].value;
+              window.location.href = url_add;
+              }
                        
             
              function afficherSite() {

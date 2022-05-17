@@ -44,6 +44,14 @@ function viewGoodPlanPage($n){
     $user = getOneUser($data[0]['userID']);
     $data[0]['userID'] = $user[0];
 
+    $data[1] = getAllCommentsOnOneGoodPlan($data[0]['goodplanID']);
+
+    foreach ($data[1] as $key=>$comment) {
+        $user = getOneUser($comment['userID']);
+
+        $data[1][$key]['userID'] = $user[0];
+    }
+
     view('bonplan.php', $data);
 }
 
@@ -68,35 +76,55 @@ function addGoodPlan(){
     addOneGoodPlan($title, $textContent, $startingDate, $endingDate, $category, $city, $user, $mediaID);
 }
 
-function viewHomePage()
+function addComment(){
+    $user = getCurrentUser();
+    $user = $user[0]['userID'];
+
+    $text = $_POST['comContent'];
+    $date = date("Y/m/d");
+
+    $goodplanID = $_POST['goodplanID'];
+
+    addOneComment($user, $text, $date, $goodplanID);
+}
+
+function viewHomePage($f)
 {
     if (getCurrentUser() == NULL)
     {
         $data[0] = null;
-        $data[1] = getAllGoodPlans();
-        foreach($data[1] as $key=>$goodplan){
-            if(!empty($goodplan['cityID'])){
-                $city = getOneCity($goodplan['cityID']);
-                $goodplan['cityID'] = $city[0]['name'];
-            }
-
-            if(!empty($goodplan['mediaID'])){
-                $media = getOneMedia($goodplan['mediaID']);
-                $goodplan['mediaID'] = $media[0]['url'];
-            }
-
-            $user = getOneUser($goodplan['userID']);
-            $goodplan['userID'] = $user[0];
-
-            $data[1][$key] = $goodplan;
-        }
-        $data[2] = getOnlyCategories();
-        view('index.php', $data);
     }
     else
     {
         $data[0] = getCurrentUser();
-        $data[1] = getAllGoodPlans();
+    }
+
+        if(!empty($f)){
+            switch ($f) {
+                case 'city':
+                    $data[1] = getAllGoodPlansCityOrdered();
+                    break;
+                case 'like':
+                    // TODO get goodplans by like
+                    break;
+
+                case 'date':
+                    $data[1] = getAllGoodPlansDateOrdered();
+                    break;
+
+                case "null":
+                    $data[1] = getAllGoodPlans();
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        } else {
+            $data[1] = getAllGoodPlans();
+        }
+
+        
         foreach($data[1] as $key=>$goodplan){
             if(!empty($goodplan['cityID'])){
                 $city = getOneCity($goodplan['cityID']);
@@ -114,8 +142,9 @@ function viewHomePage()
             $data[1][$key] = $goodplan;
         }
         $data[2] = getOnlyCategories();
+        // $data[3] = 
+
         view('index.php', $data);
-    }
 }
 
 function viewCategoryPage($n){
@@ -228,7 +257,7 @@ function login()
                 session_start();
               }
             $_SESSION['currentUserID'] = $user['userID'];
-            viewHomePage();
+            viewHomePage(null);
         } else {
             $_SESSION['error'] = "Votre mot de passe est incorrect.";
             viewSeconnecterPage();

@@ -104,6 +104,71 @@
   </div>
 </div>
 
+<!--------- ZONE DE COMMENTAIRE -------->
+
+<section class="coms mb-3 content-item">
+    <div class="container">   
+    	<div class="row">
+        <!-- TODO link vers section -->
+      <div class="commentaires" id="commentaires"> 
+        <?php if (isset($_SESSION['currentUserID'])) { ?> 
+                <form method="post">
+                	<h3>Nouveau Commentaire</h3>
+                  <fieldset>
+                    <div class="container">
+                      <div class="row ajoutcom">
+                              <div class="myavatar col">
+                                <!-- TODO link vers photo de profil -->
+                                <img class="img-responsive " src="../../views/img/avatar2.png" alt="">
+                              </div>
+                              <div class="form-group col-8">
+                                  <textarea name="comContent" class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
+                              </div>
+                              <input type="hidden" name="goodplanID" value=<?php echo $datatab[0]['goodplanID']; ?>>
+                              <div class="btnenvoyer col">
+                                  <button type="submit" class="btn btn-normal">ENVOYER</button>
+                              </div>
+                        </div>  
+                    </div>	
+                  </fieldset>
+                </form>
+
+        <?php } else { ?>
+          <p>Tu as besoin d'être connecté.e pour commenter.</p>
+        <?php } ?>
+    
+                
+                <h3><?php echo count($datatab[1]); ?> commentaires</h3>
+                
+                <div class="listecoms">
+
+                <?php foreach ($datatab[1] as $key => $comment) { ?>
+                  <!-- COMMENT 1 - START -->
+                  <div class="media">
+                    <!-- TODO link avatar -->
+                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                  <?php echo $comment['userID']['lastname']." ".$comment['userID']['firstname']; ?>
+                                </h4>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>
+                                    <?php echo date("d/m/Y", strtotime($comment['date'])); ?>
+                                  </li>
+                                </ul>
+                                <p><?php echo $comment['text']; ?></p>
+                            </div>
+                        </div>
+                        <!-- COMMENT 1 - END -->
+                <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--------- FIN ZONE DE COMMENTAIRE -------->
+
 <!-- --- Boutons flottants à intégrer avec les filtres... -->
 
 

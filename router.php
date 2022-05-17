@@ -8,11 +8,18 @@ $tab = explode("/", $uri);
 switch ($tab[4])
 {
     case "accueil":
-        if($method == 'POST' && $_POST['type'] == 'logout')
+        $filters = null;
+        if($method == 'POST')
         {
-            logout();
+            if($_POST['type'] == 'logout')
+            {
+                logout();
+            } else if($_POST['type'] == 'filters'){
+                $filters = $_POST['myfilters'];
+            }
         }
-        viewHomePage();
+        // passer en parametre les filters
+        viewHomePage($filters);
         break;
 
     case "seconnecter":
@@ -45,6 +52,9 @@ switch ($tab[4])
         break;
 
     case "viewgoodplan":
+        if($method == 'POST'){
+            addComment();
+        }
         viewGoodPlanPage($tab[5]);
         break;
 

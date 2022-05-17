@@ -21,8 +21,6 @@
 
 </head>
 
-<!-- TODO link des boutons de catégories à faire -->
-
 <body>
 
     <nav class="navbar fixed-top">
@@ -68,17 +66,6 @@
                 <li><a href="../category/<?php echo $datatab[3]['categoryID'];?>"><?php echo $datatab[3]['title'];?> </a> </li>
                 <li href="" class="page-active"><?php echo $datatab[0][0]['title'];?> </li>
              </ol>
-    </div>
-
-    <!-- TODO modif des boutons à faire ici -->
-    <div class="autrecategorie">
-      <select class="quellecat select">
-        <?php
-          foreach($datatab[2] as $category){
-            echo '<option value="'.$category['categoryID'].'">'.$category['title'].'</option>';
-          }
-        ?>
-      </select>
     </div>
 </div>
 

@@ -44,6 +44,26 @@ function getAllGoodPlans(){
     return $data;
 }
 
+function getAllGoodPlansCityOrdered(){
+    try {
+        $data = connexion()->query('SELECT DISTINCT goodplans.* FROM `goodplans` ORDER BY goodplans.cityID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansDateOrdered(){
+    try {
+        $data = connexion()->query('SELECT DISTINCT goodplans.* FROM `goodplans` ORDER BY goodplans.startingDate DESC')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
 function getGoodPlansFromCategory($n){
     try {
         $data = connexion()->query('SELECT * FROM goodplans WHERE categoryID = '.$n)->fetchAll();
@@ -105,6 +125,7 @@ function getAllCategories(){
 }
 
 function getAllSubCategories($n){
+    // TODO fix cette fonction
     try {
         $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = categories.categoryID AND subcategories.categoryID = 1')->fetchAll();
     } catch (PDOException $e) {
@@ -259,4 +280,33 @@ function addOneGoodPlan($t, $content, $sD, $eD, $cat, $city, $user, $mediaID){
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
+}
+
+function addOneComment($user, $text, $date, $goodplanID){
+    $data = [
+        'userID' => $user,
+        'text' => $text,
+        'date' => $date,
+        'goodplanID' => $goodplanID
+    ];
+    $sql = "INSERT INTO comments (userID, text, date, goodplanID) VALUES (:userID,:text, :date, :goodplanID)";
+
+    try {
+        $stmt= connexion()->prepare($sql);
+        $stmt->execute($data);
+        echo "Commentaire ajouté";
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+}
+
+function getAllCommentsOnOneGoodPlan($n){
+    try {
+        $data = connexion()->query('SELECT * FROM `comments` WHERE goodplanID = '.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
 }
