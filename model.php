@@ -114,6 +114,16 @@ function getAllSubCategories($n){
     return $data;
 }
 
+function getCategoryOfSubCategory($n){
+    try {
+        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = '.$n.' AND categories.categoryID = subcategories.categoryID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
 function getOnlyCategories(){
     try {
         $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID != categories.categoryID')->fetchAll();
@@ -134,20 +144,40 @@ function getOneCategory($n){
     return $data;
 }
 
-function addOneMedia($user, $t){
-
+function addOneMedia($t){
     $target_dir = "./views/usersData/";
     $target_bdd_dir = "usersData/";
-    $target_file = $target_dir.basename($t);
-    $target_bdd_file = $target_bdd_dir.basename($t);
+    $target_file = null;
+    $target_bdd_file = null;
+    $ext = pathinfo($t, PATHINFO_EXTENSION);
+
+    try {
+        $maxMedia = connexion()->query('SELECT MAX(mediaID) FROM medias')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+
+    if (empty($maxMedia[0][0]))
+    {
+        $target_file = $target_dir."picture0".".$ext";
+        $target_bdd_file = $target_bdd_dir."picture0".".$ext";
+    }
+    else
+    {
+        $target_file = $target_dir."picture".$maxMedia[0][0].".$ext";
+        $target_bdd_file = $target_bdd_dir."picture".$maxMedia[0][0].".$ext";
+    }
+
     $uploadOk=1;
 
     $data = [
         'title' => $t,
         'url' => $target_bdd_file,
-        'user' => $user,
     ];
-    $sql = "INSERT INTO medias (name, url, userID) VALUES (:title,:url,:user)";
+    $title = $data['title'];
+    $url = $data['url'];
+    $sql = "INSERT INTO medias (name, url) VALUES ('$title','$url')";
 
     try {
         $stmt= connexion()->prepare($sql);
@@ -162,13 +192,11 @@ function addOneMedia($user, $t){
         die();
     }
 
-    try {
-        $data = connexion()->query('SELECT MAX(mediaID) FROM medias')->fetchAll();
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
-        die();
+    if (empty($maxMedia[0][0]))
+    {
+        return 1;
     }
-    return $data[0][0];
+    return $maxMedia[0][0];
 }
 
 function addOneGoodPlan($t, $content, $sD, $eD, $cat, $city, $user, $mediaID){

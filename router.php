@@ -51,6 +51,10 @@ switch ($tab[4])
     case "category":
         viewCategoryPage($tab[5]);
         break;
+    
+    case "subcategory":
+        viewSubCategoryPage($tab[5]);
+        break;
 
     default:
         echo "La requête n'a pas fonctionné";
