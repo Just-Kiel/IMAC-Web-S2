@@ -235,7 +235,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
+                  <h6><a href="#">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -247,8 +247,7 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">REJOINDRE LE QG !</a>
                 </div>
           </div>
         </div>

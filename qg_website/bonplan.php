@@ -83,12 +83,73 @@
 
 <!--------- ZONE DE COMMENTAIRE -------->
 
-<section class="coms mb-3">
-  <h2>Commentaires</h2>
-  <div class="list-coms">
-
-  </div>
-  <input class="ajoutcom" type="text" placeholder="Ajouter un commentaire">
+<section class="coms mb-3 content-item">
+    <div class="container">   
+    	<div class="row">
+      <div class="commentaires">   
+                <form>
+                	<h3>Nouveau Commentaire</h3>
+                  <fieldset>
+                    <div class="container">
+                      <div class="row ajoutcom">
+                              <div class="myavatar col">
+                                <img class="img-responsive " src="img/avatar2.png" alt="">
+                              </div>
+                              <div class="form-group col-8">
+                                  <textarea class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
+                              </div>
+                              <div class="btnenvoyer col">
+                                  <button type="submit" class="btn btn-normal">ENVOYER</button>
+                              </div>
+                        </div>  
+                    </div>	
+                  </fieldset>
+                </form>
+    
+                
+                <h3>"Nombre" commentaires</h3>
+                
+                <div class="listecoms">
+                        <!-- COMMENT 1 - START -->
+                        <div class="media">
+                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">John Doe</h4>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
+                                </ul>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!-- COMMENT 1 - END -->
+                        <!-- COMMENT 2 - START -->
+                        <div class="media">
+                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Julie Dupont</h4>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
+                                </ul>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!-- COMMENT 2 - END -->
+                        <!-- COMMENT 3 - START -->
+                        <div class="media">
+                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Lou Martin</h4>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
+                                </ul>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        <!-- COMMENT 3 - END -->
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!--------- FIN ZONE DE COMMENTAIRE -------->
@@ -139,7 +200,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
+                  <h6><a href="#">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -151,8 +212,7 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">REJOINDRE LE QG !</a>
                 </div>
           </div>
         </div>
