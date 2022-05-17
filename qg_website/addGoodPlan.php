@@ -52,7 +52,7 @@
         <header>
 
                 <div class="ban container md-4 col-12">
-                        <h1>JE SOUHAITE AJOUTER UN BON PLAN !</h1>
+                        <h1>JE PARTAGE UN SUPER BON PLAN !</h1>
                 </div>
 
 
@@ -66,11 +66,11 @@
                                     <div class="container">
                                         <div>
                                             <label for="title">Titre :</label>
-                                            <input class="nomzone" type="text" placeholder="Nom du Bon Plan" name="title" required>
+                                            <input class="nomzone" type="text" placeholder="Titre du Bon Plan" name="title" required>
                                         </div>
                                         <div>
                                             <label for="textContent">Contenu :</label>
-                                            <textarea type="text" placeholder="Description" name="textContent" required></textarea>
+                                            <textarea type="text" placeholder="Description de ton super bon plan" name="textContent" required></textarea>
                                         </div>
                                         <div>
                                             <label for="startingDate">Date de début :</label>
@@ -93,7 +93,7 @@
                                         </div>
                                         
                                         <div>
-                                        <label for="city">Ville :</label>
+                                        <label for="city">Ça se passe ici :</label>
                                         <select name="cities">
                                         <?php
                                             foreach($datatab[1] as $city){
