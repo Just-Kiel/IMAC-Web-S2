@@ -192,7 +192,7 @@
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">QUI SOMMES-NOUS</a></h6>
+                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
                 </div>
             </div>
 
@@ -213,7 +213,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="#"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentions-legales.php"
                     target="blank">Mentions Légales</a>
             </div>
 
