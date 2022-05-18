@@ -150,12 +150,35 @@ function viewSeconnecterPage()
 
 function viewMonComptePage()
 {
-    view('moncompte.php');
+    view('moncompte.php', getCurrentUser());
 }
 
 function viewModifierComptePage()
 {
     view('moncompte-modif.php');
+}
+
+function addLike($goodplanID){
+    $current_user = getCurrentUser()[0][0];
+    if(getLikes($current_user)==1){
+        $sql = "DELETE FROM likes WHERE goodplanID='$goodplanID' AND userID='$current_user'";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    else
+    {
+        $sql = "INSERT INTO likes (goodplanID, userID) VALUES ('$goodplanID', '$current_user')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 }
 
 function register()

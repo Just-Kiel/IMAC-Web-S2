@@ -134,6 +134,17 @@ function getOneCategory($n){
     return $data;
 }
 
+function getLikes($like){
+    $stmt = connexion()->prepare("SELECT * FROM likes WHERE userID=?");
+    $stmt->execute([$like]); 
+    $user = $stmt->fetch();
+    if ($user) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 function addOneMedia($t){
     $target_dir = "./views/usersData/";
     $target_bdd_dir = "usersData/";

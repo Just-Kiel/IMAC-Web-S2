@@ -172,7 +172,27 @@
             <!-- TODO link vers section commentaire du bon plan -->
             <i class="bi bi-chat-dots-fill btn" href="#"></i>
               <!-- TODO like possible partout -->
-              <i class="bi bi-heart-fill btn" href=""></i>
+              <?php
+                if(array_key_exists('buttonlike', $_POST))
+                {
+                  addLike($goodplan['goodplanID']);
+                }
+              ?>
+            <form method="post">
+              <input type='hidden' name='type' value='like'>
+              <?php
+                $value=null;
+                if(getLikes(getCurrentUser()[0][0])==1)
+                {
+                  echo '<input type="submit" name="buttonlike" class="profiter btn btn-primary" value="Je dislike" />';
+                }
+                else 
+                {
+                  echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je like'/>";
+                }
+              ?>
+            </form>
+              <span>&nbsp;</span> 
               <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
           </div>
           <div class="proprio">

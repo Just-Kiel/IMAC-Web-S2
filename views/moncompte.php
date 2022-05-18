@@ -66,26 +66,32 @@
                     <div class="col">
                         <div class="form-outline">
                             <b><label class="form-label" for="form6Example1">Nom et prénom</label></b>
-                            <p>Jane Doe</p>
+                            <?php echo "</br>" . $datatab[0]['lastname'] . " " . $datatab[0]['firstname'] ?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LE NOM ET LE PRÉNOM DE L'UTILISATEUR -->
                         </div>
                         <div class=" nom form-outline">
                             <b><label class="form-label" for="form6Example2">Email</label></b>
-                            <p>janedoe@gmail.com</p>
+                            <?php echo "</br>" . $datatab[0]['email']?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT L'EMAIL DE L'UTILISATEUR -->
                         </div>
                         <div class=" nom form-outline">
                             <b><label class="form-label" for="form6Example3">Ville</label></b>
-                            <p>Paris</p>
+                            <?php
+                            $data = connexion()->query('SELECT name FROM cities WHERE cityID = '.$datatab[0]['cityID'])->fetchAll();
+                            echo "</br>" . $data[0]['name'];
+                            ?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LA VILLE DE L'UTILISATEUR -->
                         </div>
                     </div>
                     <div class="col">
                         <!-- A LINK VERS LA POP UP DE L'UTILISATEUR -->
-                        <a href=""><img src="../views/img/avatar1.png" alt="photo de profil" class="pp"></a></br>
+                        <?php
+                        $imgsrc = connexion()->query('SELECT url FROM medias WHERE mediaID = '.$datatab[0]['userID'])->fetchAll();
+                        $src = "../views/" . $imgsrc[0][0];
+                        echo "<a href=''><img src=" . "$src" . " alt='photo de profil' class='pp'></a></br>";
+                        ?>
                     </div>
                 </div>
-
                 <!-- Boutons -->
                 <a class=" modifierbtn btn btn-primary btn-block mb-4" href="modifiercompte">MODIFIER MES
                         INFORMATIONS</a>
