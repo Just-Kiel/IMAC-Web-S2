@@ -134,9 +134,9 @@ function getOneCategory($n){
     return $data;
 }
 
-function getLikes($like){
-    $stmt = connexion()->prepare("SELECT * FROM likes WHERE userID=?");
-    $stmt->execute([$like]); 
+function getLikes($like, $goodplanID){
+    $stmt = connexion()->prepare("SELECT * FROM likes WHERE userID=? AND goodplanID=?");
+    $stmt->execute(array($like, $goodplanID)); 
     $user = $stmt->fetch();
     if ($user) {
         return 1;
@@ -183,11 +183,7 @@ function addOneMedia($t){
     try {
         $stmt= connexion()->prepare($sql);
         $stmt->execute($data);
-        if (move_uploaded_file($_FILES["media"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars($t). " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
+        move_uploaded_file($_FILES["media"]["tmp_name"], $target_file);
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
@@ -197,7 +193,7 @@ function addOneMedia($t){
     {
         return 1;
     }
-    return $maxMedia[0][0];
+    return $maxMedia[0][0] + 1;
     
 }
 

@@ -84,7 +84,7 @@
                       <div class="col">
                         <div class="avatarinput">
                           <label for="media">Ajouter une photo de profil</label>
-                          <input type="file" name="media" accept="image/*"/>
+                          <input type="file" name="media" accept="image/*" required/>
                         </div>
                       </div>
                     </div>

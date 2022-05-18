@@ -160,7 +160,7 @@ function viewModifierComptePage()
 
 function addLike($goodplanID){
     $current_user = getCurrentUser()[0][0];
-    if(getLikes($current_user)==1){
+    if(getLikes($current_user, $goodplanID)==1){
         $sql = "DELETE FROM likes WHERE goodplanID='$goodplanID' AND userID='$current_user'";
         try {
             connexion()->query($sql);
@@ -190,12 +190,7 @@ function register()
     $confirmpassword = $_POST['confirmpassword'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $city = $_POST['cities'];
-
-    $mediaID = null;
-    $media = $_FILES['media']['name'];
-    if(!empty($media)){        
-        $mediaID = addOneMedia($media);
-    }
+    $media = $_FILES['media'];
     
     $stmt = connexion()->prepare("SELECT * FROM users WHERE email=?");
     $stmt->execute([$email]); 
@@ -211,15 +206,24 @@ function register()
         }
         else
         {
-            $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
-            try {
-                connexion()->query($sql);
-            } catch (PDOException $e) {
-                print "Erreur !: " . $e->getMessage() . "<br/>";
-                die();
+            if ($media['error'] === UPLOAD_ERR_OK)
+            {
+                $mediaID = addOneMedia($media['name']);
+                $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
+                try {
+                    connexion()->query($sql);
+                } catch (PDOException $e) {
+                    print "Erreur !: " . $e->getMessage() . "<br/>";
+                    die();
+                }
+                $_SESSION['success'] = "Votre compte a bien été créé.";
+                viewSeconnecterPage();
             }
-            $_SESSION['success'] = "Votre compte a bien été créé.";
-            viewSeconnecterPage();
+            else
+            {
+                $_SESSION['error'] = "Votre image de profil ne doit pas dépasser 2Mo.";
+                viewSeconnecterPage();
+            }
         }
     }
 }
