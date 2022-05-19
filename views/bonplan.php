@@ -34,9 +34,19 @@
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
               <a class="home " href="../accueil" ><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
+              
               <!-- TODO link vers messagerie -->
               <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="../connexion" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+
+              <?php
+              if (!isset($_SESSION['currentUserID']))
+              {
+                echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              } else
+              {
+                echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              }
+              ?>
           </div>
         </div>
     </nav>
@@ -236,8 +246,7 @@
         </div>
 
         <!-- Copyright -->
-        <!-- TODO link vers les mentions légales -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="../../views/mentions-legales.php" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>

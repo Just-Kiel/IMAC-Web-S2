@@ -45,12 +45,21 @@ switch ($tab[4])
         {
             addGoodPlan();
         }
-        else
-        {
             viewAddGoodPlanPage();
-        }
         break;
 
+        case "moncompte":
+            viewMonComptePage();
+            break;
+
+        case "compteexterne":
+            viewCompteExterne($tab[5]);
+            break;
+    
+        case "modifiercompte":
+            viewModifierComptePage();
+            break;
+            
     case "viewgoodplan":
         if($method == 'POST'){
             addComment();
@@ -64,6 +73,10 @@ switch ($tab[4])
     
     case "subcategory":
         viewSubCategoryPage($tab[5]);
+        break;
+
+    case "mentionslegales":
+        viewMentionsLegales();
         break;
 
     default:

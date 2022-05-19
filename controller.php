@@ -137,12 +137,13 @@ function viewHomePage($f)
             }
 
             $user = getOneUser($goodplan['userID']);
+            $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
             $goodplan['userID'] = $user[0];
 
             $data[1][$key] = $goodplan;
         }
         $data[2] = getOnlyCategories();
-        // $data[3] = 
 
         view('index.php', $data);
 }
@@ -199,10 +200,75 @@ function viewSubCategoryPage($n){
     view('souscategorie.php', $data);
 }
 
+function viewMentionsLegales(){
+    view('mentions-legales.php');
+}
 
 function viewSeconnecterPage()
 {
     view('seconnecter.php', getAllCities());
+}
+
+function viewMonComptePage()
+{
+    view('moncompte.php', getCurrentUser());
+}
+
+function viewModifierComptePage()
+{
+    view('moncompte-modif.php');
+}
+
+function viewCompteExterne($userID){
+    $data = getOneUser($userID);
+
+    $media = getOneMedia($userID);
+
+    $data[0]['mediaID'] = $media[0];
+
+    $data[1] = getGoodPlansByUser($userID);
+
+    foreach($data[1] as $key=>$goodplan){
+        if(!empty($goodplan['cityID'])){
+            $city = getOneCity($goodplan['cityID']);
+            $goodplan['cityID'] = $city[0]['name'];
+        }
+        
+        if(!empty($goodplan['mediaID'])){
+            $media = getOneMedia($goodplan['mediaID']);
+            $goodplan['mediaID'] = $media[0]['url'];
+        }
+
+        $user = getOneUser($goodplan['userID']);
+        $goodplan['userID'] = $user[0];
+
+        $data[1][$key] = $goodplan;
+    }
+    
+    view('moncompte-vue-externe.php', $data);
+}
+
+function addLike($goodplanID){
+    $current_user = getCurrentUser()[0][0];
+    if(getLikes($current_user, $goodplanID)==1){
+        $sql = "DELETE FROM likes WHERE goodplanID='$goodplanID' AND userID='$current_user'";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    else
+    {
+        $sql = "INSERT INTO likes (goodplanID, userID) VALUES ('$goodplanID', '$current_user')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
 }
 
 function register()
@@ -214,6 +280,12 @@ function register()
     $confirmpassword = $_POST['confirmpassword'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $city = $_POST['cities'];
+
+    $mediaID = null;
+    $media = $_FILES['media']['name'];
+    if(!empty($media)){        
+        $mediaID = addOneMedia($media);
+    }
     
     $stmt = connexion()->prepare("SELECT * FROM users WHERE email=?");
     $stmt->execute([$email]); 
@@ -229,15 +301,24 @@ function register()
         }
         else
         {
-            $sql = "INSERT INTO users (lastname, firstname, email, password, cityID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city')";
-            try {
-                connexion()->query($sql);
-            } catch (PDOException $e) {
-                print "Erreur !: " . $e->getMessage() . "<br/>";
-                die();
+            if ($media['error'] === UPLOAD_ERR_OK)
+            {
+                $mediaID = addOneMedia($media['name']);
+                $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
+                try {
+                    connexion()->query($sql);
+                } catch (PDOException $e) {
+                    print "Erreur !: " . $e->getMessage() . "<br/>";
+                    die();
+                }
+                $_SESSION['success'] = "Votre compte a bien été créé.";
+                viewSeconnecterPage();
             }
-            $_SESSION['success'] = "Votre compte a bien été créé.";
-            viewSeconnecterPage();
+            else
+            {
+                $_SESSION['error'] = "Votre image de profil ne doit pas dépasser 2Mo.";
+                viewSeconnecterPage();
+            }
         }
     }
 }
