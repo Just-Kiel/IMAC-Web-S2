@@ -11,7 +11,7 @@
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../../views/img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="../../views/moncompte-style.css">
+    <link rel="stylesheet" href="../../views/moncompte-vue-externe-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -48,7 +48,7 @@
         </div>
     </nav>
 
-    <h1><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></h1>
+    <h1>Compte</h1>
 
     <!-- Tableau contenant les onglets "MES INFOS" et "MES BONS PLANS" -->
     <div>
@@ -59,12 +59,12 @@
                 <div class="container">
                     <!-- Informations utilisateurs -->
                     <div class="row align-items-center justify-content-center">
-                        <div class="col-5">
-                            <a href=""><img src=
+                        <div class="col col-sm-4">
+                            <img src=
                                 <?php
                                 echo "../../views/".$datatab[0]['mediaID']['url'];
                                 ?>
-                                 alt="photo de profil" class="pp"></a></br>
+                                 alt="photo de profil" class="pp"></br>
                         </div>
                         <div class="col-4">
                             <b>

@@ -42,6 +42,7 @@ function viewGoodPlanPage($n){
     }
 
     $user = getOneUser($data[0]['userID']);
+    $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
     $data[0]['userID'] = $user[0];
 
     $data[1] = getAllCommentsOnOneGoodPlan($data[0]['goodplanID']);
@@ -51,6 +52,11 @@ function viewGoodPlanPage($n){
 
         $data[1][$key]['userID'] = $user[0];
     }
+
+    $currentUser = getCurrentUser();
+    $currentUser[0]['mediaID'] = getOneMedia($currentUser[0]['mediaID']);
+
+    $data[2] = $currentUser[0];
 
     view('bonplan.php', $data);
 }
@@ -103,17 +109,21 @@ function viewHomePage($f)
             switch ($f) {
                 case 'city':
                     $data[1] = getAllGoodPlansCityOrdered();
+                    $data[3] = "city";
                     break;
                 case 'like':
-                    // TODO get goodplans by like
+                    $data[1] = getAllGoodPlansLikeOrdered();
+                    $data[3] = "like";
                     break;
 
                 case 'date':
                     $data[1] = getAllGoodPlansDateOrdered();
+                    $data[3] = "date";
                     break;
 
                 case "null":
                     $data[1] = getAllGoodPlans();
+                    $data[3] = "null";
                     break;
                 
                 default:
@@ -122,6 +132,7 @@ function viewHomePage($f)
             }
         } else {
             $data[1] = getAllGoodPlans();
+            $data[3] = "null";
         }
 
         
@@ -140,6 +151,8 @@ function viewHomePage($f)
             $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
 
             $goodplan['userID'] = $user[0];
+
+            $goodplan['likes'] = getAllLikesforOneGoodplan($goodplan['goodplanID']);
 
             $data[1][$key] = $goodplan;
         }
@@ -204,6 +217,10 @@ function viewMentionsLegales(){
     view('mentions-legales.php');
 }
 
+function viewQuiSommesNous(){
+    view('qui-sommes-nous.php');
+}
+
 function viewSeconnecterPage()
 {
     view('seconnecter.php', getAllCities());
@@ -222,7 +239,7 @@ function viewModifierComptePage()
 function viewCompteExterne($userID){
     $data = getOneUser($userID);
 
-    $media = getOneMedia($userID);
+    $media = getOneMedia($data[0]['mediaID']);
 
     $data[0]['mediaID'] = $media[0];
 
@@ -244,7 +261,7 @@ function viewCompteExterne($userID){
 
         $data[1][$key] = $goodplan;
     }
-    
+
     view('moncompte-vue-externe.php', $data);
 }
 
@@ -301,9 +318,8 @@ function register()
         }
         else
         {
-            if ($media['error'] === UPLOAD_ERR_OK)
+            if ($_FILES['media']['error'] === UPLOAD_ERR_OK)
             {
-                $mediaID = addOneMedia($media['name']);
                 $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
                 try {
                     connexion()->query($sql);

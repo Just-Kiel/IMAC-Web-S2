@@ -79,28 +79,6 @@
 
 <!---  FIN DU HEADER -->
 
-<!-- TODO Filtres temporaires dans popup -->
-
-<h2>Filtres</h2>
-
-<form action="accueil" method="post">
-
-  <select name="myfilters">
-    <option value="city">Par ville - A à Z</option>
-    <!-- TODO filtre par like -->
-    <option value="like">Par popularité - décroissant</option>
-    <option value="date">Par date - plus récent au moins récent</option>
-    <option value="null">Pas de filtre</option>
-  </select>
-
-  <input type='hidden' name='type' value='filters'>
-
-  <input type="submit" value="Valider">
-
-</form>
-
-<!-- Fin filtres -->
-
 
 
 <!-------- MAIN --------->
@@ -208,6 +186,8 @@
             </form>
               <span>&nbsp;</span>
               <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+
+              <p><?php echo count($goodplan['likes']); ?> likes</p>
           </div>
           <div class="proprio">
               <a href=
@@ -280,10 +260,15 @@
               <span>&nbsp;</span>
 
               <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+              <p><?php echo count($goodplan['likes']); ?> likes</p>
           </div>
           <div class="proprio">
               <!-- TODO link vers la page du profil MOI  -->
-              <a href=""><img src=
+              <a href=
+              <?php
+              echo "compteexterne/".$goodplan['userID']['userID'];
+              ?>
+              ><img src=
               <?php
                 echo "../views/".$goodplan['userID']['mediaID'][0]['url'];
               ?>
@@ -327,8 +312,63 @@
 
     <!-------- FILTRER - TODO pop up et implémentation ----------> 
 
-      <div class="filter btn">
+    <div class="filter btn" data-toggle="modal" data-target="#exampleModal">
         <img src="../views/img/filter.png" href="#" alt="filtrer les bons plans" />
+      </div>
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Filtrer les catégories par :</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="accueil" method="post" >
+
+                  <input
+                  <?php 
+                  if($datatab[3] == 'city'){
+                    echo "checked";
+                  }
+                   ?>
+                  type="radio" value="city" name="myfilters">&nbsp;Par ville - A à Z</option><br>
+                  <input
+                  <?php 
+                  if($datatab[3] == 'like'){
+                    echo "checked";
+                  }
+                   ?>
+                   type="radio" value="like" name="myfilters">&nbsp;Par popularité - décroissant</option><br>
+                  <input
+                  <?php 
+                  if($datatab[3] == 'date'){
+                    echo "checked";
+                  }
+                   ?> 
+                   type="radio" value="date" name="myfilters">&nbsp;Par date - plus récent au moins récent</option><br>
+                  <input 
+                  <?php 
+                  if($datatab[3] == 'null'){
+                    echo "checked";
+                  }
+                   ?> 
+                   type="radio" value="null" name="myfilters">&nbsp;Pas de filtre</option><br>
+
+                <input type='hidden' name='type' value='filters'>
+
+                <input type="submit" value="Valider">
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class=" fermerbtn btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
       </div>
 
         <!-------- AJOUTER BON PLAN ---------->
@@ -373,7 +413,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="../views/qui-sommes-nous.php">L'ÉQUIPE</a></h6>
+                  <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
           </div>
         </div>
 

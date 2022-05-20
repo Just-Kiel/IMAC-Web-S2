@@ -64,6 +64,21 @@ function getAllGoodPlansDateOrdered(){
     return $data;
 }
 
+function getAllGoodPlansLikeOrdered(){
+    try {
+        $data1 = connexion()->query('SELECT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID = likes.goodplanID GROUP BY likes.goodplanID 
+        ORDER BY COUNT(likes.likeID) DESC')->fetchAll();
+
+        $data2 = connexion()->query('SELECT DISTINCT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID NOT IN (SELECT likes.goodplanID FROM likes)')->fetchAll();
+
+        $result = array_merge($data1, $data2);
+    } catch (PDOException $e) {
+        print "Erreur like ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $result;
+}
+
 function getGoodPlansFromCategory($n){
     try {
         $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n)->fetchAll();
@@ -183,6 +198,16 @@ function getLikes($like, $goodplanID){
     } else {
         return 0;
     }
+}
+
+function getAllLikesforOneGoodplan($n){
+    try {
+        $data = connexion()->query('SELECT * FROM likes WHERE goodplanID='.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur one cat !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
 }
 
 function addOneMedia($t){

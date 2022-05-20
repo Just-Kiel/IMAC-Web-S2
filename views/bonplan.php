@@ -41,10 +41,10 @@
               <?php
               if (!isset($_SESSION['currentUserID']))
               {
-                echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
               } else
               {
-                echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                echo '<a class="connexion" href="../moncompte" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
               }
               ?>
           </div>
@@ -76,12 +76,8 @@
     <div class=" cardlike col-md-4">            
     <i class="bi bi-heart-fill btn" href=""></i>
     <img src=
-    <?php
-          if(empty($goodplan['mediaID'])){
-            echo "../../views/img/jardiner.jpg";
-          } else {
-            echo "../../views/".$goodplan['mediaID'];
-          }
+    <?php          
+        echo "../../views/".$datatab[0]['mediaID'];
         ?>
         class="card-img invert img-fluid" alt="infos bon plan">
     </div>
@@ -104,9 +100,15 @@
         <p class="card-text"><?php echo $datatab[0]['textContent']; ?></p>
         <div class="proprio">
             <!-- link vers la pop up du profil  -->
-            <!-- TODO link la photo de profil -->
-            <!-- TODO redirect vers user -->
-            <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+            <a href=
+            <?php
+              echo "../compteexterne/".$datatab[0]['userID']['userID'];
+              ?>
+            ><img src=
+            <?php
+                echo "../../views/".$datatab[0]['userID']['mediaID'][0]['url'];
+              ?> 
+              alt="photo de profil" class="pp"></a>
             <h6><?php echo $datatab[0]['userID']['firstname']." ".$datatab[0]['userID']['lastname']; ?></h6>
         </div>
       </div>
@@ -127,9 +129,11 @@
                   <fieldset>
                     <div class="container">
                       <div class="row ajoutcom">
-                              <div class="myavatar col">
+                              <div class="proprio myavatar col">
                                 <!-- TODO link vers photo de profil -->
-                                <img class="img-responsive " src="../../views/img/avatar2.png" alt="">
+                                <img class="img-responsive " src=
+                                <?php  echo "../../views/".$datatab[2]['mediaID'][0]['url']; ?>
+                                alt="">
                               </div>
                               <div class="form-group col-8">
                                   <textarea name="comContent" class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>

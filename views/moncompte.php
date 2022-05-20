@@ -189,7 +189,7 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="index.php">ACCUEIL</a></h6>
+                    <h6><a href="./accueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
                     <h6><a href="#">MON COMPTE</a></h6>

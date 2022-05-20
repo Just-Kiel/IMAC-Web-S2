@@ -5,7 +5,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = strtolower($_SERVER['REQUEST_URI']);
 $tab = explode("/", $uri);
 
-switch ($tab[4])
+$count = 4;
+
+switch ($tab[$count])
 {
     case "accueil":
         $filters = null;
@@ -53,7 +55,7 @@ switch ($tab[4])
             break;
 
         case "compteexterne":
-            viewCompteExterne($tab[5]);
+            viewCompteExterne($tab[$count+1]);
             break;
     
         case "modifiercompte":
@@ -64,19 +66,22 @@ switch ($tab[4])
         if($method == 'POST'){
             addComment();
         }
-        viewGoodPlanPage($tab[5]);
+        viewGoodPlanPage($tab[$count+1]);
         break;
 
     case "category":
-        viewCategoryPage($tab[5]);
+        viewCategoryPage($tab[$count+1]);
         break;
     
     case "subcategory":
-        viewSubCategoryPage($tab[5]);
+        viewSubCategoryPage($tab[$count+1]);
         break;
 
     case "mentionslegales":
         viewMentionsLegales();
+        break;
+    case "quisommesnous":
+        viewQuiSommesNous();
         break;
 
     default:
