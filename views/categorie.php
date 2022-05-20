@@ -21,8 +21,6 @@
 
 </head>
 
-<!-- TODO link des boutons de catégories à faire -->
-
 <body>
 
     <nav class="navbar fixed-top">
@@ -149,8 +147,7 @@
             </small></p>
             <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
             <div class="pictos">
-                <!-- TODO link vers section commentaire du bon plan -->
-                  <i class="bi bi-chat-dots-fill btn" href="#"></i>
+                <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
                   <!-- TODO like possible partout -->
                   <i class="bi bi-heart-fill btn" href=""></i>
                   <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
@@ -190,8 +187,7 @@
             </small></p>
             <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
             <div class="pictos">
-              <!-- TODO link vers section commentaire du bon plan -->
-                  <i class="bi bi-chat-dots-fill btn" href="#"></i>
+              <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
                   <!-- TODO like possible partout -->
                   <i class="bi bi-heart-fill btn" href=""></i>
                   <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
@@ -242,8 +238,63 @@
 
 <!-------- FILTRER - voir comment on fait ----------> 
 
-      <div class="filter btn">
+<div class="filter btn" data-toggle="modal" data-target="#exampleModal">
         <img src="../../views/img/filter.png" href="#" alt="filtrer les bons plans" />
+      </div>
+
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Filtrer les catégories par :</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="" method="post" >
+
+                  <input
+                  <?php 
+                  if($datatab[4] == 'city'){
+                    echo "checked";
+                  }
+                   ?>
+                  type="radio" value="city" name="myfilters">&nbsp;Par ville - A à Z</option><br>
+                  <input
+                  <?php 
+                  if($datatab[4] == 'like'){
+                    echo "checked";
+                  }
+                   ?>
+                   type="radio" value="like" name="myfilters">&nbsp;Par popularité - décroissant</option><br>
+                  <input
+                  <?php 
+                  if($datatab[4] == 'date'){
+                    echo "checked";
+                  }
+                   ?> 
+                   type="radio" value="date" name="myfilters">&nbsp;Par date - plus récent au moins récent</option><br>
+                  <input 
+                  <?php 
+                  if($datatab[4] == 'null'){
+                    echo "checked";
+                  }
+                   ?> 
+                   type="radio" value="null" name="myfilters">&nbsp;Pas de filtre</option><br>
+
+                <input type='hidden' name='type' value='filters'>
+
+                <input type="submit" value="Valider">
+
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class=" fermerbtn btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
+          </div>
+        </div>
       </div>
 
     <!-------- AJOUTER BON PLAN  voir comment on fait ---------->

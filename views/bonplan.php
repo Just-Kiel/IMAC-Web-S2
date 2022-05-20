@@ -121,7 +121,6 @@
 <section class="coms mb-3 content-item">
     <div class="container">   
     	<div class="row">
-        <!-- TODO link vers section -->
       <div class="commentaires" id="commentaires"> 
         <?php if (isset($_SESSION['currentUserID'])) { ?> 
                 <form method="post">
@@ -130,7 +129,6 @@
                     <div class="container">
                       <div class="row ajoutcom">
                               <div class="proprio myavatar col">
-                                <!-- TODO link vers photo de profil -->
                                 <img class="img-responsive " src=
                                 <?php  echo "../../views/".$datatab[2]['mediaID'][0]['url']; ?>
                                 alt="">

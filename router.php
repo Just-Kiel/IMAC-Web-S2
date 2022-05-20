@@ -70,11 +70,19 @@ switch ($tab[$count])
         break;
 
     case "category":
-        viewCategoryPage($tab[$count+1]);
+        $filters = null;
+        if($method == 'POST' && $_POST['type'] == 'filters'){
+            $filters = $_POST['myfilters'];
+        }
+        viewCategoryPage($tab[$count+1], $filters);
         break;
     
     case "subcategory":
-        viewSubCategoryPage($tab[$count+1]);
+        $filters = null;
+        if($method == 'POST' && $_POST['type'] == 'filters'){
+            $filters = $_POST['myfilters'];
+        }
+        viewSubCategoryPage($tab[$count+1], $filters);
         break;
 
     case "mentionslegales":

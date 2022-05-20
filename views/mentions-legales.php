@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-    <title> LE QG - ACCUEIL </title>
+    <title> LE QG - MENTIONS LÉGALES </title>
 
 </head>
 

@@ -116,6 +116,8 @@
                     </div>
                 </div>
 
+                <h2>Ses bons plans :</h2>
+
                 <?php
                     foreach($datatab[1] as $goodplan){
                 ?>

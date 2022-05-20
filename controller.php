@@ -161,11 +161,42 @@ function viewHomePage($f)
         view('index.php', $data);
 }
 
-function viewCategoryPage($n){
+function viewCategoryPage($n, $f){
     $data[0] = getOneCategory($n);
     $data[1] = getAllSubCategories($n);
-    $data[2] = getGoodPlansFromCategory($n);
+    // $data[2] = getGoodPlansFromCategory($n);
     $data[3] = getOnlyCategories();
+
+
+    if(!empty($f)){
+        switch ($f) {
+            case 'city':
+                $data[2] = getAllGoodPlansCityOrderedFromCategory($n);
+                $data[4] = "city";
+                break;
+            case 'like':
+                $data[2] = getAllGoodPlansLikeOrderedFromCategory($n);
+                $data[4] = "like";
+                break;
+
+            case 'date':
+                $data[2] = getAllGoodPlansDateOrderedFromCategory($n);
+                $data[4] = "date";
+                break;
+
+            case "null":
+                $data[2] = getGoodPlansFromCategory($n);
+                $data[4] = "null";
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    } else {
+        $data[2] = getGoodPlansFromCategory($n);
+        $data[4] = "null";
+    }
 
     foreach($data[2] as $key=>$goodplan){
         if(!empty($goodplan['cityID'])){
@@ -187,11 +218,41 @@ function viewCategoryPage($n){
     view('categorie.php', $data);
 }
 
-function viewSubCategoryPage($n){
+function viewSubCategoryPage($n, $f){
     $data[0] = getOneCategory($n);
-    $data[1] = getGoodPlansFromCategory($n);
+    // $data[1] = getGoodPlansFromCategory($n);
     $data[2] = getOnlyCategories();
     $data[3] = getCategoryOfSubCategory($n)[0];
+
+    if(!empty($f)){
+        switch ($f) {
+            case 'city':
+                $data[1] = getAllGoodPlansCityOrderedFromCategory($n);
+                $data[4] = "city";
+                break;
+            case 'like':
+                $data[1] = getAllGoodPlansLikeOrderedFromCategory($n);
+                $data[4] = "like";
+                break;
+
+            case 'date':
+                $data[1] = getAllGoodPlansDateOrderedFromCategory($n);
+                $data[4] = "date";
+                break;
+
+            case "null":
+                $data[1] = getGoodPlansFromCategory($n);
+                $data[4] = "null";
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    } else {
+        $data[1] = getGoodPlansFromCategory($n);
+        $data[4] = "null";
+    }
 
     foreach($data[1] as $key=>$goodplan){
         if(!empty($goodplan['cityID'])){

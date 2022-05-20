@@ -89,6 +89,42 @@ function getGoodPlansFromCategory($n){
     return $data;
 }
 
+function getAllGoodPlansCityOrderedFromCategory($n){
+    try {
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.'  ORDER BY goodplans.cityID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur city ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansDateOrderedFromCategory($n){
+    try {
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.' ORDER BY goodplans.startingDate DESC')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur date ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+// TODO maybe fix à faire
+function getAllGoodPlansLikeOrderedFromCategory($n){
+    try {
+        $data1 = connexion()->query('SELECT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID = likes.goodplanID AND goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.' GROUP BY likes.goodplanID 
+        ORDER BY COUNT(likes.likeID) DESC')->fetchAll();
+
+        $data2 = connexion()->query('SELECT DISTINCT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID NOT IN (SELECT likes.goodplanID FROM likes) AND goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n)->fetchAll();
+
+        $result = array_merge($data1, $data2);
+    } catch (PDOException $e) {
+        print "Erreur like ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $result;
+}
+
 function getGoodPlansByUser($n){
     try {
         $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.userID ='.$n)->fetchAll();

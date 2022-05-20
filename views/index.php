@@ -155,9 +155,7 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
-
-            <!-- TODO link vers section commentaire du bon plan -->
-            <i class="bi bi-chat-dots-fill btn" href="#"></i>
+            <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn"></i></a>
 
               <?php
                 if(array_key_exists('buttonlike', $_POST) && $temp == 1)
@@ -229,8 +227,7 @@
             </small></p>
           <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
           <div class="pictos">
-            <!-- TODO link vers section commentaire du bon plan -->
-              <i class="bi bi-chat-dots-fill btn" href="#"></i>
+            <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
 
               <?php
                 if(array_key_exists('buttonlike', $_POST) && $temp == 1)
@@ -263,7 +260,6 @@
               <p><?php echo count($goodplan['likes']); ?> likes</p>
           </div>
           <div class="proprio">
-              <!-- TODO link vers la page du profil MOI  -->
               <a href=
               <?php
               echo "compteexterne/".$goodplan['userID']['userID'];

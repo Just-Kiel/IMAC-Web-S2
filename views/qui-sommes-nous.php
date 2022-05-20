@@ -10,8 +10,8 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="qui-sommes-nous-style.css">
+    <link rel="icon" href="../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../views/qui-sommes-nous-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
@@ -20,17 +20,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-    <title> LE QG - ACCUEIL </title>
+    <title> LE QG - L'ÉQUIPE </title>
 
 </head>
 
 <body>
-
-    <!---  : Picto chargement page -->
-
-    <!---  fin  Picto chargement page -->
-
-
 
     <!---  NAVABAR -->
 
@@ -39,17 +33,25 @@
 
         <div class="d-flex flex-column align-items-center">
             <br>
-            <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  "
+            <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
                     alt="Accueil LE QG"></a>
         </div>
 
         <div class="row d-none d-sm-block">
             <div class="res  align-items-center ">
-                <a class="home " href="index.php"><img class="invert" src="img/accueil.png" alt="Accueil"
+                <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil"
                         width="50"></a>
-                <a class="chat" href="#"><img class="invert" src="img/chat.png" alt="Chat" width="50"></a>
-                <a class="connexion" href="seconnecter.php"><img class="invert" src="img/sidentifier.png"
-                        alt="Connexion" width="50"></a>
+                        <!-- TODO link vers messagerie -->
+                <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
+                <?php
+                if (!isset($_SESSION['currentUserID']))
+                {
+                echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                } else
+                {
+                echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                }
+                ?>
             </div>
         </div>
     </nav>
@@ -67,7 +69,7 @@
                 <!-- Team item -->
                 <div class="col-xl-4 col-sm-6 mb-5">
                     <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                            src="img/aurore.png" alt="" width="100"
+                            src="../views/img/aurore.png" alt="" width="100"
                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">Aurore Lafaurie</h5>
                         <ul class="social mb-0 list-inline mt-3">
@@ -81,7 +83,7 @@
                 <!-- Team item -->
                 <div class="col-xl-4 col-sm-6 mb-5">
                     <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                            src="img/antoine.png" alt="" width="100"
+                            src="../views/img/antoine.png" alt="" width="100"
                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">Antoine Leblond</h5>
                         <ul class="social mb-0 list-inline mt-3">
@@ -94,7 +96,7 @@
                 <!-- Team item -->
                 <div class="col-xl-4 col-sm-6 mb-5">
                     <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                            src="img/sarah.png" alt="" width="100"
+                            src="../views/img/sarah.png" alt="" width="100"
                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">Sarah N'Gotta</h5>
                         <ul class="social mb-0 list-inline mt-3">
@@ -109,7 +111,7 @@
                 <!-- Team item -->
                 <div class="col-xl-4 col-sm-6 mb-5">
                     <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                            src="img/aude.png" alt="" width="100"
+                            src="../views/img/aude.png" alt="" width="100"
                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">Aude Pora</h5>
                         <ul class="social mb-0 list-inline mt-3">
@@ -123,7 +125,7 @@
                  <!-- Team item -->
                  <div class="col-xl-4 col-sm-6 mb-5">
                     <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                            src="img/mathurin.png" alt="" width="100"
+                            src="../views/img/mathurin.png" alt="" width="100"
                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         <h5 class="mb-0">Mathurin Rambaud</h5>
                         <ul class="social mb-0 list-inline mt-3">
@@ -160,7 +162,7 @@
             <!-------- SCROLL ---------->
 
             <div class="scroll btn">
-                <img src="img/top.png" alt="retourner en haut de la page" />
+                <img src="../views/img/top.png" alt="retourner en haut de la page" />
             </div>
 
         </section>
@@ -178,19 +180,28 @@
             <div class=" navfooter row d-flex  pt-5 mb-3">
 
                 <div class="col-md-2 mb-3">
-                    <h6><a href="index.php">ACCUEIL</a></h6>
+                    <h6><a href="accueil">ACCUEIL</a></h6>
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">MON COMPTE</a></h6>
+                    <?php
+                    if (!isset($_SESSION['currentUserID']))
+                    {
+                    echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                    } else
+                    {
+                    echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                    }
+                    ?>
                 </div>
 
                 <div class="col-md-2 mb-3">
+                    <!-- TODO link vers messagerie -->
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
+                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -204,15 +215,22 @@
 
                     <!-- Boutons -->
                     <div class="boutonsfoot">
-                        <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                        <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                        <?php
+                        if (!isset($_SESSION['currentUserID']))
+                        {
+                        echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                        } else
+                        {
+                        echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a
-                    href="mentions-legales.php" target="blank">Mentions Légales</a>
+                    href="mentionslegales" target="blank">Mentions Légales</a>
             </div>
             <!-- Copyright -->
         </div>
