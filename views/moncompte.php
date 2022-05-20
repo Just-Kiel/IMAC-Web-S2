@@ -86,7 +86,7 @@
                     <div class="col">
                         <!-- A LINK VERS LA POP UP DE L'UTILISATEUR -->
                         <?php
-                        $imgsrc = connexion()->query('SELECT url FROM medias WHERE mediaID = '.$datatab[0]['userID'])->fetchAll();
+                        $imgsrc = connexion()->query('SELECT url FROM medias WHERE mediaID = '.$datatab[0]['mediaID'])->fetchAll();
                         $src = "../views/" . $imgsrc[0][0];
                         echo "<a href=''><img src=" . "$src" . " alt='photo de profil' class='pp'></a></br>";
                         ?>
