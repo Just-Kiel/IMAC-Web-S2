@@ -34,9 +34,19 @@
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
               <a class="home " href="../accueil" ><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
+              
               <!-- TODO link vers messagerie -->
               <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="../connexion" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+
+              <?php
+              if (!isset($_SESSION['currentUserID']))
+              {
+                echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              } else
+              {
+                echo '<a class="connexion" href="../moncompte" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              }
+              ?>
           </div>
         </div>
     </nav>
@@ -66,12 +76,8 @@
     <div class=" cardlike col-md-4">            
     <i class="bi bi-heart-fill btn" href=""></i>
     <img src=
-    <?php
-          if(empty($goodplan['mediaID'])){
-            echo "../../views/img/jardiner.jpg";
-          } else {
-            echo "../../views/".$goodplan['mediaID'];
-          }
+    <?php          
+        echo "../../views/".$datatab[0]['mediaID'];
         ?>
         class="card-img invert img-fluid" alt="infos bon plan">
     </div>
@@ -94,15 +100,86 @@
         <p class="card-text"><?php echo $datatab[0]['textContent']; ?></p>
         <div class="proprio">
             <!-- link vers la pop up du profil  -->
-            <!-- TODO link la photo de profil -->
-            <!-- TODO redirect vers user -->
-            <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+            <a href=
+            <?php
+              echo "../compteexterne/".$datatab[0]['userID']['userID'];
+              ?>
+            ><img src=
+            <?php
+                echo "../../views/".$datatab[0]['userID']['mediaID'][0]['url'];
+              ?> 
+              alt="photo de profil" class="pp"></a>
             <h6><?php echo $datatab[0]['userID']['firstname']." ".$datatab[0]['userID']['lastname']; ?></h6>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!--------- ZONE DE COMMENTAIRE -------->
+
+<section class="coms mb-3 content-item">
+    <div class="container">   
+    	<div class="row">
+      <div class="commentaires" id="commentaires"> 
+        <?php if (isset($_SESSION['currentUserID'])) { ?> 
+                <form method="post">
+                	<h3>Nouveau Commentaire</h3>
+                  <fieldset>
+                    <div class="container">
+                      <div class="row ajoutcom">
+                              <div class="proprio myavatar col">
+                                <img class="img-responsive " src=
+                                <?php  echo "../../views/".$datatab[2]['mediaID'][0]['url']; ?>
+                                alt="">
+                              </div>
+                              <div class="form-group col-8">
+                                  <textarea name="comContent" class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
+                              </div>
+                              <input type="hidden" name="goodplanID" value=<?php echo $datatab[0]['goodplanID']; ?>>
+                              <div class="btnenvoyer col">
+                                  <button type="submit" class="btn btn-normal">ENVOYER</button>
+                              </div>
+                        </div>  
+                    </div>	
+                  </fieldset>
+                </form>
+
+        <?php } else { ?>
+          <p>Tu as besoin d'être connecté.e pour commenter.</p>
+        <?php } ?>
+    
+                
+                <h3><?php echo count($datatab[1]); ?> commentaires</h3>
+                
+                <div class="listecoms">
+
+                <?php foreach ($datatab[1] as $key => $comment) { ?>
+                  <!-- COMMENT 1 - START -->
+                  <div class="media">
+                    <!-- TODO link avatar -->
+                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                            <div class="media-body">
+                                <h4 class="media-heading">
+                                  <?php echo $comment['userID']['lastname']." ".$comment['userID']['firstname']; ?>
+                                </h4>
+                                <ul class="list-unstyled list-inline media-detail pull-left">
+                                    <li><i class="fa fa-calendar"></i>
+                                    <?php echo date("d/m/Y", strtotime($comment['date'])); ?>
+                                  </li>
+                                </ul>
+                                <p><?php echo $comment['text']; ?></p>
+                            </div>
+                        </div>
+                        <!-- COMMENT 1 - END -->
+                <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--------- FIN ZONE DE COMMENTAIRE -------->
 
 <!-- --- Boutons flottants à intégrer avec les filtres... -->
 
@@ -171,8 +248,7 @@
         </div>
 
         <!-- Copyright -->
-        <!-- TODO link vers les mentions légales -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="../../views/mentions-legales.php" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>

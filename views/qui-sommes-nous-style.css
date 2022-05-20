@@ -1,0 +1,222 @@
+@font-face {
+    font-family: "CoutureBold";
+    src: url('/fonts/couture-bld.otf'), format("otf");
+}
+
+@font-face {
+    font-family: "GoodMood";
+    src: url("/fonts/GoodMood.otf") format("otf");
+}
+
+@font-face {
+    font-family: "Rubik-Light";
+    src: url("/fonts/Rubik-Light.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Rubik-Light-Italique";
+    src: url("/fonts/Rubik-LightItalic.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Rubik-Bold";
+    src: url("/fonts/Rubik-Bold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Rubik-SemiBold";
+    src: url("/fonts/Rubik-SemiBold.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "Rubik-Regular";
+    src: url("/fonts/Rubik-Regular.ttf") format("ttf");
+}
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+html {
+    cursor: url("img/curseur_curseur.png") 1 1, pointer;
+    margin: 0 !important;
+    padding: 0!important;
+    height: 100%;
+    width: 100% !important;
+    position: relative;
+    color: #242424;
+    font-family: 'Rubik-Light', sans-serif;
+}
+
+
+/* -------------  index.php------------- */
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.res {
+    margin-right: 2em;
+}
+
+h1 {
+    font-size: 1.5em !important;
+    text-align: center;
+    padding-top: 4em;
+    color: #242424;
+    font-family: 'Couture-Bold';
+    padding-top: 8em;
+    padding-bottom: 1em;
+}
+
+p {
+    font-family: 'Rubik-Light';
+}
+
+.nomfonctions {
+    margin-top: 50px;
+}
+
+.input-group {
+    align-items: center;
+    justify-content: center;
+    padding-top: 8em;
+    font-family: 'Rubik-Light';
+}
+
+.banniere .btn-primary {
+    background-color: #C4D61F !important;
+    color: #242424;
+    width: 3em;
+}
+
+.container {
+    margin-top: 5em;
+}
+
+.bi.bi-circle-fill.text-redaction {
+    color: #242424;
+}
+
+.bi.bi-circle-fill.text-success2 {
+    color: #FF69B4;
+}
+
+.bi.bi-circle-fill.text-gestion {
+    color: #C4D61F;
+}
+
+.bi.bi-circle-fill.text-assistant {
+    color: #8Db600;
+}
+
+.bi.bi-circle-fill.text-php {
+    color: #000080;
+}
+
+.bi.bi-circle-fill.text-sql {
+    color: #4747ff;
+}
+
+.btn-flottants {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.scroll {
+    position: fixed;
+    right: 3em;
+    bottom: 2em;
+    cursor: pointer;
+}
+
+.scroll img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+
+/* footer */
+
+.page-footer {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.navfooter {
+    justify-content: center;
+    text-align: center;
+}
+
+.page-footer h6 a {
+    font-family: 'Rubik-SemiBold';
+    color: #C4D61F !important;
+    text-decoration: none !important;
+    font-size: 1em;
+}
+
+.presentation {
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik-Light-Italique' !important;
+}
+
+.pitch {
+    font-family: 'GoodMood' !important;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+.signature {
+    text-align: right;
+    margin-bottom: 3em;
+    font-family: 'GoodMood' !important;
+    font-size: 1.5em;
+}
+
+.boutonsfoot {
+    margin-bottom: 2em;
+}
+
+.inscription {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #242424 !important;
+    border: solid #C4D61F !important;
+    color: #ffffff !important;
+    font-family: 'Rubik-Regular';
+    font-size: 1.5em !important;
+}
+
+.inscription:hover {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #FF69B4 !important;
+    border: solid #FF69B4 !important;
+    color: #ffffff !important;
+    font-family: 'Rubik-Regular';
+    font-size: 1.5em !important;
+}
+
+.mentions-legales {
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em;
+}
+
+.footer-copyright {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.75em;
+    font-family: 'Rubik-Light';
+    letter-spacing: 0.1em;
+}
+
+.footer-copyright a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-copyright a:hover {
+    text-decoration: none;
+    color: #C4D61F !important;
+}

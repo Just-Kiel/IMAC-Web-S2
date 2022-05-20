@@ -5,14 +5,23 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = strtolower($_SERVER['REQUEST_URI']);
 $tab = explode("/", $uri);
 
-switch ($tab[4])
+$count = 4;
+
+switch ($tab[$count])
 {
     case "accueil":
-        if($method == 'POST' && $_POST['type'] == 'logout')
+        $filters = null;
+        if($method == 'POST')
         {
-            logout();
+            if($_POST['type'] == 'logout')
+            {
+                logout();
+            } else if($_POST['type'] == 'filters'){
+                $filters = $_POST['myfilters'];
+            }
         }
-        viewHomePage();
+        // passer en parametre les filters
+        viewHomePage($filters);
         break;
 
     case "seconnecter":
@@ -38,18 +47,49 @@ switch ($tab[4])
         {
             addGoodPlan();
         }
-        else
-        {
             viewAddGoodPlanPage();
-        }
         break;
 
+        case "moncompte":
+            viewMonComptePage();
+            break;
+
+        case "compteexterne":
+            viewCompteExterne($tab[$count+1]);
+            break;
+    
+        case "modifiercompte":
+            viewModifierComptePage();
+            break;
+            
     case "viewgoodplan":
-        viewGoodPlanPage($tab[5]);
+        if($method == 'POST'){
+            addComment();
+        }
+        viewGoodPlanPage($tab[$count+1]);
         break;
 
     case "category":
-        viewCategoryPage($tab[5]);
+        $filters = null;
+        if($method == 'POST' && $_POST['type'] == 'filters'){
+            $filters = $_POST['myfilters'];
+        }
+        viewCategoryPage($tab[$count+1], $filters);
+        break;
+    
+    case "subcategory":
+        $filters = null;
+        if($method == 'POST' && $_POST['type'] == 'filters'){
+            $filters = $_POST['myfilters'];
+        }
+        viewSubCategoryPage($tab[$count+1], $filters);
+        break;
+
+    case "mentionslegales":
+        viewMentionsLegales();
+        break;
+    case "quisommesnous":
+        viewQuiSommesNous();
         break;
 
     default:

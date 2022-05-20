@@ -24,8 +24,8 @@
 </head>
 
 <body>
-
-    <nav class="navbar fixed-top  ">
+ 
+  <nav class="navbar fixed-top  ">
 
         <div class="d-flex flex-column align-items-center">
           <br>
@@ -35,9 +35,7 @@
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
               <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
-              <!-- TODO link vers messagerie -->
               <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
-              <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <a class="connexion" href="seconnecter"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
@@ -69,7 +67,7 @@
         <div class="contents">
             <div id="content1" class="content">
                 
-                <form method='POST' action="seconnecter">
+                <form method='POST' action="seconnecter" enctype="multipart/form-data">
                   <input type='hidden' name='type' value='register'>
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="row mb-4">
@@ -85,8 +83,8 @@
                       </div>
                       <div class="col">
                         <div class="avatarinput">
-                          <label for="avatar">Ajouter une photo de profil</label>
-                          <input type="file" class="avatar" name="avatar" accept="image/png, image/jpeg">
+                          <label for="media">Ajouter une photo de profil</label>
+                          <input type="file" name="media" accept="image/*" required/>
                         </div>
                       </div>
                     </div>
