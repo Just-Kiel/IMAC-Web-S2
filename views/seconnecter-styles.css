@@ -253,11 +253,14 @@ h1 {
 .presentation {
     text-align: center;
     margin: auto;
-    font-family: 'Rubik-Light-Italique' !important;
+    font-family: 'Rubik', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
 }
 
 .pitch {
-    font-family: 'GoodMood' !important;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
     font-size: 1.5em;
     letter-spacing: 0.1em;
 }
@@ -265,7 +268,8 @@ h1 {
 .signature {
     text-align: right;
     margin-bottom: 3em;
-    font-family: 'GoodMood' !important;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
     font-size: 1.5em;
 }
 
@@ -280,7 +284,9 @@ h1 {
     background-color: #242424 !important;
     border: solid #C4D61F !important;
     color: #ffffff !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     font-size: 1.5em !important;
 }
 
