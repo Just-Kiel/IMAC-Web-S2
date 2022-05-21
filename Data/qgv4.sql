@@ -106,9 +106,9 @@ CREATE TABLE IF NOT EXISTS `likes` (
 
 CREATE TABLE IF NOT EXISTS `medias` (
 `mediaID` int(11) NOT NULL,
-  `type` varchar(30) DEFAULT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `url` varchar(90) DEFAULT NULL
+  `type` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `url` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -305,6 +305,7 @@ ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID
 -- Contraintes pour la table `medias`
 --
 
+
 --
 -- Contraintes pour la table `messages`
 --
@@ -316,7 +317,8 @@ ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`firstuserID`) REFERENCES `users` 
 -- Contraintes pour la table `subcategories`
 --
 ALTER TABLE `subcategories`
-ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`);
+ADD CONSTRAINT `subcategories_ibfk_1` FOREIGN KEY (`categoryID`) REFERENCES `categories` (`categoryID`),
+ADD CONSTRAINT `subcategories_ibfk_2` FOREIGN KEY (`subcategoryID`) REFERENCES `categories` (`categoryID`);
 
 --
 -- Contraintes pour la table `users`

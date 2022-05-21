@@ -9,20 +9,14 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="bonplan-style.css">
-    <link rel="stylesheet" href="polices.css">
+    <link rel="icon" href="../../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../../views/bonplan-style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <!-- POLICES -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
-    <!-- FIN POLICES -->
 
 <title> LE QG - BonPlan </title>
 
@@ -34,14 +28,25 @@
 
         <div class="d-flex flex-column align-items-center">
           <br>
-          <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+          <a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
           </div>
 
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
-              <a class="home " href="index.php" ><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="seconnecter.php" ><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+              <a class="home " href="../accueil" ><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
+              
+              <!-- TODO link vers messagerie -->
+              <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
+
+              <?php
+              if (!isset($_SESSION['currentUserID']))
+              {
+                echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              } else
+              {
+                echo '<a class="connexion" href="../moncompte" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+              }
+              ?>
           </div>
         </div>
     </nav>
@@ -53,9 +58,9 @@
 <!-- a compléter en php -->
 
 <ol class="breadcrumb">
-  <li><a href="index.php" title="Accueil">Accueil </a></li>
-  <li><a href="" title="">Nom de la catégorie</a></li>
-  <li class="page-active">Nom du bon plan</li>
+  <li><a href="../accueil" title="Accueil">Accueil </a></li>
+  <li><a href="../category/<?php echo $datatab[0]['categoryID']['categoryID']; ?>" title=""><?php echo $datatab[0]['categoryID']['title']; ?></a></li>
+  <li class="page-active"><?php echo $datatab[0]['title']; ?></li>
 </ol>
 
 <!-- FIN DU FIL D'ARIANE DU BON PLAN -->
@@ -70,17 +75,41 @@
   <div class="row no-gutters">
     <div class=" cardlike col-md-4">            
     <i class="bi bi-heart-fill btn" href=""></i>
-    <img src="img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
+    <img src=
+    <?php          
+        echo "../../views/".$datatab[0]['mediaID'];
+        ?>
+        class="card-img invert img-fluid" alt="infos bon plan">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">Nom du bon plan</h5>
-        <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-        <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
+        <h5 class="card-title"><?php echo $datatab[0]['title']; ?></h5>
+        <p class="card-text"><small class="text-muted">
+        <?php
+          $dateEtLieu = $datatab[0]['startingDate'];
+
+          if(empty($datatab[0]['cityID'])){
+            $dateEtLieu .= " en ligne";
+          } else {
+            $dateEtLieu .= " à : ".$datatab[0]['cityID'];
+          }
+
+          echo $dateEtLieu; 
+        ?>
+        </small></p>
+        <p class="card-text"><?php echo $datatab[0]['textContent']; ?></p>
         <div class="proprio">
             <!-- link vers la pop up du profil  -->
-            <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a>
-            <h6>Nom Prénom</h6>
+            <a href=
+            <?php
+              echo "../compteexterne/".$datatab[0]['userID']['userID'];
+              ?>
+            ><img src=
+            <?php
+                echo "../../views/".$datatab[0]['userID']['mediaID'][0]['url'];
+              ?> 
+              alt="photo de profil" class="pp"></a>
+            <h6><?php echo $datatab[0]['userID']['firstname']." ".$datatab[0]['userID']['lastname']; ?></h6>
         </div>
       </div>
     </div>
@@ -92,18 +121,22 @@
 <section class="coms mb-3 content-item">
     <div class="container">   
     	<div class="row">
-      <div class="commentaires">   
-                <form>
+      <div class="commentaires" id="commentaires"> 
+        <?php if (isset($_SESSION['currentUserID'])) { ?> 
+                <form method="post">
                 	<h3>Nouveau Commentaire</h3>
                   <fieldset>
                     <div class="container">
                       <div class="row ajoutcom">
-                              <div class="myavatar col">
-                                <img class="img-responsive " src="img/avatar2.png" alt="">
+                              <div class="proprio myavatar col">
+                                <img class="img-responsive " src=
+                                <?php  echo "../../views/".$datatab[2]['mediaID'][0]['url']; ?>
+                                alt="">
                               </div>
                               <div class="form-group col-8">
-                                  <textarea class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
+                                  <textarea name="comContent" class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
                               </div>
+                              <input type="hidden" name="goodplanID" value=<?php echo $datatab[0]['goodplanID']; ?>>
                               <div class="btnenvoyer col">
                                   <button type="submit" class="btn btn-normal">ENVOYER</button>
                               </div>
@@ -111,47 +144,35 @@
                     </div>	
                   </fieldset>
                 </form>
+
+        <?php } else { ?>
+          <p>Tu as besoin d'être connecté.e pour commenter.</p>
+        <?php } ?>
     
                 
-                <h3>"Nombre" commentaires</h3>
+                <h3><?php echo count($datatab[1]); ?> commentaires</h3>
                 
                 <div class="listecoms">
-                        <!-- COMMENT 1 - START -->
-                        <div class="media">
+
+                <?php foreach ($datatab[1] as $key => $comment) { ?>
+                  <!-- COMMENT 1 - START -->
+                  <div class="media">
+                    <!-- TODO link avatar -->
                             <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
                             <div class="media-body">
-                                <h4 class="media-heading">John Doe</h4>
+                                <h4 class="media-heading">
+                                  <?php echo $comment['userID']['lastname']." ".$comment['userID']['firstname']; ?>
+                                </h4>
                                 <ul class="list-unstyled list-inline media-detail pull-left">
-                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
+                                    <li><i class="fa fa-calendar"></i>
+                                    <?php echo date("d/m/Y", strtotime($comment['date'])); ?>
+                                  </li>
                                 </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p><?php echo $comment['text']; ?></p>
                             </div>
                         </div>
                         <!-- COMMENT 1 - END -->
-                        <!-- COMMENT 2 - START -->
-                        <div class="media">
-                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Julie Dupont</h4>
-                                <ul class="list-unstyled list-inline media-detail pull-left">
-                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <!-- COMMENT 2 - END -->
-                        <!-- COMMENT 3 - START -->
-                        <div class="media">
-                            <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
-                            <div class="media-body">
-                                <h4 class="media-heading">Lou Martin</h4>
-                                <ul class="list-unstyled list-inline media-detail pull-left">
-                                    <li><i class="fa fa-calendar"></i>Date de post du com</li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <!-- COMMENT 3 - END -->
+                <?php } ?>
                 </div>
             </div>
         </div>
@@ -159,7 +180,6 @@
 </section>
 
 <!--------- FIN ZONE DE COMMENTAIRE -------->
-
 
 <!-- --- Boutons flottants à intégrer avec les filtres... -->
 
@@ -169,13 +189,13 @@
   <!-------- SCROLL ---------->
 
       <div class="scroll btn">
-        <img src="img/top.png" alt="retourner en haut de la page" />
+        <img src="../../views/img/top.png" alt="retourner en haut de la page" />
       </div>
 
         <!-------- AJOUTER BON PLAN  voir comment on fait ---------->
 
       <div class="add btn ">
-        <img src="img/add.png" href="#" alt="ajouter un bon plan" />
+      <a href="../addGoodPlan"><img src="../../views/img/add.png" alt="ajouter un bon plan" /></a>
       </div>
 
 </section>
@@ -194,19 +214,22 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="index.php">ACCUEIL</a></h6>
+                  <h6><a href="../accueil">ACCUEIL</a></h6>
               </div>
 
+              <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MON COMPTE</a></h6>
               </div>
 
+              <!-- TODO link vers messagerie -->
               <div class="col-md-2 mb-3">
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
+              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">L'ÉQUIPE</a></h6>
+                  <h6><a href="#">QUI SOMMES-NOUS</a></h6>
           </div>
         </div>
 
@@ -218,15 +241,14 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">REJOINDRE LE QG !</a>
+                    <a class=" inscription btn btn-primary " href="../inscription" role="button">INSCRIPTION</a>
+                    <a class="inscription btn btn-primary " href="../connexion" role="button">CONNEXION</a>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">
-          <p>© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
-          </p>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="../../views/mentions-legales.php" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
