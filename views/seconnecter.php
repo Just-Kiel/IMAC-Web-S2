@@ -9,14 +9,21 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="icon" href="../views/img/leQG_Flavicon.png">
     <link rel="stylesheet" href="../views/seconnecter-styles.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
+    <!-- POLICES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- FIN POLICES -->
 
 <title> LE QG - INSCRIPTION/CONNEXION </title>
 
@@ -24,7 +31,8 @@
 </head>
 
 <body>
- 
+
+ <!---  NAVABAR -->
   <nav class="navbar fixed-top  ">
 
         <div class="d-flex flex-column align-items-center">
@@ -35,11 +43,42 @@
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
               <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+              <!-- TODO link vers messagerie -->
+              <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+              </div> 
               <a class="connexion" href="seconnecter"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
     </nav>
+
+    <!---  FIN NAVBAR -->
+
+
+    <!-- pop up messagerie -->
+    <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <img src="../views/img/oops.png" alt="">
+                  <div class="contenuoops">
+                      <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                      <p class="signatureoops">L'Équipe du QG </p>
+                  </div>
+                  
+              </div>
+                  <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+          </div>
+        </div>
+    <!-- ------------ -->
+
 
     <h1>SE CONNECTER AU QG !</h1>
 
@@ -162,7 +201,6 @@
 
     <!-- FIN Bouton flottants -->
 </main>
-
 
 <!-- Footer -->
 <footer class="page-footer container-fluid">
