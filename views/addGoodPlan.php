@@ -158,7 +158,7 @@
             ?>
         </div>
 
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
             <!-- TODO link vers messagerie -->
             <h6><a href="#">MESSAGERIE</a></h6>
         </div>
