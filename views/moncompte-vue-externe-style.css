@@ -48,6 +48,10 @@ h1 {
     padding-bottom: 1em;
 }
 
+h2.sesbonsplans {
+    text-align: center;
+}
+
 .tabs {
     width: 70%;
     margin: auto;
