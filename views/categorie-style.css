@@ -15,8 +15,22 @@ header{
 }
 
 .res{
-        margin-right:2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 2em;
 }
+
+.res>div{
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.res .chat { 
+    cursor: pointer;
+}
+
 
 h1 { font-size:1.5em !important;
     text-align: center;
@@ -291,7 +305,82 @@ h1 { font-size:1.5em !important;
                 width:2.5em;
                 height:2.5em;
     }
+
+    .popfilter{
+        margin-top: 12em;
+        cursor: pointer;
     
+    }
+    
+    
+    .popfilter h5{
+        font-family: 'Rubik', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+    }
+    
+    .popfilter img{
+         width:8em;
+    }
+    
+    .popfilter input{
+        margin:1em;
+    }
+    
+    .validew{
+        background-color: #FF69B4;
+        color: white;
+        padding:0.5em;
+        border:none;
+        border-radius:0.5em;
+        font-size: 1.2em;
+        margin:0.5em !important;
+    }
+    
+    .validew:hover{
+        background-color: #C4D61F;    
+    }
+    
+    
+    .modal-body{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+}
+
+.fermew{
+    background-color: #C4D61F;
+    color: white;
+    padding:0.5em;
+    border:none;
+    border-radius:0.5em;
+    font-size: 1.2em;
+    margin-top: -0.5em !important;
+    margin: auto !important ;
+    margin-bottom: 0.5em !important;
+    width:50%;
+}
+
+.fermew:hover{
+    background-color: #FF69B4;    
+}
+
+.signatureoops {
+    text-align:right;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size:1.5em;
+}
+
+
+.contenuoops{
+        display: flex;
+        flex-direction: column;
+        align-items: right;
+        text-align: justify;
+}
+
     .add{
                 position:fixed;
                 right:3em;
