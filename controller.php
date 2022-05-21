@@ -53,11 +53,14 @@ function viewGoodPlanPage($n){
         $data[1][$key]['userID'] = $user[0];
     }
 
+    $data[2] = null;
     $currentUser = getCurrentUser();
-    $currentUser[0]['mediaID'] = getOneMedia($currentUser[0]['mediaID']);
+    if($currentUser != null){
+        $currentUser[0]['mediaID'] = getOneMedia($currentUser[0]['mediaID']);
 
-    $data[2] = $currentUser[0];
-
+        $data[2] = $currentUser[0];
+    }
+    
     view('bonplan.php', $data);
 }
 

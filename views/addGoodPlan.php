@@ -33,6 +33,9 @@
 
 </head>
 <body>
+
+<!---  NAVABAR -->
+
         <nav class="navbar fixed-top  ">
 
                 <div class="d-flex flex-column align-items-center">
@@ -44,8 +47,10 @@
                     <div class="res  align-items-center ">
                         <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
 
-                        <!-- TODO link messagerie -->
-                        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+                        <!-- TODO link vers messagerie -->
+                        <div class="chat" data-toggle="modal" data-target="#chatModal">
+                            <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+                        </div>
 
                         <?php
                         if (!isset($_SESSION['currentUserID']))
@@ -59,7 +64,32 @@
                     </div>
                 </div>
         </nav>
+  <!---  FIN NAVBAR -->
 
+        <!-- pop up messagerie -->
+        <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="../views/img/oops.png" alt="">
+                        <div class="contenuoops">
+                            <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                            <p class="signatureoops">L'Équipe du QG </p>
+                        </div>
+                        
+                    </div>
+                        <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+                </div>
+                </div>
+            </div>
+        <!-- ------------ -->
+        
         <header>
 
                 <div class="ban container md-4 col-12">
@@ -131,8 +161,19 @@
                         <img src="../views/img/goodplanillu.png" alt="">
                     </div>
                 </div>
+
+                 <!-- --- Boutons flottants à intégrer avec les filtres... -->
+
+            <!-------- SCROLL ---------->
+
+            <section class="btn-flottants">
+
+                <div class="scroll btn">
+                <img src="../views/img/top.png" alt="retourner en haut de la page" />
+                </div>
+            </section>
                                                
-        </main>
+</main>
 
         <!-- Footer -->
 <footer class="page-footer container-fluid">
@@ -191,7 +232,7 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
-    <p>© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="mentionslegales" target="blank">Mentions Légales</a>
+    <p>© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
     </p>
   </div>
   <!-- Copyright -->
@@ -200,5 +241,47 @@
 
 <!-- Footer -->
 
+
+<!---------------------------------------SCRIPT----------------------->
+    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
+
+<!--<script> $('#MonCollapse').collapse({
+  show: true
+  })</script>-->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <script>
+
+    /*FONCTION 
+            role: Code qui permet d'afficher le contenue du site 
+            apres une durée de temps de chargement choisie
+             nom : afficherSite
+             retourne: - 
+             paramètres:*/
+                       
+            
+                function afficherSite() {
+                let load=document.querySelector(".loader-container");
+                load.classList.add("cache");
+            }
+            
+            setTimeout(afficherSite, 2000); 
+
+             /*Animation du bouton scroll*/
+
+             let fleche = document.querySelector(".scroll");
+            fleche.addEventListener('click',()=> {
+
+                window.scrollTo({top:0,
+                    left:0,
+                    behavior:"smooth"})
+                })
+
+            
+    </script>
+    
 </body>
 </html>

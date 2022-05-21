@@ -24,6 +24,8 @@
 
 <body>
 
+    <!---  NAVABAR -->
+
     <nav class="navbar fixed-top  ">
 
         <div class="d-flex flex-column align-items-center">
@@ -34,10 +36,10 @@
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
               <a class="home " href="../accueil" ><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
-              
               <!-- TODO link vers messagerie -->
-              <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
-
+              <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+              </div>
               <?php
               if (!isset($_SESSION['currentUserID']))
               {
@@ -51,6 +53,34 @@
         </div>
     </nav>
 
+    <!---  FIN NAVBAR -->
+
+
+    <!-- pop up messagerie -->
+    <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <img src="../views/img/oops.png" alt="">
+                  <div class="contenuoops">
+                      <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                      <p class="signatureoops">L'Équipe du QG </p>
+                  </div>
+                  
+              </div>
+                  <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+          </div>
+        </div>
+    <!-- ------------ -->
+
+  <!---  HEADER -->
 <header>
 
 
@@ -220,23 +250,21 @@
               <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <div class="col-md-2 mb-3">
                 <?php
-                  if (!isset($_SESSION['currentUserID']))
-                  {
-                  echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
-                  } else
-                  {
-                  echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
-                  }
-                  ?>
+                if (!isset($_SESSION['currentUserID']))
+                {
+                echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                } else
+                {
+                echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                }
+                ?>
               </div>
 
               <!-- TODO link vers messagerie -->
               <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
-                <!-- TODO link vers messagerie -->
-                <h6><a href="#">MESSAGERIE</a></h6>
+                  <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
-              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
                   <h6><a href="quisommesnous">L'EQUIPE</a></h6>
           </div>
@@ -253,10 +281,10 @@
                   <?php
                   if (!isset($_SESSION['currentUserID']))
                   {
-                  echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                  echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
                   } else
                   {
-                  echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                  echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
                   }
                   ?>
                 </div>
@@ -264,7 +292,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="mentionslegales" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="../mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>

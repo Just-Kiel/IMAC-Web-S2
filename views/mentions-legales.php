@@ -15,11 +15,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-    <title> LE QG - Mentions légales </title>
+    <title> LE QG - MENTIONS LÉGALES </title>
 
 </head>
 
@@ -38,14 +39,16 @@
             <div class="res  align-items-center ">
                 <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil" width="50"></a>
 
-                <!-- TODO link vers la messagerie -->
-                <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
+                <!-- TODO link vers messagerie -->
+                <div class="chat" data-toggle="modal" data-target="#chatModal">
+                    <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+                </div>
 
                 <?php
                 if (!isset($_SESSION['currentUserID'])) {
-                    echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
                 } else {
-                    echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
                 }
                 ?>
             </div>
@@ -55,6 +58,29 @@
 
     <!---  FIN NAVBAR -->
 
+        <!-- pop up messagerie -->
+    <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img src="../views/img/oops.png" alt="">
+                    <div class="contenuoops">
+                        <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                        <p class="signatureoops">L'Équipe du QG </p>
+                    </div>
+                    
+                </div>
+                    <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+            </div>
+        </div>
+    <!-- ------------ -->
 
     <!-------- MAIN --------->
 
@@ -87,30 +113,30 @@
             <h2>IV. Politique de confidentialité et de protection de la vie privée</h2>
 
             <p>Le Site http://le-qg.just-kiel.fr est déclaré sous le numéro 1612841 auprès de la Commission Nationale
-                Informatique et Libertés (CNIL). <br>
+            Informatique et Libertés (CNIL). <br>
 
-                Les informations recueillies font l'objet d'un traitement informatique destiné à créer une base de données
-                d'utilisateurs. Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous
-                bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent, que vous pouvez
-                exercer par voie postale. Vous pouvez également, pour des
-                motifs légitimes, vous opposer au traitement des données vous concernant. <br>
+            Les informations recueillies font l'objet d'un traitement informatique destiné à créer une base de données
+            d'utilisateurs. Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, vous
+            bénéficiez d'un droit d'accès et de rectification aux informations qui vous concernent, que vous pouvez
+            exercer par voie postale. Vous pouvez également, pour des
+            motifs légitimes, vous opposer au traitement des données vous concernant. <br>
 
-                Nous vous invitons à consulter notre politique de confidentialité pour en savoir plus sur l'origine et
-                l'usage des données de navigation traitées à l'occasion de votre consultation et utilisation du Site
-                DEALABS, et sur vos droits y afférent. <br> </p>
+            Nous vous invitons à consulter notre politique de confidentialité pour en savoir plus sur l'origine et
+            l'usage des données de navigation traitées à l'occasion de votre consultation et utilisation du Site
+            DEALABS, et sur vos droits y afférent. <br> </p>
             <br>
 
             <h2>V. Droit d'auteur</h2>
 
             <p>La marque DEALABS est enregistrée auprès de l'INPI. <br>
 
-                Les marques citées sont la propriété de leurs détenteurs respectifs. Toute reproduction, représentation,
-                traduction, adaptation, ou citation qu'elle soit intégrale ou partielle, quel qu’en soit le procédé, est
-                strictement interdite sans autorisation de Pepper France, sauf cas prévus par l'article L.112-5 du code de
-                la propriété intellectuelle. Photos non contractuelles.
+            Les marques citées sont la propriété de leurs détenteurs respectifs. Toute reproduction, représentation,
+            traduction, adaptation, ou citation qu'elle soit intégrale ou partielle, quel qu’en soit le procédé, est
+            strictement interdite sans autorisation de Pepper France, sauf cas prévus par l'article L.112-5 du code de
+            la propriété intellectuelle. Photos non contractuelles.
             </p>
 
-        </div>
+</div>
 
         <!-- --- Boutons flottants à intégrer avec les filtres... -->
 
@@ -144,9 +170,9 @@
                 <div class="col-md-2 mb-3">
                     <?php
                     if (!isset($_SESSION['currentUserID'])) {
-                        echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                    echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
                     } else {
-                        echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                    echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
                     }
                     ?>
                 </div>
@@ -174,9 +200,9 @@
                     <div class="boutonsfoot">
                         <?php
                         if (!isset($_SESSION['currentUserID'])) {
-                            echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                        echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
                         } else {
-                            echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                        echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
                         }
                         ?>
                     </div>
@@ -209,7 +235,7 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
     <script>
-        /*FONCTION 
+    /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie
              nom : afficherSite
@@ -217,24 +243,24 @@
              paramètres:*/
 
 
-        function afficherSite() {
-            let load = document.querySelector(".loader-container");
-            load.classList.add("cache");
-        }
+    function afficherSite() {
+        let load = document.querySelector(".loader-container");
+        load.classList.add("cache");
+    }
 
-        setTimeout(afficherSite, 2000);
+    setTimeout(afficherSite, 2000);
 
-        /*Animation du bouton scroll*/
+    /*Animation du bouton scroll*/
 
-        let fleche = document.querySelector(".scroll");
-        fleche.addEventListener('click', () => {
+    let fleche = document.querySelector(".scroll");
+    fleche.addEventListener('click', () => {
 
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "smooth"
-            })
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
         })
+    })
     </script>
 
 
