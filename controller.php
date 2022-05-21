@@ -97,7 +97,7 @@ function addComment(){
     addOneComment($user, $text, $date, $goodplanID);
 }
 
-function viewHomePage($f)
+function viewHomePage($f,$search)
 {
     if (getCurrentUser() == NULL)
     {
@@ -107,8 +107,11 @@ function viewHomePage($f)
     {
         $data[0] = getCurrentUser();
     }
-
-        if(!empty($f)){
+        if(!empty($search)){
+            $data[1] = getSearchGoodPlans($search);
+            $data[3] = "null";
+            $data[4] = $search;
+        } else if(!empty($f)){
             switch ($f) {
                 case 'city':
                     $data[1] = getAllGoodPlansCityOrdered();

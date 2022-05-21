@@ -11,6 +11,7 @@ switch ($tab[$count])
 {
     case "accueil":
         $filters = null;
+        $search=null;
         if($method == 'POST')
         {
             if($_POST['type'] == 'logout')
@@ -19,9 +20,12 @@ switch ($tab[$count])
             } else if($_POST['type'] == 'filters'){
                 $filters = $_POST['myfilters'];
             }
+            else if($_POST['type']=='search'){
+                $search = $_POST['recherche'];
+            }
         }
         // passer en parametre les filters
-        viewHomePage($filters);
+        viewHomePage($filters, $search);
         break;
 
     case "seconnecter":

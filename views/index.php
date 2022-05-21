@@ -91,8 +91,18 @@
 <section class="banniere ">
   <div class="input-group ">
     <div class="form-outline">
-      <!-- TODO barre de recherche -->
-      <input type="search" id="form1" class="form-control" placeholder="J'ai une petite question..." />
+
+      <!--  barre de recherche -->
+
+      <form action="" method="POST">
+          <input type='hidden' name='type' value='search'>
+          <input type="search" id="form1" class="form-control" name="recherche" placeholder="Je cherche quelque chose..."/>
+      </form>
+
+
+      <!--  FIN barre de recherche -->
+
+
     </div>
     <button type="button" class="btn btn-primary">
       <i class="fas fa-search"></i>
@@ -109,6 +119,21 @@
 
 
 <main>
+
+<div class="reponseRecherche">
+        <div class="reponsePHP">
+            <?php if(count($datatab[1])==0){?>
+                Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4] ?> »
+                <img src="../views/img/sadman.png" alt="">
+            <?php } ?>
+        </div>
+   
+<!-- TODO : if pas de resulats a la recherche alors on vire tout le contenu de la page
+sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors on affiche tous les bons plans -->
+
+</div>
+
+
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 <section class=" container-fluid column">
   <?php

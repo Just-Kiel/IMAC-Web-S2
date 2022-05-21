@@ -389,3 +389,15 @@ function getAllCommentsOnOneGoodPlan($n){
     }
     return $data;
 }
+
+function getSearchGoodPlans($search){
+    try{
+            $recherche = htmlspecialchars($search);
+            $resultats = connexion()->query('SELECT * FROM goodplans WHERE CONCAT(title,textContent) LIKE "%'.$recherche.'%" ORDER BY goodplanID DESC')->fetchAll();
+      
+    }catch (PDOException $e) {
+        print "Erreur comments !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $resultats;
+}
