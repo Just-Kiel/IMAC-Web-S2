@@ -217,6 +217,22 @@ h1 {
     font-size: 1.5em;
 }
 
+.profiter {
+    font-family: 'Rubik', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    background-color: #FF69B4 !important;
+    border-color: #FF69B4 !important;
+    height: fit-content;
+}
+
+.profiter:hover {
+    color: #242424 !important;
+    background-color: #ffffff !important;
+    border: solid 2px #FF69B4 !important;
+}
+
 
 /* ---------- zone commentaire */
 
