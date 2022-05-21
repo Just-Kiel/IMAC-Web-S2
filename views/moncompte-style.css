@@ -1,0 +1,336 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+/* -------------  index.php------------- */
+
+.navbar {
+    background-color: #ffffff;
+}
+
+body {
+    background-color: #ffffff !important;
+}
+
+.res {
+    margin-right: 2em;
+}
+
+h1 {
+    font-size: 1.5em !important;
+    text-align: center;
+    padding-top: 4em;
+    color: #242424;
+    font-family: 'Couture-Bold';
+    padding-top: 8em;
+    padding-bottom: 1em;
+}
+
+.tabs {
+    width: 70%;
+    margin: auto;
+}
+
+.tabs .list {
+    padding: 0;
+    border-bottom: none;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    font-family: 'Rubik-SemiBold';
+}
+
+.tabs .tab {
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    color: #242424;
+    border: 0.1px solid #242424;
+    border-bottom: none;
+}
+
+.tabs .tab:hover {
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    background-color: #000080;
+    color: #ffffff;
+    border-color: #000080;
+}
+
+.tabs .tab.active {
+    background-color: #C4D61F;
+    cursor: default;
+    color: #ffffff;
+    border-color: #C4D61F
+}
+
+.tabs .contents {
+    padding: 10px;
+    font-family: 'Rubik-Light';
+    box-shadow: 0px 0px 10px rgba(36, 36, 36, 0.5);
+    border-radius: 0 1em 1em 1em !important;
+    border-top: none;
+}
+
+.tabs .content {
+    display: none;
+}
+
+.tabs .content.show {
+    display: initial;
+}
+
+.nom {
+    padding-top: 1em;
+}
+
+.tochange {
+    padding-top: 2em;
+}
+
+.avatarinput {
+    padding-top: 4em;
+    padding-left: 5em;
+}
+
+.avatar {
+    padding-top: 0.5em;
+}
+
+.villes {
+    font-family: 'Rubik-Light';
+    margin-left: 1em;
+}
+
+.modifierbtn {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.supprimerbtn {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.modifierbtn:hover {
+    background-color: #FF69B4 !important;
+    color: white;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.supprimerbtn:hover {
+    background-color: #FF69B4 !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.fermerbtn {
+    background-color: #C4D61F !important;
+    font-family: 'Rubik-Regular';
+}
+
+.fermerbtn:hover {
+    background-color: #FF69B4 !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+}
+
+.confirmerbtn {
+    background-color: #FF69B4 !important;
+    font-family: 'Rubik-Regular';
+}
+
+.confirmerbtn:hover {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+}
+
+.col img {
+    width: 10em;
+    border: solid 2px #C4D61F;
+    border-radius: 50%;
+    margin: 1em;
+    margin-bottom: 0.5em;
+}
+
+.card {
+    margin: auto;
+    margin-top: 2em;
+}
+
+.card img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardlike {
+    position: relative;
+}
+
+.cardlike .bi.bi-heart-fill {
+    position: absolute;
+    bottom: 0.25em;
+    right: 0.25em;
+    z-index: 1;
+}
+
+.bi.bi-heart-fill {
+    color: #242424;
+    font-size: 1.5em;
+}
+
+.bi.bi-heart-fill:hover {
+    color: #FF69B4;
+    font-size: 1.5em;
+}
+
+.bi.bi-heart-fill:visited {
+    color: #FF69B4;
+    font-size: 1.5em;
+}
+
+.proprio {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.proprio a {
+    border: none !important;
+}
+
+.proprio h6 {
+    font-family: 'GoodMood';
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.proprio img {
+    width: 4em;
+    border: solid 2px #C4D61F;
+    border-radius: 50%;
+    margin: 1em;
+    margin-bottom: 0.5em;
+}
+
+.btn-flottants {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.scroll {
+    position: fixed;
+    right: 3em;
+    bottom: 2em;
+    cursor: pointer;
+}
+
+.scroll img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+
+/* footer */
+
+.page-footer {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.navfooter {
+    justify-content: center;
+    text-align: center;
+}
+
+.page-footer h6 a {
+    color: #C4D61F !important;
+    text-decoration: none !important;
+    font-size: 1em;
+}
+
+.presentation {
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
+}
+
+.pitch {
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+.signature {
+    text-align: right;
+    margin-bottom: 3em;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+.boutonsfoot {
+    margin-bottom: 2em;
+}
+
+.inscription {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #242424 !important;
+    border: solid #C4D61F !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.inscription:hover {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #FF69B4 !important;
+    border: solid #FF69B4 !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.footer-copyright {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+}
+
+.footer-copyright a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-copyright a:hover {
+    text-decoration: none;
+    color: #C4D61F !important;
+}

@@ -10,14 +10,22 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="moncompte-style.css">
+    <link rel="icon" href="../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../views/moncompte-style.css">
+    <link rel="stylesheet" href="../views/polices.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <title> LE QG - ACCUEIL </title>
+    <!-- POLICES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- FIN POLICES -->
+
+    <title> LE QG - Mon compte </title>
 </head>
 
 <body>
@@ -25,17 +33,23 @@
     <nav class="navbar fixed-top  ">
         <div class="d-flex flex-column align-items-center">
             <br>
-            <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  "
+            <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
                     alt="Accueil LE QG"></a>
         </div>
         <div class="row d-none d-sm-block">
             <div class="res  align-items-center ">
-                <a class="home " href="index.php" target="blank"><img class="invert" src="img/accueil.png" alt="Accueil"
-                        width="50"></a>
-                <a class="chat" href="#" target="blank"><img class="invert" src="img/chat.png" alt="Chat"
-                        width="50"></a>
-                <a class="connexion" href="seconnecter.php" target="blank"><img class="invert" src="img/sidentifier.png"
-                        alt="Connexion" width="50"></a>
+                <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+                <!-- TODO link vers messagerie -->
+                <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+                <?php
+                if (!isset($_SESSION['currentUserID']))
+                {
+                echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                } else
+                {
+                echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+                }
+                ?>
             </div>
         </div>
     </nav>
@@ -46,8 +60,8 @@
     <div class="tabs">
 
         <ul class="list">
-            <li class="tab" data-target="#content1">MES INFOS</li>
-            <li class="tab active" data-target="#content2">MES BONS PLANS</li>
+            <li class="tab active" data-target="#content1">MES INFOS</li>
+            <li class="tab" data-target="#content2">MES BONS PLANS</li>
         </ul>
 
         <div class="contents">
@@ -59,36 +73,41 @@
                     <div class="col">
                         <div class="form-outline">
                             <b><label class="form-label" for="form6Example1">Nom et prénom</label></b>
-                            <p>Jane Doe</p>
+                            <?php echo "</br>" . $datatab[0]['lastname'] . " " . $datatab[0]['firstname'] ?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LE NOM ET LE PRÉNOM DE L'UTILISATEUR -->
                         </div>
                         <div class=" nom form-outline">
                             <b><label class="form-label" for="form6Example2">Email</label></b>
-                            <p>janedoe@gmail.com</p>
+                            <?php echo "</br>" . $datatab[0]['email']?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT L'EMAIL DE L'UTILISATEUR -->
                         </div>
                         <div class=" nom form-outline">
                             <b><label class="form-label" for="form6Example3">Ville</label></b>
-                            <p>Paris</p>
+                            <?php
+                            $data = connexion()->query('SELECT name FROM cities WHERE cityID = '.$datatab[0]['cityID'])->fetchAll();
+                            echo "</br>" . $data[0]['name'];
+                            ?>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LA VILLE DE L'UTILISATEUR -->
                         </div>
                     </div>
                     <div class="col">
                         <!-- A LINK VERS LA POP UP DE L'UTILISATEUR -->
-                        <a href=""><img src="img/avatar1.png" alt="photo de profil" class="pp"></a></br>
+                        <?php
+                        $imgsrc = connexion()->query('SELECT url FROM medias WHERE mediaID = '.$datatab[0]['mediaID'])->fetchAll();
+                        $src = "../views/" . $imgsrc[0][0];
+                        echo "<a href=''><img src=" . "$src" . " alt='photo de profil' class='pp'></a></br>";
+                        ?>
                     </div>
                 </div>
-
                 <!-- Boutons -->
-                <button class=" modifierbtn btn btn-primary btn-block mb-4"> <a href="moncompte-modif">MODIFIER MES
-                        INFORMATIONS</a></button>
+                <a class=" modifierbtn btn btn-primary btn-block mb-4" href="modifiercompte">MODIFIER MES
+                        INFORMATIONS</a>
                 <button class=" supprimerbtn btn btn-primary btn-block mb-4" data-toggle="modal"
                     data-target="#exampleModal">SUPPRIMER MON COMPTE</button>
                 <!--FAIRE EN SORTE QUE LE COMPTE SOIT BIEN SUPPRIME AU NIVEAU DE LA BDD-->
 
                 <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -113,63 +132,58 @@
             <!-- Onglet MES BONS PLANS -->
             <div id="content2" class="content">
 
-                <!-- BDD -->
-                <form class="inscrform">
-                    <div class="card mb-3" style="max-width: 70em;">
-                        <div class="row no-gutters">
-                            <div class=" cardlike col-md-4">
-                                <img src="img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <input type="text" id="form6Example1" class="form-control" value="Nom du bon plan"/>
-                                    <input type="text" id="form6Example1" class="form-control" value="Date et lieu"/>
-                                    <input type="text" id="form6Example1" class="form-control"
-                                        value="Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.">
-                                    <!-- BDD -->
-                                    </br>
-                                    <button class=" modifierbtn btn btn-secondary"> <a
-                                            href="moncompte-bonplan-modif.php">SAUVEGARDER</a></button>
-                                </div>
-                            </div>
-                        </div>
+              <!-- BDD -->
+              <div class="card mb-3" style="max-width: 70em;">
+                <div class="row no-gutters">
+                  <div class=" cardlike col-md-4">            
+                    <img src="../views/img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Nom du bon plan</h5>
+                      <p class="card-text"><small class="text-muted">Date et lieu</small></p>
+                      <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
+                      <div class="btn-grp" role="groupe">
+                        <!-- BDD -->
+                        <button class=" modifierbtn btn btn-secondary"> <a href="moncompte-bonplan-modif.php">MODIFIER</a></button>
+                        <!-- BDD -->
+                        <button class=" supprimerbtn btn btn-secondary" data-toggle="modal" data-target="#modifbonplan">SUPPRIMER</button>
+                      </div>
                     </div>
-                </form>
-            </div>
-            
+                  </div>
+                </div>
+              </div>
 
-
-            <div class="modal fade" id="modifbonplan" tabindex="-1" role="dialog" aria-labelledby="modifbonplanLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modifbonplanLabel">Confirmation suppression du bon plan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Es-tu sûr.e de vouloir supprimer ce bon plan ?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class=" fermerbtn btn btn-secondary"
-                                data-dismiss="modal">Fermer</button>
-                            <button type="button" class=" confirmerbtn btn btn-primary">Je confirme</button>
+              <div class="modal fade" id="modifbonplan" tabindex="-1" role="dialog" aria-labelledby="modifbonplanLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modifbonplanLabel">Confirmation suppression du bon plan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Es-tu sûr.e de vouloir supprimer ce bon plan ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class=" fermerbtn btn btn-secondary"
+                                    data-dismiss="modal">Fermer</button>
+                                <button type="button" class=" confirmerbtn btn btn-primary">Je confirme</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
-
-    </div>
     </div>
 
     <!-------- SCROLL ---------->
     <section class="btn-flottants">
         <div class="scroll btn">
-            <img src="img/top.png" alt="retourner en haut de la page" />
+            <img src="../views/img/top.png" alt="retourner en haut de la page" />
         </div>
     </section>
 
@@ -183,16 +197,24 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="index.php">ACCUEIL</a></h6>
+                    <h6><a href="accueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">MON COMPTE</a></h6>
+                <?php
+                    if (!isset($_SESSION['currentUserID']))
+                    {
+                    echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                    } else
+                    {
+                    echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                    }
+                ?>
                 </div>
                 <div class="col-md-2 mb-3">
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
+                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -204,16 +226,21 @@
                     <p class="signature"> L'Équipe du QG</p>
                     <!-- Boutons -->
                     <div class="boutonsfoot">
-                        <a class=" inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">INSCRIPTION</a>
-                        <a class="inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">CONNEXION</a>
+                    <?php
+                        if (!isset($_SESSION['currentUserID']))
+                        {
+                        echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                        } else
+                        {
+                        echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentions-legales.php"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales"
                     target="blank">Mentions Légales</a>
             </div>
 

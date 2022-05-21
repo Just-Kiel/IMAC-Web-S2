@@ -9,8 +9,8 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="seconnecter-styles.css">
+    <link rel="icon" href="../views/img/leQG_Flavicon.png">
+    <link rel="stylesheet" href="../views/seconnecter-styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
@@ -18,31 +18,47 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-<title> LE QG - INSCRIPTION/CONNEXION </title>
+<title> LE QG - Inscription/Connexion </title>
 
 
 </head>
 
 <body>
-
-    <nav class="navbar fixed-top  ">
+ 
+  <nav class="navbar fixed-top  ">
 
         <div class="d-flex flex-column align-items-center">
           <br>
-          <a href="index.php"><img src="img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+          <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
           </div>
 
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
-              <a class="home " href="index.php" ><img class="invert"  src="img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="seconnecter.php"><img class="invert"  src="img/sidentifier.png" alt="Connexion" width="50"></a>
+              <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+              <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+              <a class="connexion" href="seconnecter"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
     </nav>
 
-
     <h1>SE CONNECTER AU QG !</h1>
+
+    <?php
+    if (!empty($_SESSION['error']))
+    {
+      echo "<div style='text-align:center;color:red'>";
+          echo $_SESSION['error'];
+          unset($_SESSION['error']);
+      echo "</div>";
+    } else if (!empty($_SESSION['success']))
+    {
+      echo "<div style='text-align:center;color:green'>";
+          echo $_SESSION['success'];
+          unset($_SESSION['success']);
+      echo "</div>";
+    }
+    ?>
+
     <div class="tabs">
         <ul class="list">
             <li class="tab active" data-target="#content1">INSCRIPTION</li>
@@ -51,23 +67,24 @@
         <div class="contents">
             <div id="content1" class="content">
                 
-                <form class="inscrform">
+                <form method='POST' action="seconnecter" enctype="multipart/form-data">
+                  <input type='hidden' name='type' value='register'>
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     <div class="row mb-4">
                       <div class="col">
                         <div class="form-outline">
                           <label class="form-label" for="form6Example1">Ton prénom</label>
-                          <input type="text" id="form6Example1" class="form-control" />
+                          <input type="text" id="form6Example1" class="form-control" name="firstname" required/>
                         </div>
                         <div class=" nom form-outline">
                           <label class="form-label" for="form6Example2">Ton nom</label>
-                          <input type="text" class="form-control" />
+                          <input type="text" class="form-control" name="lastname" required/>
                         </div>
                       </div>
                       <div class="col">
                         <div class="avatarinput">
-                          <label for="avatar">Ajouter une photo de profil</label>
-                          <input type="file" class="avatar" name="avatar" accept="image/png, image/jpeg">
+                          <label for="media">Ajouter une photo de profil</label>
+                          <input type="file" name="media" accept="image/*" required/>
                         </div>
                       </div>
                     </div>
@@ -75,35 +92,32 @@
                     <!-- Text input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form6Example4">Ta ville</label>
-                      <select class="villes select">
-                        <option value="1">Ville1</option>
-                        <option value="2">Ville2</option>
-                        <option value="3">Ville3</option>
-                        <option value="4">Ville4</option>
-                        <option value="5">Ville5</option>
-                        <option value="6">Ville6</option>
-                        <option value="7">Ville7</option>
-                        <option value="8">Ville8</option>
+                      <select name="cities">
+                        <?php
+                        foreach($datatab as $city){
+                            echo '<option value="'.$city['cityID'].'">'.$city['name'].'</option>';
+                        }
+                        ?>
                       </select>
                     </div>
   
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form6Example5">Ton adresse email</label>
-                      <input type="email" id="form6Example5" class="form-control" />
+                      <input type="email" id="form6Example5" class="form-control" name="email" required/>
                     </div>
   
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form1Example2">Ton mot de passe</label>
-                      <input type="password" id="form1Example2" class="form-control" />
+                      <input type="password" id="form1Example2" class="form-control" name="password" minlength="5" maxlength="20" required/>
                     </div>
 
                     <!-- Confirmation mdp -->
 
                     <div class="form-outline mb-4">
                       <label class="form-label" for="">Confirme ton mot de passe</label>
-                      <input type="password" class="form-control" />
+                      <input type="password" class="form-control" name="confirmpassword" minlength="5" maxlength="20" required/>
                     </div>
   
                     <!-- Submit button -->
@@ -112,17 +126,18 @@
             
             </div>
             <div id="content2" class="content">
-                <form>
+                <form method='POST' action="seconnecter">
+                  <input type='hidden' name='type' value='login'>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form1Example1">Ton adresse email</label>
-                      <input type="email" id="form1Example1" class="form-control" />
+                      <input type="email" id="form1Example1" class="form-control" name="email" required/>
                     </div>
                   
                     <!-- Password input -->
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form1Example2">Ton mot de passe</label>
-                      <input type="password" id="form1Example2" class="form-control" />
+                      <input type="password" id="form1Example2" class="form-control" name="password" minlength="5" maxlength="20" required/>
                     </div>
                   
                     <!-- Submit button -->
@@ -140,7 +155,7 @@
 
 
     <div class="scroll btn">
-      <img src="img/top.png" alt="retourner en haut de la page" />
+      <img src="../views/img/top.png" alt="retourner en haut de la page" />
     </div>
 </section>
 
@@ -158,11 +173,19 @@
         <div class=" navfooter row d-flex  pt-5 mb-3">
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="index.php">ACCUEIL</a></h6>
+                  <h6><a href="accueil">ACCUEIL</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MON COMPTE</a></h6>
+                <?php
+                if (!isset($_SESSION['currentUserID']))
+                {
+                echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                } else
+                {
+                echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                }
+                ?>
               </div>
 
               <div class="col-md-2 mb-3">
@@ -170,7 +193,7 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -182,14 +205,21 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                  <?php
+                  if (!isset($_SESSION['currentUserID']))
+                  {
+                  echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                  } else
+                  {
+                  echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                  }
+                  ?>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
