@@ -41,8 +41,10 @@
                 <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil"
                         width="50"></a>
 
-                <!-- TODO link vers la messagerie -->
-                <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
+                <!-- TODO link vers messagerie -->
+                <div class="chat" data-toggle="modal" data-target="#chatModal">
+                    <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+                </div>
 
                 <?php
                 if (!isset($_SESSION['currentUserID']))
@@ -60,6 +62,29 @@
 
     <!---  FIN NAVBAR -->
 
+        <!-- pop up messagerie -->
+    <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img src="../views/img/oops.png" alt="">
+                    <div class="contenuoops">
+                        <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                        <p class="signatureoops">L'Équipe du QG </p>
+                    </div>
+                    
+                </div>
+                    <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+            </div>
+        </div>
+    <!-- ------------ -->
 
     <!-------- MAIN --------->
 

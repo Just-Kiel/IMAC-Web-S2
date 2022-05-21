@@ -39,11 +39,12 @@
     </div>
 
     <div class="row d-none d-sm-block">
-    <div class="res  align-items-center ">
+    <div class=" res  align-items-center ">
         <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
-
         <!-- TODO link vers messagerie -->
-        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+        <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+        </div>
 
         <?php
         if (!isset($_SESSION['currentUserID']))
@@ -60,6 +61,30 @@
   <!---  FIN NAVBAR -->
 
 
+  <!-- pop up messagerie -->
+  <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <img src="../views/img/oops.png" alt="">
+                <div class="contenuoops">
+                    <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                    <p class="signatureoops">L'Équipe du QG </p>
+                </div>
+                
+            </div>
+                <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+          </div>
+        </div>
+      </div>
+  <!-- ------------ -->
+
   <!---  HEADER -->
 
  <header>
@@ -67,8 +92,18 @@
 <section class="banniere ">
   <div class="input-group ">
     <div class="form-outline">
-      <!-- TODO barre de recherche -->
-      <input type="search" id="form1" class="form-control" placeholder="J'ai une petite question..."/>
+
+      <!--  barre de recherche -->
+
+      <form action="" method="POST">
+          <input type='hidden' name='type' value='search'>
+          <input type="search" id="form1" class="form-control" name="recherche" placeholder="Je cherche quelque chose..."/>
+      </form>
+
+
+      <!--  FIN barre de recherche -->
+
+
     </div>
     <button type="button" class="btn btn-primary">
       <i class="fas fa-search"></i>
@@ -85,6 +120,21 @@
 
 
 <main>
+
+<div class="reponseRecherche">
+        <div class="reponsePHP">
+            <?php if(count($datatab[1])==0){?>
+                Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4] ?> »
+                <img src="../views/img/sadman.png" alt="">
+            <?php } ?>
+        </div>
+   
+<!-- TODO : if pas de resulats a la recherche alors on vire tout le contenu de la page
+sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors on affiche tous les bons plans -->
+
+</div>
+
+
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 <section class=" container-fluid column">
   <?php
@@ -313,7 +363,7 @@
       </div>
 
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade popfilter" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -323,7 +373,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="accueil" method="post" >
+              <form action="accueil" method="post"  >
 
                   <input
                   <?php 
@@ -355,13 +405,10 @@
                    type="radio" value="null" name="myfilters">&nbsp;Pas de filtre</option><br>
 
                 <input type='hidden' name='type' value='filters'>
-
-                <input type="submit" value="Valider">
-
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class=" fermerbtn btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <input class="validew" type="submit" value="Valider" data-dismiss="modal">
             </div>
           </div>
         </div>
@@ -403,7 +450,7 @@
                 ?>
               </div>
 
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
                   <!-- TODO link vers messagerie -->
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
