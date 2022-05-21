@@ -90,7 +90,7 @@
 <ol class="breadcrumb">
   <li><a href="../accueil" title="Accueil">Accueil </a></li>
   <li><a href="../category/<?php echo $datatab[0]['categoryID']['categoryID']; ?>" title=""><?php echo $datatab[0]['categoryID']['title']; ?></a></li>
-  <li class="page-active"><?php echo $datatab[0]['title']; ?></li>
+  <li class="page-active"><a href="#"><?php echo $datatab[0]['title']; ?></a></li>
 </ol>
 
 <!-- FIN DU FIL D'ARIANE DU BON PLAN -->
