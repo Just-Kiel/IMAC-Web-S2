@@ -102,7 +102,6 @@
 
       <!--  FIN barre de recherche -->
 
-
     </div>
     <button type="button" class="btn btn-primary">
       <i class="fas fa-search"></i>
@@ -119,19 +118,14 @@
 
 
 <main>
-
+<?php if(count($datatab[1])==0){?>
 <div class="reponseRecherche">
         <div class="reponsePHP">
-            <?php if(count($datatab[1])==0){?>
-                Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4] ?> »
+                Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4]; ?> »
                 <img src="../views/img/sadman.png" alt="">
-            <?php } ?>
         </div>
-   
-<!-- TODO : if pas de resulats a la recherche alors on vire tout le contenu de la page
-sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors on affiche tous les bons plans -->
-
 </div>
+<?php } ?>
 
 
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
@@ -153,6 +147,7 @@ sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors
 
   <ul class="nav nav-pills">
   <?php
+  if(count($datatab[1])!=0){
     foreach ($datatab[2] as $category) {
   ?>
 
@@ -162,6 +157,7 @@ sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors
 
   <?php
     }
+  }
   ?>
 </ul>
 
