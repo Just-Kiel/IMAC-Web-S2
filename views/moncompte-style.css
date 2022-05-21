@@ -59,7 +59,9 @@ h1 {
     display: flex;
     list-style: none;
     margin: 0;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .tabs .tab {
@@ -91,7 +93,9 @@ h1 {
 
 .tabs .contents {
     padding: 10px;
-    font-family: 'Rubik-Light';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
     box-shadow: 0px 0px 10px rgba(36, 36, 36, 0.5);
     border-radius: 0 1em 1em 1em !important;
     border-top: none;
@@ -123,14 +127,18 @@ h1 {
 }
 
 .villes {
-    font-family: 'Rubik-Light';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
     margin-left: 1em;
 }
 
 .modifierbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -138,16 +146,19 @@ h1 {
 .supprimerbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
 
 .modifierbtn:hover {
     background-color: #FF69B4 !important;
-    color: white;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -155,31 +166,47 @@ h1 {
 .supprimerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
 
 .fermerbtn {
     background-color: #C4D61F !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .fermerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn {
     background-color: #FF69B4 !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn:hover {
     background-color: #C4D61F !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .col img {
@@ -327,6 +354,7 @@ h1 {
 /* footer */
 
 .page-footer {
+    margin-top: 3em;
     background-color: #242424;
     color: #ffffff;
 }
@@ -337,6 +365,7 @@ h1 {
 }
 
 .page-footer h6 a {
+    font-family: 'Rubik-SemiBold';
     color: #C4D61F !important;
     text-decoration: none !important;
     font-size: 1em;
