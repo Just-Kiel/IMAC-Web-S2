@@ -1,6 +1,4 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
-
-
 html {
     cursor: url("img/curseur_curseur.png") 1 1, pointer;
     margin: 0 !important;
@@ -12,6 +10,7 @@ html {
     font-family: 'Rubik-Light', sans-serif;
 }
 
+
 /* -------------  index.php------------- */
 
 .navbar {
@@ -22,7 +21,7 @@ body {
     background-color: #ffffff !important;
 }
 
-.res{
+.res {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -30,15 +29,14 @@ body {
     margin-right: 2em;
 }
 
-.res>div{
+.res>div {
     margin-left: 1em;
     margin-right: 1em;
 }
 
-.res .chat { 
+.res .chat {
     cursor: pointer;
 }
-
 
 h1 {
     font-size: 1.5em !important;
@@ -61,7 +59,9 @@ h1 {
     display: flex;
     list-style: none;
     margin: 0;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .tabs .tab {
@@ -93,7 +93,9 @@ h1 {
 
 .tabs .contents {
     padding: 10px;
-    font-family: 'Rubik-Light';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
     box-shadow: 0px 0px 10px rgba(36, 36, 36, 0.5);
     border-radius: 0 1em 1em 1em !important;
     border-top: none;
@@ -125,14 +127,18 @@ h1 {
 }
 
 .villes {
-    font-family: 'Rubik-Light';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
     margin-left: 1em;
 }
 
 .modifierbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -140,16 +146,19 @@ h1 {
 .supprimerbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
 
 .modifierbtn:hover {
     background-color: #FF69B4 !important;
-    color: white;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -157,31 +166,47 @@ h1 {
 .supprimerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
 
 .fermerbtn {
     background-color: #C4D61F !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .fermerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn {
     background-color: #FF69B4 !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn:hover {
     background-color: #C4D61F !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .col img {
@@ -272,68 +297,64 @@ h1 {
     height: 2.5em;
 }
 
-.popfilter{
+.popfilter {
     margin-top: 12em;
     cursor: pointer;
-
 }
 
-
-.popfilter h5{
+.popfilter h5 {
     font-family: 'Rubik', sans-serif;
     font-style: normal;
     font-weight: 600;
 }
 
-.popfilter img{
-     width:8em;
+.popfilter img {
+    width: 8em;
 }
 
-.modal-body{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.contenuoops{
-        display: flex;
-        flex-direction: column;
-        align-items: right;
-        text-align: justify;
+.contenuoops {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: justify;
 }
 
-
-
-.fermew{
+.fermew {
     background-color: #C4D61F;
     color: white;
-    padding:0.5em;
-    border:none;
-    border-radius:0.5em;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em;
     font-size: 1.2em;
     margin-top: -0.5em !important;
-    margin: auto !important ;
+    margin: auto !important;
     margin-bottom: 0.5em !important;
-    width:50%;
+    width: 50%;
 }
 
-
-
-.fermew:hover{
-    background-color: #FF69B4;    
+.fermew:hover {
+    background-color: #FF69B4;
 }
 
 .signatureoops {
-    text-align:right;
+    text-align: right;
     font-family: 'Amatic SC', cursive !important;
     font-style: normal;
-    font-size:1.5em;
+    font-size: 1.5em;
 }
+
 
 /* footer */
 
 .page-footer {
+    margin-top: 3em;
     background-color: #242424;
     color: #ffffff;
 }
@@ -344,6 +365,7 @@ h1 {
 }
 
 .page-footer h6 a {
+    font-family: 'Rubik-SemiBold';
     color: #C4D61F !important;
     text-decoration: none !important;
     font-size: 1em;
