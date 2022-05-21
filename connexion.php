@@ -3,7 +3,7 @@
 function connexion()
 {
     $user = "root";
-    $pass = "root";
+    $pass = "";
 
     try {
         $dbh = new PDO("mysql:host=localhost;dbname=qg", $user, $pass);
