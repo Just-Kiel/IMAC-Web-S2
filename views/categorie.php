@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset=utf-8>
     <meta name="description" content="Plateforme de bons plans, partage, étudiants, écologies, troc, astuces">
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-<title> LE QG - <?php echo $datatab[0][0]['title'];?> </title>
+<title> LE QG - <?php echo $datatab[0][0]['title']; ?> </title>
 
 </head>
 
@@ -32,9 +33,9 @@
 
           <div class="row d-none d-sm-block">
           <div class="res  align-items-center ">
-              <a class="home " href="../accueil" ><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+              <a class="home " href="../accueil"><img class="invert" src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
+              <a class="chat" href="#"><img class="invert" src="../../views/img/chat.png" alt="Chat" width="50"></a>
+              <a class="connexion" href="../seconnecter"><img class="invert" src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
           </div>
         </div>
     </nav>
@@ -46,7 +47,7 @@
         <img src="../../views/img/girlonherphone.png" alt="illustration de fille sur son téléphone">
     </div>
     <div class="titrecategorie col-4">
-    <h1><?php echo $datatab[0][0]['title'];?></h1>
+    <h1><?php echo $datatab[0][0]['title']; ?></h1>
     </div>
     <div class="imgfixe2 md-8 col-4">
         <img src="../../views/img/manonhislaptop.png" alt="illustration de garçon sur son ordinateur">
@@ -63,7 +64,7 @@
     <div class="arianne">
             <ol class="breadcrumb">
                 <li><a href="../accueil" title="Accueil">Accueil </a></li>
-                <li href="" class="page-active"><?php echo $datatab[0][0]['title'];?> </li>
+                <li href="" class="page-active"><?php echo $datatab[0][0]['title']; ?> </li>
              </ol>
     </div>
     <div class="autrecategorie">
@@ -190,7 +191,7 @@
               <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
                   <!-- TODO like possible partout -->
                   <i class="bi bi-heart-fill btn" href=""></i>
-                  <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
+                  <button type="button" class="profiter btn btn-primary">J'EN PROFITE !</button>
             </div>
             <div class="proprio">
                 <!-- link vers la pop up du profil  -->
@@ -253,7 +254,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="" method="post" >
+              <form action="" method="post">
 
                   <input
                   <?php 
@@ -324,15 +325,22 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MON COMPTE</a></h6>
+                <?php
+                if (!isset($_SESSION['currentUserID'])) {
+                  echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                } else {
+                  echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                }
+                ?>
               </div>
 
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+              <!-- TODO link vers messagerie -->
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
+                  <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -344,14 +352,19 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                  <?php
+                  if (!isset($_SESSION['currentUserID'])) {
+                    echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                  } else {
+                    echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                  }
+                  ?>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
@@ -365,8 +378,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
 
     <script>
-
-
        /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie
@@ -374,8 +385,7 @@
              retourne: - 
              paramètres:*/
 
-             function nav()
-              {
+             function nav() {
               var w = document.myform.mylist.selectedIndex;
               var url_add = document.myform.mylist.options[w].value;
               window.location.href = url_add;

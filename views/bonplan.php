@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
 
-<title> LE QG - BonPlan </title>
+<title> LE QG - <?php echo $datatab[0]['title']; ?> </title>
 
 </head>
 
@@ -219,17 +219,24 @@
 
               <!-- TODO link vers mon compte si connecté sinon vers connexion -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MON COMPTE</a></h6>
+                <?php
+                if (!isset($_SESSION['currentUserID']))
+                {
+                echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                } else
+                {
+                echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                }
+                ?>
               </div>
 
               <!-- TODO link vers messagerie -->
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
-              <!-- TODO link vers page qui sommes nous -->
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS</a></h6>
+                  <h6><a href="quisommesnous">L'EQUIPE</a></h6>
           </div>
         </div>
 
@@ -241,14 +248,21 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="../inscription" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="../connexion" role="button">CONNEXION</a>
+                  <?php
+                  if (!isset($_SESSION['currentUserID']))
+                  {
+                  echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
+                  } else
+                  {
+                  echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
+                  }
+                  ?>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="../../views/mentions-legales.php" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="../mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>

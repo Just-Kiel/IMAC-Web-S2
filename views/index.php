@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset=utf-8>
     <meta name="description" content="Plateforme de bons plans, partage, étudiants, écologies, troc, astuces">
@@ -40,17 +41,15 @@
 
     <div class="row d-none d-sm-block">
     <div class="res  align-items-center ">
-        <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+        <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil" width="50"></a>
 
         <!-- TODO link vers messagerie -->
-        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+        <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
 
         <?php
-        if (!isset($_SESSION['currentUserID']))
-        {
+        if (!isset($_SESSION['currentUserID'])) {
           echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
-        } else
-        {
+        } else {
           echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
         }
         ?>
@@ -68,7 +67,7 @@
   <div class="input-group ">
     <div class="form-outline">
       <!-- TODO barre de recherche -->
-      <input type="search" id="form1" class="form-control" placeholder="J'ai une petite question..."/>
+      <input type="search" id="form1" class="form-control" placeholder="J'ai une petite question..." />
     </div>
     <button type="button" class="btn btn-primary">
       <i class="fas fa-search"></i>
@@ -88,12 +87,9 @@
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 <section class=" container-fluid column">
   <?php
-    if (empty($datatab[0]))
-    {
+    if (empty($datatab[0])) {
         echo "Vous n'êtes pas connecté <br/>";
-    }
-    else
-    {
+    } else {
         echo "Vous êtes connecté en tant que " . $datatab[0][0]['lastname'] . " " . $datatab[0][0]['firstname'] . "<br/>
         <form method='POST' action='accueil'>
             <input type='hidden' name='type' value='logout'>
@@ -124,8 +120,8 @@
 <div class="listCards">
 <?php
   $temp = 1;
-  foreach ($datatab[1] as $key =>$goodplan) {
-    if($key%2==0){
+  foreach ($datatab[1] as $key => $goodplan) {
+    if ($key % 2 == 0) {
 ?>
 
   <div class="card mb-3" style="max-width: 70em;">
@@ -133,7 +129,7 @@
       <div class="col-md-4">
         <img src=
         <?php
-            echo "../views/".$goodplan['mediaID'];
+            echo "../views/" . $goodplan['mediaID'];
         ?>
         class="card-img invert img-fluid" alt="infos bon plan">
       </div>
@@ -173,9 +169,7 @@
                   {
                     echo "<input type='hidden' name='type' value=$goodplanID>";
                     echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je dislike'/>";
-                  }
-                  else 
-                  {
+                  } else {
                     echo "<input type='hidden' name='type' value=$goodplanID>";
                     echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je like'/>";
                   }
@@ -323,11 +317,11 @@
               </button>
             </div>
             <div class="modal-body">
-              <form action="accueil" method="post" >
+              <form action="accueil" method="post">
 
                   <input
                   <?php 
-                  if($datatab[3] == 'city'){
+                  if ($datatab[3] == 'city') {
                     echo "checked";
                   }
                    ?>
@@ -393,17 +387,15 @@
 
               <div class="col-md-2 mb-3">
                 <?php
-                if (!isset($_SESSION['currentUserID']))
-                {
+                if (!isset($_SESSION['currentUserID'])) {
                 echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
-                } else
-                {
+                } else {
                 echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
                 }
                 ?>
               </div>
 
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
                   <!-- TODO link vers messagerie -->
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
@@ -422,11 +414,9 @@
                 <!-- Boutons -->
                 <div class="boutonsfoot">
                   <?php
-                  if (!isset($_SESSION['currentUserID']))
-                  {
+                  if (!isset($_SESSION['currentUserID'])) {
                   echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
-                  } else
-                  {
+                  } else {
                   echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
                   }
                   ?>
@@ -435,7 +425,7 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="mentionslegales" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
@@ -457,7 +447,6 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
   <script>
-
     /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie
@@ -467,7 +456,7 @@
                        
             
                 function afficherSite() {
-                let load=document.querySelector(".loader-container");
+                let load = document.querySelector(".loader-container");
                 load.classList.add("cache");
             }
             
@@ -476,14 +465,14 @@
              /*Animation du bouton scroll*/
 
              let fleche = document.querySelector(".scroll");
-            fleche.addEventListener('click',()=> {
+            fleche.addEventListener('click', () => {
 
-                window.scrollTo({top:0,
-                    left:0,
-                    behavior:"smooth"})
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: "smooth"
                 })
-
-            
+                })
     </script>
 
   

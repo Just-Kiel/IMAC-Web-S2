@@ -32,24 +32,20 @@
 
         <div class="d-flex flex-column align-items-center">
             <br>
-            <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
-                    alt="Accueil LE QG"></a>
+            <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
         </div>
 
         <div class="row d-none d-sm-block">
             <div class="res  align-items-center ">
-                <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil"
-                        width="50"></a>
+                <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil" width="50"></a>
 
                 <!-- TODO link vers la messagerie -->
                 <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
 
                 <?php
-                if (!isset($_SESSION['currentUserID']))
-                {
+                if (!isset($_SESSION['currentUserID'])) {
                 echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
-                } else
-                {
+                } else {
                 echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
                 }
                 ?>
@@ -148,24 +144,22 @@
 
                 <div class="col-md-2 mb-3">
                     <?php
-                    if (!isset($_SESSION['currentUserID']))
-                    {
+                    if (!isset($_SESSION['currentUserID'])) {
                     echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
-                    } else
-                    {
+                    } else {
                     echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
                     }
                     ?>
                 </div>
 
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
                     <!-- TODO link vers messagerie -->
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
 
                 <div class="col-md-2 mb-3">
                     <!-- TODO relink quisommesnous -->
-                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
+                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -180,11 +174,9 @@
                     <!-- Boutons -->
                     <div class="boutonsfoot">
                         <?php
-                        if (!isset($_SESSION['currentUserID']))
-                        {
+                        if (!isset($_SESSION['currentUserID'])) {
                         echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
-                        } else
-                        {
+                        } else {
                         echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
                         }
                         ?>
@@ -193,8 +185,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a
-                    href="mentionslegales" target="blank">Mentions Légales</a>
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
             </div>
             <!-- Copyright -->
         </div>
@@ -206,14 +197,11 @@
 
     <!---------------------------------------SCRIPT----------------------->
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
     </script>
 
     <!--<script> $('#MonCollapse').collapse({

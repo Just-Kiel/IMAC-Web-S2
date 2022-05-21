@@ -158,13 +158,13 @@
             ?>
         </div>
 
-        <div class="col-md-2 mb-3">
+        <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
             <!-- TODO link vers messagerie -->
             <h6><a href="#">MESSAGERIE</a></h6>
         </div>
 
         <div class="col-md-2 mb-3">
-            <h6><a href="../views/qui-sommes-nous.php">L'ÉQUIPE</a></h6>
+            <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
     </div>
   </div>
 
@@ -191,7 +191,7 @@
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">
-    <p>© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="../views/mentions-legales.php" target="blank">Mentions Légales</a>
+    <p>© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
     </p>
   </div>
   <!-- Copyright -->

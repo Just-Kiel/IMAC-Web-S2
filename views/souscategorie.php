@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset=utf-8>
     <meta name="description" content="Plateforme de bons plans, partage, étudiants, écologies, troc, astuces">
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-<title> LE QG - <?php echo $datatab[0][0]['title'];?> </title>
+<title> LE QG - <?php echo $datatab[0][0]['title']; ?> </title>
 
 </head>
 
@@ -289,15 +290,22 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MON COMPTE</a></h6>
+              <?php
+              if (!isset($_SESSION['currentUserID'])) {
+                echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
+              } else {
+                echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
+              }
+              ?>
               </div>
 
-              <div class="col-md-2 mb-3">
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+                <!-- TODO link vers messagerie -->
                   <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">QUI SOMMES-NOUS ?</a></h6>
+              <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -309,14 +317,19 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter.php" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter.php" role="button">CONNEXION</a>
+                <?php
+                if (!isset($_SESSION['currentUserID'])) {
+                  echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
+                } else {
+                  echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
+                }
+                ?>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
@@ -330,8 +343,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
 
     <script>
-
-
        /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie
@@ -352,7 +363,8 @@
              let fleche = document.querySelector(".scroll");
             fleche.addEventListener('click',()=> {
 
-                window.scrollTo({top:0,
+                window.scrollTo({
+                  top:0,
                     left:0,
                     behavior:"smooth"})
                 })

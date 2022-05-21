@@ -12,12 +12,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../../views/img/leQG_Flavicon.png">
     <link rel="stylesheet" href="../../views/moncompte-vue-externe-style.css">
+    <link rel="stylesheet" href="../views/polices.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <title> LE QG - ACCUEIL </title>
+    <!-- POLICES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- FIN POLICES -->
+
+    <title> LE QG - <?php echo $datatab[0]['firstname'] . " " . $datatab[0]['lastname']; ?> </title>
 </head>
 
 <body>
@@ -210,16 +217,23 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="../acuueil">ACCUEIL</a></h6>
+                    <h6><a href="accueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">MON COMPTE</a></h6>
+                    <?php
+                    if (!isset($_SESSION['currentUserID'])) {
+                        echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                    } else {
+                        echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                    }
+                    ?>
                 </div>
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+                    <!-- TODO link vers messagerie -->
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
+                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -231,16 +245,19 @@
                     <p class="signature"> L'Équipe du QG</p>
                     <!-- Boutons -->
                     <div class="boutonsfoot">
-                        <a class=" inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">INSCRIPTION</a>
-                        <a class="inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">CONNEXION</a>
+                        <?php
+                        if (!isset($_SESSION['currentUserID'])) {
+                            echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                        } else {
+                            echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentions-legales.php"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales"
                     target="blank">Mentions Légales</a>
             </div>
 

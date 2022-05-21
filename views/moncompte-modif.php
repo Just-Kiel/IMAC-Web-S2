@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <title> LE QG - ACCUEIL </title>
+    <title> LE QG - MODIFICATION DE COMPTE </title>
 </head>
 
 <body>
@@ -28,16 +28,14 @@
         </div>
         <div class="row d-none d-sm-block">
             <div class="res  align-items-center ">
-                <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+                <a class="home " href="accueil"><img class="invert" src="../views/img/accueil.png" alt="Accueil" width="50"></a>
                 <!-- TODO link vers messagerie -->
-                <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+                <a class="chat" href="#"><img class="invert" src="../views/img/chat.png" alt="Chat" width="50"></a>
                 <!-- TODO link vers mon compte si connecté sinon vers connexion -->
                 <?php
-                if (!isset($_SESSION['currentUserID']))
-                {
+                if (!isset($_SESSION['currentUserID'])) {
                 echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
-                } else
-                {
+                } else {
                 echo '<a class="connexion" href="moncompte" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
                 }
                 ?>
@@ -128,16 +126,23 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="index.php">ACCUEIL</a></h6>
+                    <h6><a href="accueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">MON COMPTE</a></h6>
+                    <?php
+                    if (!isset($_SESSION['currentUserID'])) {
+                        echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                    } else {
+                        echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                    }
+                    ?>
                 </div>
-                <div class="col-md-2 mb-3">
+                <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+                    <!-- TODO link vers messagerie -->
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="#">BONS PLANS</a></h6>
+                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -149,14 +154,19 @@
                     <p class="signature"> L'Équipe du QG</p>
                     <!-- Boutons -->
                     <div class="boutonsfoot">
-                        <a class=" inscription btn btn-primary " href="seconnecter" role="button">INSCRIPTION</a>
-                        <a class="inscription btn btn-primary " href="seconnecter" role="button">CONNEXION</a>
+                        <?php
+                        if (!isset($_SESSION['currentUserID'])) {
+                            echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                        } else {
+                            echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="#"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales"
                     target="blank">Mentions Légales</a>
             </div>
             <!-- Copyright -->
