@@ -39,7 +39,7 @@
         <a class="home " href="../accueil"><img class="invert" src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
         <!-- TODO link vers messagerie -->
         <div class="chat" data-toggle="modal" data-target="#chatModal">
-          <img class=" invert" src="../views/img/chat.png" alt="messagerie" width="50">
+          <img class=" invert" src="../../views/img/chat.png" alt="messagerie" width="50">
         </div>
         <?php
         if (!isset($_SESSION['currentUserID'])) {
