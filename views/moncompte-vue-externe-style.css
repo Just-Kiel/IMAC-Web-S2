@@ -50,6 +50,21 @@ h1 {
 
 h2.sesbonsplans {
     text-align: center;
+    font-family: 'Couture-Bold';
+    padding-top: 8em;
+    padding-bottom: 1em;
+}
+
+.nomcat {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.infutilisateur {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
 }
 
 .tabs {
@@ -63,7 +78,9 @@ h2.sesbonsplans {
     display: flex;
     list-style: none;
     margin: 0;
-    font-family: 'Rubik-SemiBold';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .tabs .tab {
@@ -95,7 +112,9 @@ h2.sesbonsplans {
 
 .tabs .contents {
     padding: 10px;
-    font-family: 'Rubik-Light';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
     box-shadow: 0px 0px 10px rgba(36, 36, 36, 0.5);
     border-radius: 0 1em 1em 1em !important;
     border-top: none;
@@ -134,7 +153,9 @@ h2.sesbonsplans {
 .modifierbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -142,7 +163,9 @@ h2.sesbonsplans {
 .supprimerbtn {
     background-color: #C4D61F !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -151,7 +174,9 @@ h2.sesbonsplans {
     background-color: #FF69B4 !important;
     color: white;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
@@ -159,31 +184,47 @@ h2.sesbonsplans {
 .supprimerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
-    font-family: 'Rubik-Regular';
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
     width: 30% !important;
     margin: auto;
 }
 
 .fermerbtn {
     background-color: #C4D61F !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .fermerbtn:hover {
     background-color: #FF69B4 !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn {
     background-color: #FF69B4 !important;
-    font-family: 'Rubik-Regular';
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
 }
 
 .confirmerbtn:hover {
     background-color: #C4D61F !important;
     border: none !important;
     font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
 }
 
 .col {
@@ -210,28 +251,6 @@ h2.sesbonsplans {
 
 .cardlike {
     position: relative;
-}
-
-.cardlike .bi.bi-heart-fill {
-    position: absolute;
-    bottom: 0.25em;
-    right: 0.25em;
-    z-index: 1;
-}
-
-.bi.bi-heart-fill {
-    color: #242424;
-    font-size: 1.5em;
-}
-
-.bi.bi-heart-fill:hover {
-    color: #FF69B4;
-    font-size: 1.5em;
-}
-
-.bi.bi-heart-fill:visited {
-    color: #FF69B4;
-    font-size: 1.5em;
 }
 
 .proprio {
@@ -329,6 +348,22 @@ h2.sesbonsplans {
     font-family: 'Amatic SC', cursive !important;
     font-style: normal;
     font-size: 1.5em;
+}
+
+.profiter {
+    font-family: 'Rubik', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    background-color: #FF69B4 !important;
+    border-color: #FF69B4 !important;
+    height: fit-content;
+}
+
+.profiter:hover {
+    color: #242424 !important;
+    background-color: #ffffff !important;
+    border: solid 2px #FF69B4 !important;
 }
 
 

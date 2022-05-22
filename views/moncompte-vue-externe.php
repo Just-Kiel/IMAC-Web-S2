@@ -42,7 +42,7 @@
                         width="50"></a>
                 <!-- TODO link vers messagerie -->
                 <div class="chat" data-toggle="modal" data-target="#chatModal">
-                    <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+                    <img  class=" invert"  src="../../views/img/chat.png" alt="messagerie" width="50">
                 </div>
                 <?php
         if (!isset($_SESSION['currentUserID']))
@@ -85,7 +85,7 @@
     <!-- ------------ -->
 
 
-    <h1>Compte</h1>
+    <h1><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></h1>
 
     <!-- Tableau contenant les onglets "MES INFOS" et "MES BONS PLANS" -->
     <div>
@@ -105,15 +105,15 @@
                         </div>
                         <div class="col-4">
                             <b>
-                                <p>Nom et prénom</pl>
+                                <p class="nomcat">Nom et prénom</pl>
                             </b>
-                            <p><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></p>
+                            <p class="infutilisateur"><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></p>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LE NOM ET LE PRÉNOM DE L'UTILISATEUR -->
 
                             <b>
-                                <p>Nombre de bons plans postés</p>
+                                <p class="nomcat">Nombre de bons plans postés</p>
                             </b>
-                            <p><?php echo count($datatab[1]); ?></p>
+                            <p class="infutilisateur"><?php echo count($datatab[1]); ?></p>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT L'EMAIL DE L'UTILISATEUR -->
                         </div>
 
@@ -161,7 +161,6 @@
                 <div class="card mb-3" style="max-width: 70em;">
                     <div class="row no-gutters">
                         <div class=" cardlike col-md-4">
-                            <i class="bi bi-heart-fill btn" href=""></i>
                             <img src=
                             <?php
                             echo "../../views/".$goodplan['mediaID'];
