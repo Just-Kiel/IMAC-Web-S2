@@ -153,7 +153,7 @@
                     </div>
                 </div>
 
-                <h2 class="sesbonsplans">Ses bons plans :</h2>
+                <h1>Ses bons plans :</h1>
 
                 <?php
                     foreach($datatab[1] as $goodplan){
