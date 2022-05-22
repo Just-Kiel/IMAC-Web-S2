@@ -103,7 +103,6 @@
     <div class="card mb-3" style="max-width: 70em;">
       <div class="row no-gutters">
         <div class=" cardlike col-md-4">
-          <i class="bi bi-heart-fill btn" href=""></i>
           <img src=<?php
                     echo "../../views/" . $datatab[0]['mediaID'];
                     ?> class="card-img invert img-fluid" alt="infos bon plan">
