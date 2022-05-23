@@ -26,24 +26,42 @@
 
 <!---  NAVABAR -->
 
-    <nav class="navbar fixed-top">
+<nav class="navbar fixed-top  ">
 
-        <div class="d-flex flex-column align-items-center">
-          <br>
-          <a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
-          </div>
+<div class="d-flex flex-column align-items-center">
+<br>
+<a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+</div>
 
-          <div class="row d-none d-sm-block">
-          <div class="res  align-items-center ">
-              <a class="home " href="../accueil" ><img class="invert" src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
-              <!-- TODO link vers messagerie -->
-              <div class="chat" data-toggle="modal" data-target="#chatModal">
-                  <img  class=" invert"  src="../../views/img/chat.png" alt="messagerie" width="50">
-              </div>
-              <a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
-          </div>
-        </div>
-    </nav>
+<div class="row d-none d-sm-block">
+<div class="res  align-items-center ">
+    <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+    <!-- TODO link vers messagerie -->
+    <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+    <!-- TODO link vers mon compte si connecté sinon vers connexion -->
+    <?php
+    if (!isset($_SESSION['currentUserID']))
+    {
+      echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+    } else
+    {
+      ?>
+       <div class="menu-deroulant">
+      <a class="connexion" href="moncompte"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+      <ul class="sous-menu">
+        <li><a href="moncompte">mon compte</a></li>
+        <li><form method='POST' action='accueil'>
+        <input type='hidden' name='type' value='logout'>
+        <input type='submit' value='Se déconnecter'>
+    </form></li>
+      </ul>
+      </div>
+      <?php
+    }
+    ?>
+</div>
+</div>
+</nav>
 
       <!---  FIN NAVBAR -->
       
@@ -327,9 +345,13 @@
 
     <!-------- AJOUTER BON PLAN  voir comment on fait ---------->
 
-      <div class="add btn ">
-      <a href="../addGoodPlan"><img src="../../views/img/add.png" alt="ajouter un bon plan" /></a>
-      </div>
+    <script> if (isset($_SESSION))
+      {
+        <div class="add btn ">
+          <img src="img/add.png" href="#" alt="ajouter un bon plan" />
+        </div>
+      }
+      </script>
 
 </section>
 
