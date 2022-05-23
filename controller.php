@@ -68,6 +68,17 @@ function addGoodPlan(){
     addOneGoodPlan($title, $textContent, $startingDate, $endingDate, $category, $city, $user, $mediaID);
 }
 
+function deleteGoodPlan($goodplanID)
+{
+    $sql = "DELETE FROM goodplans WHERE goodplanID='$goodplanID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+}
+
 function viewHomePage()
 {
     if (getCurrentUser() == NULL)
@@ -155,7 +166,7 @@ function viewMonComptePage()
 
 function viewModifierComptePage()
 {
-    view('moncompte-modif.php');
+    view('moncompte-modif.php', getCurrentUser());
 }
 
 function addLike($goodplanID){
@@ -177,6 +188,117 @@ function addLike($goodplanID){
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
+        }
+    }
+}
+
+function supprimerCompte()
+{
+    $currentUserID = getCurrentUser()[0][0];
+    $sql = "DELETE FROM users WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    $sql = "DELETE FROM goodplans WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    $sql = "DELETE FROM comments WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    $sql = "DELETE FROM friends WHERE firstuserID='$currentUserID' OR seconduserID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    $sql = "DELETE FROM likes WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    logout();
+    $_SESSION['success'] = "Votre compte a bien été supprimé.";
+    viewSeconnecterPage();
+}
+
+function modifierCompte()
+{
+    $lastname = $_POST['lastname'];
+	$firstname = $_POST['firstname'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+    $confirmpassword = $_POST['confirmpassword'];
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $city = $_POST['cities'];
+    $media = null;
+    if ($_FILES['media']['size'] != 0)
+    {
+        $media = $_FILES['media'];
+    }
+
+    $currentUserID = getCurrentUser()[0][0];
+    
+    $stmt = connexion()->prepare("SELECT * FROM users WHERE email=? AND userID!=$currentUserID");
+    $stmt->execute([$email]); 
+    $user = $stmt->fetch();
+    if ($user) {
+        $_SESSION['error'] = "Cette addresse email existe déjà.";
+        viewModifierComptePage();
+    } else {
+        if ($password != $confirmpassword)
+        {
+            $_SESSION['error'] = "Vos mots de passe ne correspondent pas.";
+            viewModifierComptePage();
+        }
+        else
+        {
+            if ($media != null)
+            {
+                if ($media['error'] === UPLOAD_ERR_OK)
+                {
+                    $mediaID = addOneMedia($media['name']);
+                    $sql = "UPDATE users SET lastname='$lastname', firstname='$firstname', email='$email', password='$hashed_password', cityID='$city', mediaID='$mediaID' WHERE userID=$currentUserID";
+                    try {
+                        connexion()->query($sql);
+                    } catch (PDOException $e) {
+                        print "Erreur !: " . $e->getMessage() . "<br/>";
+                        die();
+                    }
+                    $_SESSION['success'] = "Vos informations ont bien été modifiées.";
+                    viewModifierComptePage();
+                }
+                else
+                {
+                    $_SESSION['error'] = "Votre image de profil ne doit pas dépasser 2Mo.";
+                    viewModifierComptePage();
+                }
+            }
+            else
+            {
+                $sql = "UPDATE users SET lastname='$lastname', firstname='$firstname', email='$email', password='$hashed_password', cityID='$city' WHERE userID=$currentUserID";
+                try {
+                    connexion()->query($sql);
+                } catch (PDOException $e) {
+                    print "Erreur !: " . $e->getMessage() . "<br/>";
+                    die();
+                }
+                $_SESSION['success'] = "Vos informations ont bien été modifiées.";
+                viewModifierComptePage();
+            }
         }
     }
 }

@@ -100,6 +100,7 @@
                 <!--FAIRE EN SORTE QUE LE COMPTE SOIT BIEN SUPPRIME AU NIVEAU DE LA BDD-->
 
                 <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
+                
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -115,7 +116,10 @@
                             <div class="modal-footer">
                                 <button type="button" class=" fermerbtn btn btn-secondary"
                                     data-dismiss="modal">Fermer</button>
-                                <button type="button" class=" confirmerbtn btn btn-primary">Je confirme</button>
+                                <form method="post" action="seconnecter">
+                                    <input type='hidden' name='type' value='delete'>
+                                    <input type='submit' name='buttonsupprimer' class='confirmerbtn btn btn-primary' value='Je confirme'/>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -123,53 +127,93 @@
             </div>
 
             <!-- Onglet MES BONS PLANS -->
+            
+            
             <div id="content2" class="content">
-
               <!-- BDD -->
-              <div class="card mb-3" style="max-width: 70em;">
-                <div class="row no-gutters">
-                  <div class=" cardlike col-md-4">            
-                    <img src="../views/img/cine.jpg" class="card-img invert img-fluid" alt="infos bon plan">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Nom du bon plan</h5>
-                      <p class="card-text"><small class="text-muted">Date et lieu</small></p>
-                      <p class="card-text">Description du bon plan. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique sint doloribus non ipsam nobis ullam natus nam sit obcaecati. Sed magnam similique molestias! At rerum, nemo accusamus mollitia facere ea maxime quod aliquam, enim quo itaque velit culpa! Quisquam animi delectus doloremque! Sed laudantium fugit blanditiis eaque! Laboriosam, excepturi repellendus.</p>
-                      <div class="btn-grp" role="groupe">
-                        <!-- BDD -->
-                        <button class=" modifierbtn btn btn-secondary"> <a href="moncompte-bonplan-modif.php">MODIFIER</a></button>
-                        <!-- BDD -->
-                        <button class=" supprimerbtn btn btn-secondary" data-toggle="modal" data-target="#modifbonplan">SUPPRIMER</button>
-                      </div>
+              <?php
+                $temp = 1;
+                $currentUserID = getCurrentUser()[0][0];
+                if(array_key_exists('buttonsupprimerbp', $_POST) && $temp == 1)
+                {
+                    $temp = 0;
+                    deleteGoodPlan($_POST['type']);
+                }
+                $data = connexion()->query("SELECT * FROM goodplans WHERE userID='$currentUserID'")->fetchAll();
+                if (empty($data))
+                {
+                    echo "<div style='text-align:center'>Vous n'avez aucun bon plans.</div>";
+                }
+                else
+                {
+                    
+                    foreach ($data as $key =>$goodplan)
+                    {
+                    ?>
+                <div class="card mb-3" style="max-width: 70em;">
+                    <div class="row no-gutters">
+                    <div class=" cardlike col-md-4">
+                        <?php
+                        $mediaID = $goodplan['mediaID'];
+                        $src = connexion()->query("SELECT url FROM medias WHERE mediaID='$mediaID'")->fetchAll();
+                        $url = "../views/" . $src[0]['url'];
+                        echo "<img src=" . "$url" . " class='card-img invert img-fluid' alt='infos bon plan'>";
+                        ?>
                     </div>
-                  </div>
-                </div>
-              </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h5 class="card-title"><?php echo $goodplan['title'] ?></h5>
+                        <?php
+                            $dateEtLieu = $goodplan['startingDate'];
 
-              <div class="modal fade" id="modifbonplan" tabindex="-1" role="dialog" aria-labelledby="modifbonplanLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modifbonplanLabel">Confirmation suppression du bon plan</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Es-tu sûr.e de vouloir supprimer ce bon plan ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class=" fermerbtn btn btn-secondary"
-                                    data-dismiss="modal">Fermer</button>
-                                <button type="button" class=" confirmerbtn btn btn-primary">Je confirme</button>
+                            if(empty($goodplan['cityID'])){
+                                $dateEtLieu .= " en ligne";
+                            } else {
+                                $dateEtLieu .= " à : ".getOneCity($goodplan['cityID'])[0][1];
+                            }
+                            ?>
+                        <p class="card-text"><small class="text-muted"><?php echo $dateEtLieu ?></small></p>
+                        <p class="card-text"><?php echo $goodplan['textContent'] ?></p>
+                        <div class="btn-grp" role="groupe">
+                            <!-- BDD -->
+                            <button class=" supprimerbtn btn btn-secondary" data-toggle="modal" data-target="#modifbonplan">SUPPRIMER</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="modifbonplan" tabindex="-1" role="dialog" aria-labelledby="modifbonplanLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modifbonplanLabel">Confirmation suppression du bon plan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Es-tu sûr.e de vouloir supprimer ce bon plan ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class=" fermerbtn btn btn-secondary"
+                                        data-dismiss="modal">Fermer</button>
+                                        
+                                        <form method="post">
+                                            <?php 
+                                            $goodplanID = $goodplan['goodplanID'];
+                                            echo "<input type='hidden' name='type' value=$goodplanID />";
+                                            echo "<input type='submit' name='buttonsupprimerbp' class='confirmerbtn btn btn-primary' value='Je confirme'/>";
+                                            ?>
+                                        </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
+                    <?php } ?>
+                <?php } ?>
             </div>
-
+            
         </div>
     </div>
 

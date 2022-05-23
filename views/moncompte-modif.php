@@ -46,6 +46,22 @@
     </nav>
 
     <h1>MES INFORMATIONS PERSONNELLES</h1>
+    
+    <?php
+    if (!empty($_SESSION['error']))
+    {
+      echo "<div style='text-align:center;color:red'>";
+          echo $_SESSION['error'];
+          unset($_SESSION['error']);
+      echo "</div>";
+    } else if (!empty($_SESSION['success']))
+    {
+      echo "<div style='text-align:center;color:green'>";
+          echo $_SESSION['success'];
+          unset($_SESSION['success']);
+      echo "</div>";
+    }
+    ?>
 
     <!-- Tableau contenant les onglets "MES INFOS" et "MES BONS PLANS" -->
     <div class="tabs">
@@ -60,49 +76,68 @@
             <div id="content1" class="content">
 
                 <!-- Informations utilisateurs -->
-                <form class="inscrform">
+                <form class="inscrform" method='POST' action="modifiercompte" enctype="multipart/form-data">
                     <div class="row mb-4">
                         <div class="col">
                             <div class="form-outline">
-                                <label class="form-label" for="form6Example1">Nom et prénom</label>
-                                <input type="text" id="form6Example1" class="form-control" value="Jane Doe" />
+                                <label class="form-label" for="form6Example1">Nom</label>
+                                <input type="text" id="form6Example1" class="form-control" name="lastname" value=<?php echo $datatab[0]['lastname']; ?> required/>
+                                <!-- BDD -->
+                            </div>
+                            <div class="tochange form-outline">
+                                <label class="form-label" for="form6Example1">Prénom</label>
+                                <input type="text" id="form6Example1" class="form-control" name="firstname" value=<?php echo $datatab[0]['firstname']; ?> required/>
                                 <!-- BDD -->
                             </div>
                             <div class="tochange form-outline">
                                 <label class="form-label" for="form6Example2">Email</label>
-                                <input type="email" id="form6Example2" class="form-control" value="janedoe@gmail.com" />
+                                <input type="email" id="form6Example2" class="form-control" name="email" value=<?php echo $datatab[0]['email']; ?> required/>
                                 <!-- BDD -->
                             </div>
                             <div class="tochange form-outline">
-                                <label class="form-label" for="form6Example3">Ville</label>
-                                <input type="text" id="form6Example3" class="form-control" value="Paris" />
+                                <label class="form-label" for="form6Example4">Ta ville</label>
+                                <select name="cities">
+                                    <?php
+                                    $cities = getAllCities();
+                                    foreach($cities as $city){
+                                        if ($city['cityID'] == $datatab[0]['cityID'])
+                                        {
+                                            echo '<option selected value="'.$city['cityID'].'">'.$city['name'].'</option>';
+                                        }
+                                        else
+                                        {
+                                            echo '<option value="'.$city['cityID'].'">'.$city['name'].'</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
                                 <!-- BDD -->
                             </div>
                             <div class="tochange form-outline">
-                                <label class="form-label" for="form1Example2">Ton mot de passe actuel</label>
-                                <input type="password" id="form1Example2" class="form-control" />
-                                <!-- BDD -->
-                            </div>
-                            <div class="tochange form-outline">
-                                <label class="form-label" for="">Ton nouveau mot de passe</label>
-                                <input type="password" class="form-control" />
+                                <label class="form-label" for="form1Example2">Ton nouveau mot de passe</label>
+                                <input type="password" id="form1Example2" class="form-control" name="password" minlength="5" maxlength="20" required/>
                                 <!-- BDD -->
                             </div>
                             <div class="tochange form-outline">
                                 <label class="form-label" for="">Confirme ton nouveau mot de passe</label>
-                                <input type="password" class="form-control" />
+                                <input type="password" class="form-control" name="confirmpassword" minlength="5" maxlength="20" required/>
                                 <!-- BDD -->
                             </div>
                         </div>
                         <div class="col">
                             <div class="avatarinput">
+                                <?php
+                                $imgsrc = connexion()->query('SELECT url FROM medias WHERE mediaID = '.$datatab[0]['mediaID'])->fetchAll();
+                                $src = "../views/" . $imgsrc[0][0];
+                                echo "<a href=''><img src=" . "$src" . " alt='photo de profil' class='pp'></a></br>";
+                                ?>
                                 <label for="avatar">Modifier la photo de profil</label>
-                                <input type="file" class="avatar" name="avatar" accept="image/png, image/jpeg">
+                                <input type="file" class="avatar" name="media" accept="image/*">
                                 <!-- BDD -->
                             </div>
                         </div>
                     </div>
-                    <a class=" modifierbtn btn btn-primary btn-block mb-4" href="moncompte">SAUVEGARDER MES INFORMATIONS</a>
+                    <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SAUVEGARDER MES INFORMATIONS</a>
                     <!-- BDD -->
                 </form>
             </div>
