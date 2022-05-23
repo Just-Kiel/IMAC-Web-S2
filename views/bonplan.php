@@ -99,6 +99,7 @@
   <main>
 
     <!------------ CARTE BON PLAN ------------>
+    <?php $temp = 1; ?>
 
     <div class="card mb-3" style="max-width: 70em;">
       <div class="row no-gutters">
@@ -133,8 +134,8 @@
             <form method="post">
               <?php
               if (isset($_SESSION['currentUserID'])) {
-                $goodplanID = $goodplan['goodplanID'];
-                if (getLikes(getCurrentUser()[0][0], $goodplan['goodplanID']) == 1) {
+                $goodplanID = $datatab[0]['goodplanID'];
+                if (getLikes(getCurrentUser()[0][0], $datatab[0]['goodplanID']) == 1) {
                   echo "<input type='hidden' name='type' value=$goodplanID>";
                   echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je dislike'/>";
                 } else {
@@ -146,7 +147,7 @@
             </form>
             <span>&nbsp;</span>
 
-            <p><?php echo count($goodplan['likes']); ?> likes</p>
+            <p><?php echo count($datatab[0]['likes']); ?> likes</p>
             <div class="proprio">
               <!-- link vers la pop up du profil  -->
               <a href=<?php
@@ -179,6 +180,7 @@
                       <div class="form-group col-8">
                         <textarea name="comContent" class="form-control " placeholder="Ajouter un commentaire" required="" maxlength="140"></textarea>
                       </div>
+                      <input type='hidden' name='type' value='comment'>
                       <input type="hidden" name="goodplanID" value=<?php echo $datatab[0]['goodplanID']; ?>>
                       <div class="btnenvoyer col">
                         <button type="submit" class="btn btn-normal">ENVOYER</button>
@@ -200,8 +202,11 @@
               <?php foreach ($datatab[1] as $key => $comment) { ?>
                 <!-- COMMENT 1 - START -->
                 <div class="media">
-                  <!-- TODO link avatar -->
-                  <a class="avatarcom pull-left" href="#"><img class="media-object" src="img/avatar1.png" alt=""></a>
+                  <a class="avatarcom pull-left" href=
+                  <?php echo "../compteexterne/".$comment['userID']['userID']; ?>
+                  ><img class="media-object" src=
+                  <?php echo "../../views/".$comment['userID']['mediaID'][0]['url']; ?>
+                   alt=""></a>
                   <div class="media-body">
                     <h4 class="media-heading">
                       <?php echo $comment['userID']['lastname'] . " " . $comment['userID']['firstname']; ?>

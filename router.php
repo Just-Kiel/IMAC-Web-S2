@@ -67,7 +67,7 @@ switch ($tab[$count])
             break;
             
     case "viewgoodplan":
-        if($method == 'POST'){
+        if($method == 'POST' && $_POST['type'] == "comment"){
             addComment();
         }
         viewGoodPlanPage($tab[$count+1]);

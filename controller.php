@@ -45,10 +45,13 @@ function viewGoodPlanPage($n){
     $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
     $data[0]['userID'] = $user[0];
 
+    $data[0]['likes'] = getAllLikesforOneGoodplan($data[0]['goodplanID']);
+
     $data[1] = getAllCommentsOnOneGoodPlan($data[0]['goodplanID']);
 
     foreach ($data[1] as $key=>$comment) {
         $user = getOneUser($comment['userID']);
+        $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
 
         $data[1][$key]['userID'] = $user[0];
     }
