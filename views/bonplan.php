@@ -254,13 +254,14 @@
 
       <!-------- AJOUTER BON PLAN  voir comment on fait ---------->
 
-      <script> if (isset($_SESSION))
-      {
+      <?php if (isset($_SESSION['currentUserID']))
+      {?>
         <div class="add btn ">
-          <img src="img/add.png" href="#" alt="ajouter un bon plan" />
+          <a class="addgp" href="addgoodplan"><img src="../views/img/add.png" href="addgoodplan" alt="ajouter un bon plan" /></a>
         </div>
+        <?php
       }
-      </script>
+      ?>
 
     </section>
 
