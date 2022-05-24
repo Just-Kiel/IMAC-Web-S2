@@ -41,18 +41,15 @@ body {
 h1 {
     font-size: 1.5em !important;
     text-align: center;
-    padding-top: 4em;
     color: #242424;
-    font-family: 'Couture-Bold';
     padding-top: 8em;
     padding-bottom: 1em;
 }
 
-h2.sesbonsplans {
+.sesbonsplans {
     text-align: center;
-    font-family: 'Couture-Bold';
-    padding-top: 8em;
-    padding-bottom: 1em;
+    color: #242424;
+    padding-top: 2em;
 }
 
 .nomcat {
