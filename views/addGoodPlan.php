@@ -48,7 +48,6 @@
     <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
     <!-- TODO link vers messagerie -->
     <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
-    <!-- TODO link vers mon compte si connecté sinon vers connexion -->
     <?php
     if (!isset($_SESSION['currentUserID']))
     {
