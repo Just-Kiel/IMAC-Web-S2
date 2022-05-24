@@ -254,3 +254,75 @@ p {
     text-decoration: none;
     color: #C4D61F !important;
 }
+
+.child {
+    margin-top: 0.5em;
+    display:none;
+
+    }
+    
+.connect:hover .child {
+    display: block;
+    justify-content: flex-end;
+    
+    
+}
+
+.child button{
+    background-color: blue;
+    color: white;
+    border-radius: 0.2em;
+
+    
+
+}
+
+.child button:hover{
+    background-color: red;
+}
+
+
+
+   .sous-menu {
+
+    width: 120%;
+    text-align: left;
+    background-color: white;
+    border-radius: 2px;
+    overflow: hidden;
+    max-height: 0;
+    height: 50%;
+    
+  } 
+  
+    .sous-menu > li > a {
+    height: 40px;
+    width: 120%;
+    margin-right: 2em;
+    align-items: center;
+    display: flex;
+  }  
+
+  @keyframes apparitionSousMenu {
+    0% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
+      border-top: 3px solid #2169EC;
+    }
+    30% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+    100% {
+      max-height: 10em;
+      border-top: 3px solid #2169EC;
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+  }
+
+  .menu-deroulant:hover > .sous-menu {
+    animation: apparitionSousMenu 1s forwards;
+  }
+
+  .menu-deroulant {
+      display: flex;
+      justify-content: center;
+  }
