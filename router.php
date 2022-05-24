@@ -39,6 +39,10 @@ switch ($tab[$count])
             {
                 register();
             }
+            else if ($_POST['type'] == 'delete')
+            {
+                supprimerCompte();
+            }
         }
         else
         {
@@ -63,7 +67,14 @@ switch ($tab[$count])
             break;
     
         case "modifiercompte":
-            viewModifierComptePage();
+            if($method == 'POST')
+            {
+                modifierCompte();
+            }
+            else
+            {
+                viewModifierComptePage();
+            }
             break;
             
     case "viewgoodplan":
