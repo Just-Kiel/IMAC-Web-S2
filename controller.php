@@ -424,7 +424,7 @@ function login()
                 session_start();
               }
             $_SESSION['currentUserID'] = $user['userID'];
-            viewHomePage(null);
+            viewHomePage(null, null);
         } else {
             $_SESSION['error'] = "Votre mot de passe est incorrect.";
             viewSeconnecterPage();
