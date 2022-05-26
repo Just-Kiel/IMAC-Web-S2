@@ -130,14 +130,24 @@
 
 
 <main>
-<?php if(count($datatab[1])==0){?>
-<div class="reponseRecherche">
-        <div class="reponsePHP">
-                Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4]; ?> »
-                <img src="../views/img/sadman.png" alt="">
-        </div>
-</div>
-<?php } ?>
+<?php if(count($datatab[1])==0){ ?>
+  
+  <div class="reponseRecherche">
+  <?php
+  if (isset($datatab[4])){?>
+          <div class="reponsePHP">
+                  Désolé... Nous n'avons trouvé aucun résultat pour « <?php echo $datatab[4]; ?> »
+                  <img src="../views/img/sadman.png" alt="">
+          </div>
+          <?php }
+          else { ?>
+          <div class="reponsePHP">
+                  Il n'y a pas encore de bon plans, mais ça ne va pas tarder !
+                  <img src="../views/img/sadman.png" alt="">
+          </div>
+          <?php } ?>
+  </div>
+  <?php } ?>
 
 
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->

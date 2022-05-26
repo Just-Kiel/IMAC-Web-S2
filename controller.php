@@ -373,17 +373,34 @@ function addLike($goodplanID){
     }
 }
 
+function ajouterAmis($friendID)
+{
+    $current_user = getCurrentUser()[0][0];
+    if (getIsFriend($current_user, $friendID) == 1)
+    {
+        $sql = "DELETE FROM friends WHERE (firstuserID='$current_user' AND seconduserID='$friendID') OR (firstuserID='$friendID' AND seconduserID='$current_user')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    } else {
+        $sql = "INSERT INTO friends(firstuserID, seconduserID) VALUES ('$current_user', '$friendID')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+}
+
 function supprimerCompte()
 {
     $currentUserID = getCurrentUser()[0][0];
-    $sql = "DELETE FROM users WHERE userID='$currentUserID'";
-    try {
-        connexion()->query($sql);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
-        die();
-    }
-    $sql = "DELETE FROM goodplans WHERE userID='$currentUserID'";
+    $sql = "DELETE FROM likes WHERE userID='$currentUserID'";
     try {
         connexion()->query($sql);
     } catch (PDOException $e) {
@@ -397,6 +414,13 @@ function supprimerCompte()
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
+    $sql = "DELETE FROM goodplans WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
     $sql = "DELETE FROM friends WHERE firstuserID='$currentUserID' OR seconduserID='$currentUserID'";
     try {
         connexion()->query($sql);
@@ -404,7 +428,7 @@ function supprimerCompte()
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
-    $sql = "DELETE FROM likes WHERE userID='$currentUserID'";
+    $sql = "DELETE FROM users WHERE userID='$currentUserID'";
     try {
         connexion()->query($sql);
     } catch (PDOException $e) {
@@ -493,12 +517,7 @@ function register()
     $confirmpassword = $_POST['confirmpassword'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $city = $_POST['cities'];
-
-    $mediaID = null;
-    $media = $_FILES['media']['name'];
-    if(!empty($media)){        
-        $mediaID = addOneMedia($media);
-    }
+    $media = $_FILES['media'];
     
     $stmt = connexion()->prepare("SELECT * FROM users WHERE email=?");
     $stmt->execute([$email]); 
@@ -514,8 +533,9 @@ function register()
         }
         else
         {
-            if ($_FILES['media']['error'] === UPLOAD_ERR_OK)
+            if ($media['error'] === UPLOAD_ERR_OK)
             {
+                $mediaID = addOneMedia($media['name']);
                 $sql = "INSERT INTO users (lastname, firstname, email, password, cityID, mediaID) VALUES ('$lastname','$firstname','$email', '$hashed_password', '$city', '$mediaID')";
                 try {
                     connexion()->query($sql);

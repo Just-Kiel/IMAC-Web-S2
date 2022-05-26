@@ -53,7 +53,7 @@
       <a class="connexion" href="../moncompte"><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
       <ul class="sous-menu">
         <li><a href="../moncompte">mon compte</a></li>
-        <li><form method='POST' action='accueil'>
+        <li><form method='POST' action='../accueil'>
         <input type='hidden' name='type' value='logout'>
         <input type='submit' value='Se déconnecter'>
     </form></li>
@@ -130,8 +130,15 @@
 
                     <!-- Boutons -->
                     <div class="text-center">
+                    <?php if ($datatab[0]['userID'] != getCurrentUser()[0][0]) { ?>
                         <div class="btn-grp" role="groupe">
-                            <button class=" modifierbtn  btn btn-secondary">DEVENIR AMIS</button>
+                            <form class="inscrform" method='POST' enctype="multipart/form-data">
+                                <?php if(getIsFriend(getCurrentUser()[0][0], $datatab[0]['userID']) == 0) { ?>
+                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">DEVENIR AMIS</a>
+                                <?php } else { ?>
+                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SUPPRIMER DES AMIS</a>
+                                <?php } ?>
+                            </form>
                             <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
@@ -139,6 +146,7 @@
                             <!-- TODO LINK VERS LA MESSAGERIE QUAND ELLE EXISTERA-->
                             <!--SI PAS AMIS, FENETRE MODALE QUI S'OUVRE-->
                         </div>
+                        <?php } ?>
                         <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">

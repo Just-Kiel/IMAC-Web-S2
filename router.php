@@ -5,7 +5,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = strtolower($_SERVER['REQUEST_URI']);
 $tab = explode("/", $uri);
 
-$count = 4;
+$count = 2;
 
 switch ($tab[$count])
 {
@@ -63,6 +63,10 @@ switch ($tab[$count])
             break;
 
         case "compteexterne":
+            if($method == 'POST')
+            {
+                ajouterAmis($tab[$count+1]);
+            }
             viewCompteExterne($tab[$count+1]);
             break;
     

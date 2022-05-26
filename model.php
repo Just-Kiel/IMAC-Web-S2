@@ -401,3 +401,15 @@ function getSearchGoodPlans($search){
     }
     return $resultats;
 }
+
+function getIsFriend($friendID1, $friendID2)
+{
+    $stmt = connexion()->prepare("SELECT * FROM friends WHERE (firstuserID=? AND seconduserID=?) OR (seconduserID=? AND firstuserID=?)");
+    $stmt->execute(array($friendID1, $friendID2, $friendID1, $friendID2)); 
+    $friends = $stmt->fetch();
+    if ($friends) {
+        return 1;
+    } else {
+        return 0;
+    }
+}

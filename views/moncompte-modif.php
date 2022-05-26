@@ -117,7 +117,7 @@
             <div id="content1" class="content">
 
                 <!-- Informations utilisateurs -->
-                <form class="inscrform">
+                <form class="inscrform" method='POST' action="modifiercompte" enctype="multipart/form-data">
                     <div class="row mb-4">
                         <div class="col">
                             <div class="form-outline">
@@ -132,7 +132,7 @@
                             </div>
                             <div class="tochange form-outline">
                                 <label class="form-label" for="form6Example2">Email</label>
-                                <input type="email" id="form6Example2" class="form-control" value="<?php echo $datatab[0]['email']; ?>" />
+                                <input type="email" id="form6Example2" class="form-control" value="<?php echo $datatab[0]['email']; ?>" required/>
                                 <!-- BDD -->
                             </div>
                             <div class="tochange form-outline">
