@@ -43,8 +43,9 @@
     <div class="res  align-items-center ">
         <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
         <!-- TODO link vers messagerie -->
-        <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
-        <!-- TODO link vers mon compte si connecté sinon vers connexion -->
+        <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+        </div>
         <?php
         if (!isset($_SESSION['currentUserID']))
         {
@@ -141,18 +142,6 @@
 
 <!------------- NAV DE CATÉGORIES + AFFICHAGES DES BONS PLANS CORRESPONDANTS -->
 <section class=" container-fluid column">
-  <?php
-    if (empty($datatab[0])) {
-        echo "Vous n'êtes pas connecté <br/>";
-    } else {
-        echo "Vous êtes connecté en tant que " . $datatab[0][0]['lastname'] . " " . $datatab[0][0]['firstname'] . "<br/>
-        <form method='POST' action='accueil'>
-            <input type='hidden' name='type' value='logout'>
-            <input type='submit' value='Se déconnecter'>
-        </form>";
-    }
-    ?>
-
   <!------------  Tabs à relier a la bd et aux cartes d'en dessous -------->
   <nav class="categories">
 
@@ -357,7 +346,7 @@
         <img src="../views/img/top.png" alt="retourner en haut de la page" />
       </div>
 
-    <!-------- FILTRER - TODO pop up et implémentation ----------> 
+    <!-------- FILTRER - pop up et implémentation ----------> 
 
     <div class="filter btn" data-toggle="modal" data-target="#exampleModal">
         <img src="../views/img/filter.png" href="#" alt="filtrer les bons plans" />
@@ -373,8 +362,9 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form action="accueil" method="post">
             <div class="modal-body">
-              <form action="accueil" method="post">
+              
                   <input
                   <?php 
                   if ($datatab[3] == 'city') {
@@ -405,11 +395,12 @@
                    type="radio" value="null" name="myfilters">&nbsp;Pas de filtre</option><br>
 
                 <input type='hidden' name='type' value='filters'>
-              </form>
+              
             </div>
             <div class="modal-footer">
-                <input class="validew" type="submit" value="Valider" data-dismiss="modal">
+                <input class="validew" type="submit" value="Valider">
             </div>
+            </form>
           </div>
         </div>
       </div>
