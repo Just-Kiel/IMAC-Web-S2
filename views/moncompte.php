@@ -187,7 +187,7 @@
                 $data = connexion()->query("SELECT * FROM goodplans WHERE userID='$currentUserID'")->fetchAll();
                 if (empty($data))
                 {
-                    echo "<div style='text-align:center'>Vous n'avez aucun bon plans.</div>";
+                    echo "<div style='text-align:center'>Vous n'avez aucun bon plan.</div>";
                 }
                 else
                 {
