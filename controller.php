@@ -230,7 +230,11 @@ function viewCategoryPage($n, $f){
         }
 
         $user = getOneUser($goodplan['userID']);
+        $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
         $goodplan['userID'] = $user[0];
+
+        $goodplan['likes'] = getAllLikesforOneGoodplan($goodplan['goodplanID']);
 
         $data[2][$key] = $goodplan;
     }
