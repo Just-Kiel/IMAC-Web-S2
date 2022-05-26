@@ -9,14 +9,21 @@
     <meta name="Category" content="HTML - CSS">
     <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="icon" href="../views/img/leQG_Flavicon.png">
     <link rel="stylesheet" href="../views/seconnecter-styles.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
    
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
+    <!-- POLICES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- FIN POLICES -->
 
 <title> LE QG - INSCRIPTION/CONNEXION </title>
 
@@ -24,22 +31,72 @@
 </head>
 
 <body>
-<!--
-    <nav class="navbar fixed-top  ">
 
-        <div class="d-flex flex-column align-items-center">
-          <br>
-          <a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
-          </div>
+ <!---  NAVABAR -->
+ <nav class="navbar fixed-top  ">
 
-          <div class="row d-none d-sm-block">
-          <div class="res  align-items-center ">
-              <a class="home " href="accueil" ><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
-              <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
-              <a class="connexion" href="seconnecter"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+<div class="d-flex flex-column align-items-center">
+<br>
+<a href="accueil"><img src="../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+</div>
+
+<div class="row d-none d-sm-block">
+<div class="res  align-items-center ">
+    <a class="home " href="accueil"><img class="invert"  src="../views/img/accueil.png" alt="Accueil" width="50"></a>
+    <!-- TODO link vers messagerie -->
+    <a class="chat" href="#" ><img  class="invert"  src="../views/img/chat.png" alt="Chat" width="50"></a>
+    <!-- TODO link vers mon compte si connecté sinon vers connexion -->
+    <?php
+    if (!isset($_SESSION['currentUserID']))
+    {
+      echo '<a class="connexion" href="seconnecter" ><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+    } else
+    {
+      ?>
+       <div class="menu-deroulant">
+      <a class="connexion" href="moncompte"><img class="invert"  src="../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+      <ul class="sous-menu">
+        <li><a href="moncompte">mon compte</a></li>
+        <li><form method='POST' action='accueil'>
+        <input type='hidden' name='type' value='logout'>
+        <input type='submit' value='Se déconnecter'>
+    </form></li>
+      </ul>
+      </div>
+      <?php
+    }
+    ?>
+</div>
+</div>
+</nav>
+
+    <!---  FIN NAVBAR -->
+
+
+    <!-- pop up messagerie -->
+    <div class="modal fade popfilter" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ooops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <img src="../views/img/oops.png" alt="">
+                  <div class="contenuoops">
+                      <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
+                      <p class="signatureoops">L'Équipe du QG </p>
+                  </div>
+                  
+              </div>
+                  <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
           </div>
         </div>
-    </nav> -->
+    <!-- ------------ -->
+
 
     <h1>SE CONNECTER AU QG !</h1>
 
@@ -163,7 +220,6 @@
     <!-- FIN Bouton flottants -->
 </main>
 
-
 <!-- Footer -->
 <footer class="page-footer container-fluid">
 
@@ -177,15 +233,22 @@
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MON COMPTE</a></h6>
+                <?php
+                if (!isset($_SESSION['currentUserID'])) {
+                  echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                } else {
+                  echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                }
+                ?>
+              </div>
+
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+          <!-- TODO link vers messagerie -->
+              <h6><a href="#">MESSAGERIE</a></h6>
               </div>
 
               <div class="col-md-2 mb-3">
-                  <h6><a href="#">MESSAGERIE</a></h6>
-              </div>
-
-              <div class="col-md-2 mb-3">
-                  <h6><a href="#">BONS PLANS</a></h6>
+                  <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
           </div>
         </div>
 
@@ -197,14 +260,19 @@
 
                 <!-- Boutons -->
                 <div class="boutonsfoot">
-                    <a class=" inscription btn btn-primary " href="seconnecter" role="button">INSCRIPTION</a>
-                    <a class="inscription btn btn-primary " href="seconnecter" role="button">CONNEXION</a>
+                  <?php
+                  if (!isset($_SESSION['currentUserID'])) {
+                    echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                  } else {
+                    echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                  }
+                  ?>
                 </div>
           </div>
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG  - IMAC 1 LLMNP -  <a href="#" target="blank">Mentions Légales</a>
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
         </div>
         <!-- Copyright -->
     </div>
@@ -218,8 +286,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>    
 
     <script>
-
-
        /*FONCTION 
             role: Code qui permet d'afficher le contenue du site 
             apres une durée de temps de chargement choisie

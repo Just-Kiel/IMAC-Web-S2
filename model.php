@@ -12,7 +12,7 @@ function getCurrentUser()
             $currentUserID = $_SESSION['currentUserID'];
             $data = connexion()->query("SELECT * FROM users WHERE userID=$currentUserID")->fetchAll();
         } catch (PDOException $e) {
-            print "Erreur !: " . $e->getMessage() . "<br/>";
+            print "Erreur user !: " . $e->getMessage() . "<br/>";
             die();
         }
         return $data;
@@ -28,7 +28,7 @@ function getAllCities()
     try {
         $data = connexion()->query('SELECT * FROM cities')->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur cities !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -38,17 +38,98 @@ function getAllGoodPlans(){
     try {
         $data = connexion()->query('SELECT * FROM goodplans')->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur goodplans !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
 }
 
+function getAllGoodPlansCityOrdered(){
+    try {
+        $data = connexion()->query('SELECT DISTINCT goodplans.* FROM `goodplans` ORDER BY goodplans.cityID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur city ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansDateOrdered(){
+    try {
+        $data = connexion()->query('SELECT DISTINCT goodplans.* FROM `goodplans` ORDER BY goodplans.startingDate DESC')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur date ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansLikeOrdered(){
+    try {
+        $data1 = connexion()->query('SELECT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID = likes.goodplanID GROUP BY likes.goodplanID 
+        ORDER BY COUNT(likes.likeID) DESC')->fetchAll();
+
+        $data2 = connexion()->query('SELECT DISTINCT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID NOT IN (SELECT likes.goodplanID FROM likes)')->fetchAll();
+
+        $result = array_merge($data1, $data2);
+    } catch (PDOException $e) {
+        print "Erreur like ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $result;
+}
+
 function getGoodPlansFromCategory($n){
     try {
-        $data = connexion()->query('SELECT * FROM goodplans WHERE categoryID = '.$n)->fetchAll();
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur from cat !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansCityOrderedFromCategory($n){
+    try {
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.'  ORDER BY goodplans.cityID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur city ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getAllGoodPlansDateOrderedFromCategory($n){
+    try {
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.' ORDER BY goodplans.startingDate DESC')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur date ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+// TODO maybe fix à faire
+function getAllGoodPlansLikeOrderedFromCategory($n){
+    try {
+        $data1 = connexion()->query('SELECT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID = likes.goodplanID AND goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n.' GROUP BY likes.goodplanID 
+        ORDER BY COUNT(likes.likeID) DESC')->fetchAll();
+
+        $data2 = connexion()->query('SELECT DISTINCT goodplans.* FROM goodplans, likes WHERE goodplans.goodplanID NOT IN (SELECT likes.goodplanID FROM likes) AND goodplans.categoryID IN(SELECT subcategories.subcategoryID FROM subcategories WHERE subcategories.categoryID ='.$n.') OR goodplans.categoryID = '.$n)->fetchAll();
+
+        $result = array_merge($data1, $data2);
+    } catch (PDOException $e) {
+        print "Erreur like ordered !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $result;
+}
+
+function getGoodPlansByUser($n){
+    try {
+        $data = connexion()->query('SELECT DISTINCT * FROM goodplans WHERE goodplans.userID ='.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur from cat !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -58,7 +139,7 @@ function getOneGoodPlan($n){
     try {
         $data = connexion()->query('SELECT * FROM goodplans WHERE goodplanID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur one gp !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -68,7 +149,7 @@ function getOneCity($n){
     try {
         $data = connexion()->query('SELECT * FROM cities WHERE cityID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur one city !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -78,7 +159,7 @@ function getOneUser($n){
     try {
         $data = connexion()->query('SELECT * FROM users WHERE userID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur one user !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -88,7 +169,7 @@ function getOneMedia($n){
     try {
         $data = connexion()->query('SELECT * FROM medias WHERE mediaID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur one media !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -98,7 +179,7 @@ function getAllCategories(){
     try {
         $data = connexion()->query('SELECT * FROM categories')->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur all cat !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -106,9 +187,19 @@ function getAllCategories(){
 
 function getAllSubCategories($n){
     try {
-        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = categories.categoryID AND subcategories.categoryID = 1')->fetchAll();
+        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = categories.categoryID AND subcategories.categoryID ='.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur sub cat !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getCategoryOfSubCategory($n){
+    try {
+        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID = '.$n.' AND categories.categoryID = subcategories.categoryID')->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur cat of subcat !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -116,9 +207,9 @@ function getAllSubCategories($n){
 
 function getOnlyCategories(){
     try {
-        $data = connexion()->query('SELECT categories.* FROM `categories`, `subcategories` WHERE subcategories.subcategoryID != categories.categoryID')->fetchAll();
+        $data = connexion()->query('SELECT DISTINCT categories.* FROM `categories`, `subcategories` WHERE categories.categoryID NOT IN (SELECT subcategoryID FROM subcategories)')->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur only cat !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -128,7 +219,7 @@ function getOneCategory($n){
     try {
         $data = connexion()->query('SELECT * FROM categories WHERE categoryID = '.$n)->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur one cat !: " . $e->getMessage() . "<br/>";
         die();
     }
     return $data;
@@ -145,6 +236,16 @@ function getLikes($like, $goodplanID){
     }
 }
 
+function getAllLikesforOneGoodplan($n){
+    try {
+        $data = connexion()->query('SELECT * FROM likes WHERE goodplanID='.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur one cat !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
 function addOneMedia($t){
     $target_dir = "./views/usersData/";
     $target_bdd_dir = "usersData/";
@@ -155,7 +256,7 @@ function addOneMedia($t){
     try {
         $maxMedia = connexion()->query('SELECT MAX(mediaID) FROM medias')->fetchAll();
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur media !: " . $e->getMessage() . "<br/>";
         die();
     }
 
@@ -178,14 +279,18 @@ function addOneMedia($t){
     ];
     $title = $data['title'];
     $url = $data['url'];
-    $sql = "INSERT INTO medias (name, url) VALUES ('$title','$url')";
+    $sql = "INSERT INTO medias(name, url) VALUES ('$title','$url')";
 
     try {
         $stmt= connexion()->prepare($sql);
-        $stmt->execute($data);
-        move_uploaded_file($_FILES["media"]["tmp_name"], $target_file);
+        $stmt->execute();
+        if (move_uploaded_file($_FILES["media"]["tmp_name"], $target_file)) {
+            echo "The file ". htmlspecialchars($t). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur media upload !: " . $e->getMessage() . "<br/>";
         die();
     }
 
@@ -193,8 +298,7 @@ function addOneMedia($t){
     {
         return 1;
     }
-    return $maxMedia[0][0] + 1;
-    
+    return $maxMedia[0][0]+1;
 }
 
 function addOneGoodPlan($t, $content, $sD, $eD, $cat, $city, $user, $mediaID){
@@ -251,10 +355,61 @@ function addOneGoodPlan($t, $content, $sD, $eD, $cat, $city, $user, $mediaID){
     try {
         $stmt= connexion()->prepare($sql);
         $stmt->execute($data);
-        echo "Post ajouté.<br/>
-        <a href='accueil'>Accueil</a>";
     } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
+        print "Erreur upload gp !: " . $e->getMessage() . "<br/>";
         die();
+    }
+}
+
+function addOneComment($user, $text, $date, $goodplanID){
+    $data = [
+        'userID' => $user,
+        'text' => $text,
+        'date' => $date,
+        'goodplanID' => $goodplanID
+    ];
+    $sql = "INSERT INTO comments (userID, text, date, goodplanID) VALUES (:userID,:text, :date, :goodplanID)";
+
+    try {
+        $stmt= connexion()->prepare($sql);
+        $stmt->execute($data);
+        echo "Commentaire ajouté";
+    } catch (PDOException $e) {
+        print "Erreur comment !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+}
+
+function getAllCommentsOnOneGoodPlan($n){
+    try {
+        $data = connexion()->query('SELECT * FROM `comments` WHERE goodplanID = '.$n)->fetchAll();
+    } catch (PDOException $e) {
+        print "Erreur comments !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $data;
+}
+
+function getSearchGoodPlans($search){
+    try{
+            $recherche = htmlspecialchars($search);
+            $resultats = connexion()->query('SELECT * FROM goodplans WHERE CONCAT(title,textContent) LIKE "%'.$recherche.'%" ORDER BY goodplanID DESC')->fetchAll();
+      
+    }catch (PDOException $e) {
+        print "Erreur comments !: " . $e->getMessage() . "<br/>";
+        die();
+    }
+    return $resultats;
+}
+
+function getIsFriend($friendID1, $friendID2)
+{
+    $stmt = connexion()->prepare("SELECT * FROM friends WHERE (firstuserID=? AND seconduserID=?) OR (seconduserID=? AND firstuserID=?)");
+    $stmt->execute(array($friendID1, $friendID2, $friendID1, $friendID2)); 
+    $friends = $stmt->fetch();
+    if ($friends) {
+        return 1;
+    } else {
+        return 0;
     }
 }

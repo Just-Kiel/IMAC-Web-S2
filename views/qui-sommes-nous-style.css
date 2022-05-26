@@ -1,0 +1,328 @@
+html {
+    cursor: url("img/curseur_curseur.png") 1 1, pointer;
+    margin: 0 !important;
+    padding: 0!important;
+    height: 100%;
+    width: 100% !important;
+    position: relative;
+    color: #242424;
+    font-family: 'Rubik-Light', sans-serif;
+}
+
+
+/* -------------  index.php------------- */
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.res {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.res>div {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.res .chat {
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 1.5em !important;
+    text-align: center;
+    padding-top: 4em;
+    color: #242424;
+    font-family: 'Couture-Bold';
+    padding-top: 8em;
+    padding-bottom: 1em;
+}
+
+p {
+    font-family: 'Rubik-Light';
+}
+
+.nomfonctions {
+    margin-top: 50px;
+}
+
+.input-group {
+    align-items: center;
+    justify-content: center;
+    padding-top: 8em;
+    font-family: 'Rubik-Light';
+}
+
+.banniere .btn-primary {
+    background-color: #C4D61F !important;
+    color: #242424;
+    width: 3em;
+}
+
+.container {
+    margin-top: 5em;
+}
+
+.bi.bi-circle-fill.text-redaction {
+    color: #242424;
+}
+
+.bi.bi-circle-fill.text-success2 {
+    color: #FF69B4;
+}
+
+.bi.bi-circle-fill.text-gestion {
+    color: #C4D61F;
+}
+
+.bi.bi-circle-fill.text-assistant {
+    color: #8Db600;
+}
+
+.bi.bi-circle-fill.text-php {
+    color: #000080;
+}
+
+.bi.bi-circle-fill.text-sql {
+    color: #4747ff;
+}
+
+.btn-flottants {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.scroll {
+    position: fixed;
+    right: 3em;
+    bottom: 2em;
+    cursor: pointer;
+}
+
+.scroll img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contenuoops {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: justify;
+}
+
+.popfilter {
+    margin-top: 12em;
+    cursor: pointer;
+}
+
+.popfilter img {
+    width: 8em;
+}
+
+.popfilter h5 {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.popfilter img {
+    width: 8em;
+}
+
+.fermew {
+    background-color: #C4D61F;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    margin-top: -0.5em !important;
+    margin: auto !important;
+    margin-bottom: 0.5em !important;
+    width: 50%;
+}
+
+.fermew:hover {
+    background-color: #FF69B4;
+}
+
+.signatureoops {
+    text-align: right;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+
+/* footer */
+
+.page-footer {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.navfooter {
+    justify-content: center;
+    text-align: center;
+}
+
+.page-footer h6 a {
+    color: #C4D61F !important;
+    text-decoration: none !important;
+    font-size: 1em;
+}
+
+.presentation {
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
+}
+
+.pitch {
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+.signature {
+    text-align: right;
+    margin-bottom: 3em;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+.boutonsfoot {
+    margin-bottom: 2em;
+}
+
+.inscription {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #242424 !important;
+    border: solid #C4D61F !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.inscription:hover {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #FF69B4 !important;
+    border: solid #FF69B4 !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.footer-copyright {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+}
+
+.footer-copyright a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-copyright a:hover {
+    text-decoration: none;
+    color: #C4D61F !important;
+}
+
+.child {
+    margin-top: 0.5em;
+    display:none;
+
+    }
+    
+.connect:hover .child {
+    display: block;
+    justify-content: flex-end;
+    
+    
+}
+
+.child button{
+    background-color: blue;
+    color: white;
+    border-radius: 0.2em;
+
+    
+
+}
+
+.child button:hover{
+    background-color: red;
+}
+
+
+
+   .sous-menu {
+
+    width: 120%;
+    text-align: left;
+    background-color: white;
+    border-radius: 2px;
+    overflow: hidden;
+    max-height: 0;
+    height: 50%;
+    
+  } 
+  
+    .sous-menu > li > a {
+    height: 40px;
+    width: 120%;
+    margin-right: 2em;
+    align-items: center;
+    display: flex;
+  }  
+
+  @keyframes apparitionSousMenu {
+    0% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
+      border-top: 3px solid #2169EC;
+    }
+    30% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+    100% {
+      max-height: 10em;
+      border-top: 3px solid #2169EC;
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+  }
+
+  .menu-deroulant:hover > .sous-menu {
+    animation: apparitionSousMenu 1s forwards;
+  }
+
+  .menu-deroulant {
+      display: flex;
+      justify-content: center;
+  }

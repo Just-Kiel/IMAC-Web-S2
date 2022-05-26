@@ -1,0 +1,525 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+html {
+    cursor: url("img/curseur_curseur.png") 1 1, pointer;
+    margin: 0 !important;
+    padding: 0!important;
+    height: 100%;
+    width: 100% !important;
+    position: relative;
+    color: #242424;
+    font-family: 'Rubik-Light', sans-serif;
+}
+
+
+/* -------------  index.php------------- */
+
+.navbar {
+    background-color: #ffffff;
+}
+
+body {
+    background-color: #ffffff !important;
+}
+
+.res {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.res>div {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.res .chat {
+    cursor: pointer;
+}
+
+h1 {
+    font-size: 1.5em !important;
+    text-align: center;
+    color: #242424;
+    padding-top: 8em;
+    padding-bottom: 1em;
+}
+
+.sesbonsplans {
+    text-align: center;
+    color: #242424;
+    padding-top: 2em;
+}
+
+.nomcat {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.infutilisateur {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.tabs {
+    width: 70%;
+    margin: auto;
+}
+
+.tabs .list {
+    padding: 0;
+    border-bottom: none;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.tabs .tab {
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    color: #242424;
+    border: 0.1px solid #242424;
+    border-bottom: none;
+}
+
+.tabs .tab:hover {
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+    background-color: #000080;
+    color: #ffffff;
+    border-color: #000080;
+}
+
+.tabs .tab.active {
+    background-color: #C4D61F;
+    cursor: default;
+    color: #ffffff;
+    border-color: #C4D61F
+}
+
+.tabs .contents {
+    padding: 10px;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    box-shadow: 0px 0px 10px rgba(36, 36, 36, 0.5);
+    border-radius: 0 1em 1em 1em !important;
+    border-top: none;
+}
+
+.tabs .content {
+    display: none;
+}
+
+.tabs .content.show {
+    display: initial;
+}
+
+.nom {
+    padding-top: 1em;
+}
+
+.tochange {
+    padding-top: 2em;
+}
+
+.avatarinput {
+    padding-top: 4em;
+    padding-left: 5em;
+}
+
+.avatar {
+    padding-top: 0.5em;
+}
+
+.villes {
+    font-family: 'Rubik-Light';
+    margin-left: 1em;
+}
+
+.modifierbtn {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.supprimerbtn {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.modifierbtn:hover {
+    background-color: #FF69B4 !important;
+    color: white;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.supprimerbtn:hover {
+    background-color: #FF69B4 !important;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.fermerbtn {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.fermerbtn:hover {
+    background-color: #FF69B4 !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.confirmerbtn {
+    background-color: #FF69B4 !important;
+    border: none !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    width: 30% !important;
+    margin: auto;
+}
+
+.confirmerbtn:hover {
+    background-color: #C4D61F !important;
+    border: none !important;
+    font-family: 'Rubik-Regular';
+    width: 30% !important;
+    margin: auto;
+}
+
+.col {
+    padding: 10px;
+}
+
+.col img {
+    width: 15em;
+    border: solid 2px #C4D61F;
+    border-radius: 50%;
+    margin: 1em;
+    margin-bottom: 0.5em;
+}
+
+.card {
+    margin: auto;
+    margin-top: 2em;
+}
+
+.card img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardlike {
+    position: relative;
+}
+
+.proprio {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: auto;
+}
+
+.proprio a {
+    border: none !important;
+}
+
+.proprio h6 {
+    font-family: 'GoodMood';
+    font-size: 1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.proprio img {
+    width: 4em;
+    border: solid 2px #C4D61F;
+    border-radius: 50%;
+    margin: 1em;
+    margin-bottom: 0.5em;
+}
+
+.btn-flottants {
+    align-items: center;
+    justify-content: space-around;
+}
+
+.scroll {
+    position: fixed;
+    right: 3em;
+    bottom: 2em;
+    cursor: pointer;
+}
+
+.scroll img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.popfilter {
+    margin-top: 12em;
+    cursor: pointer;
+}
+
+.popfilter h5 {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.popfilter img {
+    width: 8em;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contenuoops {
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    text-align: justify;
+}
+
+.fermew {
+    background-color: #C4D61F;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    margin-top: -0.5em !important;
+    margin: auto !important;
+    margin-bottom: 0.5em !important;
+    width: 50%;
+}
+
+.fermew:hover {
+    background-color: #FF69B4;
+}
+
+.signatureoops {
+    text-align: right;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+.profiter {
+    font-family: 'Rubik', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    background-color: #FF69B4 !important;
+    border-color: #FF69B4 !important;
+    height: fit-content;
+}
+
+.profiter:hover {
+    color: #242424 !important;
+    background-color: #ffffff !important;
+    border: solid 2px #FF69B4 !important;
+}
+
+
+/* footer */
+
+.page-footer {
+    background-color: #242424;
+    color: #ffffff;
+}
+
+.navfooter {
+    justify-content: center;
+    text-align: center;
+}
+
+.page-footer h6 a {
+    color: #C4D61F !important;
+    text-decoration: none !important;
+    font-size: 1em;
+}
+
+.presentation {
+    text-align: center;
+    margin: auto;
+    font-family: 'Rubik', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 300 !important;
+}
+
+.pitch {
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+}
+
+.signature {
+    text-align: right;
+    margin-bottom: 3em;
+    font-family: 'Amatic SC', cursive !important;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+.boutonsfoot {
+    margin-bottom: 2em;
+}
+
+.inscription {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #242424 !important;
+    border: solid #C4D61F !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.inscription:hover {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: -2em;
+    background-color: #FF69B4 !important;
+    border: solid #FF69B4 !important;
+    color: #ffffff !important;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5em !important;
+}
+
+.footer-copyright {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+}
+
+.footer-copyright a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-copyright a:hover {
+    text-decoration: none;
+    color: #C4D61F !important;
+}
+
+.child {
+    margin-top: 0.5em;
+    display:none;
+
+    }
+    
+.connect:hover .child {
+    display: block;
+    justify-content: flex-end;
+    
+    
+}
+
+.child button{
+    background-color: blue;
+    color: white;
+    border-radius: 0.2em;
+
+    
+
+}
+
+.child button:hover{
+    background-color: red;
+}
+
+
+
+   .sous-menu {
+
+    width: 120%;
+    text-align: left;
+    background-color: white;
+    border-radius: 2px;
+    overflow: hidden;
+    max-height: 0;
+    height: 50%;
+    
+  } 
+  
+    .sous-menu > li > a {
+    height: 40px;
+    width: 120%;
+    margin-right: 2em;
+    align-items: center;
+    display: flex;
+  }  
+
+  @keyframes apparitionSousMenu {
+    0% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
+      border-top: 3px solid #2169EC;
+    }
+    30% {
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+    100% {
+      max-height: 10em;
+      border-top: 3px solid #2169EC;
+      box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
+    }
+  }
+
+  .menu-deroulant:hover > .sous-menu {
+    animation: apparitionSousMenu 1s forwards;
+  }
+
+  .menu-deroulant {
+      display: flex;
+      justify-content: center;
+  }

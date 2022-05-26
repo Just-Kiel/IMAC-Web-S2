@@ -42,8 +42,28 @@ function viewGoodPlanPage($n){
     }
 
     $user = getOneUser($data[0]['userID']);
+    $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
     $data[0]['userID'] = $user[0];
 
+    $data[0]['likes'] = getAllLikesforOneGoodplan($data[0]['goodplanID']);
+
+    $data[1] = getAllCommentsOnOneGoodPlan($data[0]['goodplanID']);
+
+    foreach ($data[1] as $key=>$comment) {
+        $user = getOneUser($comment['userID']);
+        $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
+        $data[1][$key]['userID'] = $user[0];
+    }
+
+    $data[2] = null;
+    $currentUser = getCurrentUser();
+    if($currentUser != null){
+        $currentUser[0]['mediaID'] = getOneMedia($currentUser[0]['mediaID']);
+
+        $data[2] = $currentUser[0];
+    }
+    
     view('bonplan.php', $data);
 }
 
@@ -54,7 +74,7 @@ function addGoodPlan(){
     $mediaID = null;
     $media = $_FILES['media']['name'];
     if(!empty($media)){        
-        $mediaID = addOneMedia($user, $media);
+        $mediaID = addOneMedia($media);
     }
 
     $title = $_POST['title'];
@@ -79,35 +99,63 @@ function deleteGoodPlan($goodplanID)
     }
 }
 
-function viewHomePage()
+function addComment(){
+    $user = getCurrentUser();
+    $user = $user[0]['userID'];
+
+    $text = $_POST['comContent'];
+    $date = date("Y/m/d");
+
+    $goodplanID = $_POST['goodplanID'];
+
+    addOneComment($user, $text, $date, $goodplanID);
+}
+
+function viewHomePage($f,$search)
 {
     if (getCurrentUser() == NULL)
     {
         $data[0] = null;
-        $data[1] = getAllGoodPlans();
-        foreach($data[1] as $key=>$goodplan){
-            if(!empty($goodplan['cityID'])){
-                $city = getOneCity($goodplan['cityID']);
-                $goodplan['cityID'] = $city[0]['name'];
-            }
-
-            if(!empty($goodplan['mediaID'])){
-                $media = getOneMedia($goodplan['mediaID']);
-                $goodplan['mediaID'] = $media[0]['url'];
-            }
-
-            $user = getOneUser($goodplan['userID']);
-            $goodplan['userID'] = $user[0];
-
-            $data[1][$key] = $goodplan;
-        }
-        $data[2] = getOnlyCategories();
-        view('index.php', $data);
     }
     else
     {
         $data[0] = getCurrentUser();
-        $data[1] = getAllGoodPlans();
+    }
+        if(!empty($search)){
+            $data[1] = getSearchGoodPlans($search);
+            $data[3] = "null";
+            $data[4] = $search;
+        } else if(!empty($f)){
+            switch ($f) {
+                case 'city':
+                    $data[1] = getAllGoodPlansCityOrdered();
+                    $data[3] = "city";
+                    break;
+                case 'like':
+                    $data[1] = getAllGoodPlansLikeOrdered();
+                    $data[3] = "like";
+                    break;
+
+                case 'date':
+                    $data[1] = getAllGoodPlansDateOrdered();
+                    $data[3] = "date";
+                    break;
+
+                case "null":
+                    $data[1] = getAllGoodPlans();
+                    $data[3] = "null";
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        } else {
+            $data[1] = getAllGoodPlans();
+            $data[3] = "null";
+        }
+
+        
         foreach($data[1] as $key=>$goodplan){
             if(!empty($goodplan['cityID'])){
                 $city = getOneCity($goodplan['cityID']);
@@ -120,19 +168,55 @@ function viewHomePage()
             }
 
             $user = getOneUser($goodplan['userID']);
+            $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
             $goodplan['userID'] = $user[0];
+
+            $goodplan['likes'] = getAllLikesforOneGoodplan($goodplan['goodplanID']);
 
             $data[1][$key] = $goodplan;
         }
         $data[2] = getOnlyCategories();
+
         view('index.php', $data);
-    }
 }
 
-function viewCategoryPage($n){
+function viewCategoryPage($n, $f){
     $data[0] = getOneCategory($n);
     $data[1] = getAllSubCategories($n);
-    $data[2] = getGoodPlansFromCategory($n);
+    // $data[2] = getGoodPlansFromCategory($n);
+    $data[3] = getOnlyCategories();
+
+
+    if(!empty($f)){
+        switch ($f) {
+            case 'city':
+                $data[2] = getAllGoodPlansCityOrderedFromCategory($n);
+                $data[4] = "city";
+                break;
+            case 'like':
+                $data[2] = getAllGoodPlansLikeOrderedFromCategory($n);
+                $data[4] = "like";
+                break;
+
+            case 'date':
+                $data[2] = getAllGoodPlansDateOrderedFromCategory($n);
+                $data[4] = "date";
+                break;
+
+            case "null":
+                $data[2] = getGoodPlansFromCategory($n);
+                $data[4] = "null";
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    } else {
+        $data[2] = getGoodPlansFromCategory($n);
+        $data[4] = "null";
+    }
 
     foreach($data[2] as $key=>$goodplan){
         if(!empty($goodplan['cityID'])){
@@ -146,12 +230,80 @@ function viewCategoryPage($n){
         }
 
         $user = getOneUser($goodplan['userID']);
+        $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
         $goodplan['userID'] = $user[0];
+
+        $goodplan['likes'] = getAllLikesforOneGoodplan($goodplan['goodplanID']);
 
         $data[2][$key] = $goodplan;
     }
 
-    view('category.php', $data);
+    view('categorie.php', $data);
+}
+
+function viewSubCategoryPage($n, $f){
+    $data[0] = getOneCategory($n);
+    // $data[1] = getGoodPlansFromCategory($n);
+    $data[2] = getOnlyCategories();
+    $data[3] = getCategoryOfSubCategory($n)[0];
+
+    if(!empty($f)){
+        switch ($f) {
+            case 'city':
+                $data[1] = getAllGoodPlansCityOrderedFromCategory($n);
+                $data[4] = "city";
+                break;
+            case 'like':
+                $data[1] = getAllGoodPlansLikeOrderedFromCategory($n);
+                $data[4] = "like";
+                break;
+
+            case 'date':
+                $data[1] = getAllGoodPlansDateOrderedFromCategory($n);
+                $data[4] = "date";
+                break;
+
+            case "null":
+                $data[1] = getGoodPlansFromCategory($n);
+                $data[4] = "null";
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    } else {
+        $data[1] = getGoodPlansFromCategory($n);
+        $data[4] = "null";
+    }
+
+    foreach($data[1] as $key=>$goodplan){
+        if(!empty($goodplan['cityID'])){
+            $city = getOneCity($goodplan['cityID']);
+            $goodplan['cityID'] = $city[0]['name'];
+        }
+        
+        if(!empty($goodplan['mediaID'])){
+            $media = getOneMedia($goodplan['mediaID']);
+            $goodplan['mediaID'] = $media[0]['url'];
+        }
+
+        $user = getOneUser($goodplan['userID']);
+        $goodplan['userID'] = $user[0];
+
+        $data[1][$key] = $goodplan;
+    }
+
+    view('souscategorie.php', $data);
+}
+
+function viewMentionsLegales(){
+    view('mentions-legales.php');
+}
+
+function viewQuiSommesNous(){
+    view('qui-sommes-nous.php');
 }
 
 function viewSeconnecterPage()
@@ -167,6 +319,35 @@ function viewMonComptePage()
 function viewModifierComptePage()
 {
     view('moncompte-modif.php', getCurrentUser());
+}
+
+function viewCompteExterne($userID){
+    $data = getOneUser($userID);
+
+    $media = getOneMedia($data[0]['mediaID']);
+
+    $data[0]['mediaID'] = $media[0];
+
+    $data[1] = getGoodPlansByUser($userID);
+
+    foreach($data[1] as $key=>$goodplan){
+        if(!empty($goodplan['cityID'])){
+            $city = getOneCity($goodplan['cityID']);
+            $goodplan['cityID'] = $city[0]['name'];
+        }
+        
+        if(!empty($goodplan['mediaID'])){
+            $media = getOneMedia($goodplan['mediaID']);
+            $goodplan['mediaID'] = $media[0]['url'];
+        }
+
+        $user = getOneUser($goodplan['userID']);
+        $goodplan['userID'] = $user[0];
+
+        $data[1][$key] = $goodplan;
+    }
+
+    view('moncompte-vue-externe.php', $data);
 }
 
 function addLike($goodplanID){
@@ -192,17 +373,34 @@ function addLike($goodplanID){
     }
 }
 
+function ajouterAmis($friendID)
+{
+    $current_user = getCurrentUser()[0][0];
+    if (getIsFriend($current_user, $friendID) == 1)
+    {
+        $sql = "DELETE FROM friends WHERE (firstuserID='$current_user' AND seconduserID='$friendID') OR (firstuserID='$friendID' AND seconduserID='$current_user')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    } else {
+        $sql = "INSERT INTO friends(firstuserID, seconduserID) VALUES ('$current_user', '$friendID')";
+        try {
+            connexion()->query($sql);
+        } catch (PDOException $e) {
+            print "Erreur !: " . $e->getMessage() . "<br/>";
+            die();
+        }
+    }
+    
+}
+
 function supprimerCompte()
 {
     $currentUserID = getCurrentUser()[0][0];
-    $sql = "DELETE FROM users WHERE userID='$currentUserID'";
-    try {
-        connexion()->query($sql);
-    } catch (PDOException $e) {
-        print "Erreur !: " . $e->getMessage() . "<br/>";
-        die();
-    }
-    $sql = "DELETE FROM goodplans WHERE userID='$currentUserID'";
+    $sql = "DELETE FROM likes WHERE userID='$currentUserID'";
     try {
         connexion()->query($sql);
     } catch (PDOException $e) {
@@ -216,6 +414,13 @@ function supprimerCompte()
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
+    $sql = "DELETE FROM goodplans WHERE userID='$currentUserID'";
+    try {
+        connexion()->query($sql);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
+    }
     $sql = "DELETE FROM friends WHERE firstuserID='$currentUserID' OR seconduserID='$currentUserID'";
     try {
         connexion()->query($sql);
@@ -223,7 +428,7 @@ function supprimerCompte()
         print "Erreur !: " . $e->getMessage() . "<br/>";
         die();
     }
-    $sql = "DELETE FROM likes WHERE userID='$currentUserID'";
+    $sql = "DELETE FROM users WHERE userID='$currentUserID'";
     try {
         connexion()->query($sql);
     } catch (PDOException $e) {
@@ -365,7 +570,7 @@ function login()
                 session_start();
               }
             $_SESSION['currentUserID'] = $user['userID'];
-            viewHomePage();
+            viewHomePage(null, null);
         } else {
             $_SESSION['error'] = "Votre mot de passe est incorrect.";
             viewSeconnecterPage();
