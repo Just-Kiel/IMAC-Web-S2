@@ -1,5 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 
+
 /* -------------  index.php------------- */
 .navbar{
     background-color:#ffffff;
@@ -17,13 +18,26 @@ body{
     margin-right: 2em;
 }
 
+<<<<<<< Updated upstream
 .res>div{
     margin-left: 1em;
     margin-right: 1em;
+=======
+.res img{
+    height: fit-content;
+}
+
+.connexion{ 
+    display: flex;
+    align-items: center ;
+>>>>>>> Stashed changes
 }
 
 .res .chat { 
     cursor: pointer;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
 }
 
 
@@ -248,12 +262,24 @@ margin-top:3em;
     grid-gap:2em;
 }
 
+<<<<<<< Updated upstream
 .listCards img{
     height: 100%;
+=======
+.listCards img {
+    height:100%;
+>>>>>>> Stashed changes
     object-fit: cover;
+    max-height:var(--max-height-card);
+
 }
 
+<<<<<<< Updated upstream
 .listCards .card:nth-child(odd) .proprio{
+=======
+
+.listCards .card:nth-child(odd) .proprio {
+>>>>>>> Stashed changes
     margin-left: auto;
 }
 
@@ -269,8 +295,17 @@ margin-top:3em;
     margin-left: auto;
 }
 
+<<<<<<< Updated upstream
 .card{
     margin:auto;
+=======
+.card {
+    --max-height-card: 300px;
+
+    margin: auto;
+    max-height:var(--max-height-card);
+
+>>>>>>> Stashed changes
 }
 
 .pictos{

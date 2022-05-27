@@ -126,6 +126,7 @@
                                         <label for="category">Catégorie :</label>
                                         <select name="categories">
                                         <?php
+
                                             foreach($datatab[0] as $category){
                                                 echo '<option value="'.$category['categoryID'].'">'.$category['title'].'</option>';
                                             }

@@ -170,7 +170,9 @@ sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors
 </ul>
 
 </nav>
+  <div class="container">
 
+<<<<<<< Updated upstream
 <div class="listCards">
 <?php
   $temp = 1;
@@ -252,97 +254,180 @@ sinon on affiche ce qui est demandé et si y a pas de recherche tout court alors
       </div>
     </div>
   </div>
+=======
+      <div class="listCards row">
+          <?php
+            $temp = 1;
+            foreach ($datatab[1] as $key => $goodplan) {
+              if ($key % 2 == 0) {
+          ?>
+            <div class="col-12">
+              <div class="card mb-3">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src=
+                    <?php
+                        echo "../views/" . $goodplan['mediaID'];
+                    ?>
+                    class="card-img invert img-fluid" alt="infos bon plan">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
+                      <p class="card-text"><small class="text-muted">
+                        <?php
+                          $dateEtLieu = $goodplan['startingDate'];
 
-<?php
-    } else {
-?>
+                          if(empty($goodplan['cityID'])){
+                            $dateEtLieu .= " en ligne";
+                        } else {
+                            $dateEtLieu .= " à : ".$goodplan['cityID'];
+                        }
 
-  <div class="card mb-3" style="max-width: 70em;">
-    <div class="row no-gutters">
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
-          <p class="card-text"><small class="text-muted">
-            <?php
-              $dateEtLieu = $goodplan['startingDate'];
+                          echo $dateEtLieu; 
+                        ?>
+                        </small></p>
+                      <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
+                      <div class="pictos">
+                        <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn"></i></a>
 
-              if(empty($goodplan['cityID'])){
-                $dateEtLieu .= " en ligne";
-            } else {
-                $dateEtLieu .= " à : ".$goodplan['cityID'];
+                          <?php
+                            if(array_key_exists('buttonlike', $_POST) && $temp == 1)
+                            {
+                              $temp = 0;
+                              addLike($_POST['type']);
+                            }
+                          ?>
+                        <form method="post">
+                          <?php
+                            if (isset($_SESSION['currentUserID']))
+                            {
+                              $goodplanID = $goodplan['goodplanID'];
+                              if(getLikes(getCurrentUser()[0][0], $goodplan['goodplanID'])==1)
+                              {
+                                echo "<input type='hidden' name='type' value=$goodplanID>";
+                                echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je dislike'/>";
+                              } else {
+                                echo "<input type='hidden' name='type' value=$goodplanID>";
+                                echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je like'/>";
+                              }
+                            }
+                          ?>
+                        </form>
+                          <span>&nbsp;</span>
+                          <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+
+                          <p><?php echo count($goodplan['likes']); ?> likes</p>
+                      </div>
+                      <div class="proprio">
+                          <a href=
+                          <?php
+                          echo "compteexterne/".$goodplan['userID']['userID'];
+                          ?>><img src=
+                          <?php
+                            echo "../views/".$goodplan['userID']['mediaID'][0]['url'];
+                          ?>
+                          alt="photo de profil" class="pp"></a>
+                          <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>                  
+>>>>>>> Stashed changes
+
+          <?php
+              } else {
+          ?>
+            <div class="col-12">
+                <div class="card mb-3">
+                  <div class="row no-gutters">
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
+                        <p class="card-text"><small class="text-muted">
+                          <?php
+                            $dateEtLieu = $goodplan['startingDate'];
+
+                            if(empty($goodplan['cityID'])){
+                              $dateEtLieu .= " en ligne";
+                          } else {
+                              $dateEtLieu .= " à : ".$goodplan['cityID'];
+                          }
+
+                            echo $dateEtLieu; 
+                          ?>
+                          </small></p>
+                        <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
+                        <div class="pictos">
+                          <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
+
+                            <?php
+                              if(array_key_exists('buttonlike', $_POST) && $temp == 1)
+                              {
+                                $temp = 0;
+                                addLike($_POST['type']);
+                              }
+                            ?>
+                          <form method="post">
+                            <?php
+                              if (isset($_SESSION['currentUserID']))
+                              {
+                                $goodplanID = $goodplan['goodplanID'];
+                                if(getLikes(getCurrentUser()[0][0], $goodplan['goodplanID'])==1)
+                                {
+                                  echo "<input type='hidden' name='type' value=$goodplanID>";
+                                  echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je dislike'/>";
+                                }
+                                else 
+                                {
+                                  echo "<input type='hidden' name='type' value=$goodplanID>";
+                                  echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je like'/>";
+                                }
+                              }
+                            ?>
+                          </form>
+                            <span>&nbsp;</span>
+
+                            <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
+                            <p><?php echo count($goodplan['likes']); ?> likes</p>
+                        </div>
+                        <div class="proprio">
+                            <a href=
+                            <?php
+                            echo "compteexterne/".$goodplan['userID']['userID'];
+                            ?>
+                            ><img src=
+                            <?php
+                              echo "../views/".$goodplan['userID']['mediaID'][0]['url'];
+                            ?>
+                            alt="photo de profil" class="pp"></a>
+                            <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <img src=
+                      <?php
+                        if(empty($goodplan['mediaID'])){
+                          echo "../views/img/cine.jpg";
+                        } else {
+                          echo "../views/".$goodplan['mediaID'];
+                        }
+                      ?>
+                      class="card-img invert img-fluid" alt="infos bon plan">
+                    </div>
+                  </div>
+                </div>
+            </div> 
+          <?php
+              }
             }
-
-              echo $dateEtLieu; 
-            ?>
-            </small></p>
-          <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
-          <div class="pictos">
-            <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
-
-              <?php
-                if(array_key_exists('buttonlike', $_POST) && $temp == 1)
-                {
-                  $temp = 0;
-                  addLike($_POST['type']);
-                }
-              ?>
-            <form method="post">
-              <?php
-                if (isset($_SESSION['currentUserID']))
-                {
-                  $goodplanID = $goodplan['goodplanID'];
-                  if(getLikes(getCurrentUser()[0][0], $goodplan['goodplanID'])==1)
-                  {
-                    echo "<input type='hidden' name='type' value=$goodplanID>";
-                    echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je dislike'/>";
-                  }
-                  else 
-                  {
-                    echo "<input type='hidden' name='type' value=$goodplanID>";
-                    echo "<input type='submit' name='buttonlike' class='profiter btn btn-primary' value='Je like'/>";
-                  }
-                }
-              ?>
-            </form>
-              <span>&nbsp;</span>
-
-              <a href="viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
-              <p><?php echo count($goodplan['likes']); ?> likes</p>
-          </div>
-          <div class="proprio">
-              <a href=
-              <?php
-              echo "compteexterne/".$goodplan['userID']['userID'];
-              ?>
-              ><img src=
-              <?php
-                echo "../views/".$goodplan['userID']['mediaID'][0]['url'];
-              ?>
-              alt="photo de profil" class="pp"></a>
-              <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
-          </div>
-        </div>
+          ?>
       </div>
-      <div class="col-md-4">
-        <img src=
-        <?php
-          if(empty($goodplan['mediaID'])){
-            echo "../views/img/cine.jpg";
-          } else {
-            echo "../views/".$goodplan['mediaID'];
-          }
-        ?>
-        class="card-img invert img-fluid" alt="infos bon plan">
-      </div>
-    </div>
   </div>
 
-<?php
-    }
-  }
-?>
-</div>
-  
 </section>
 
   <!-- --- Boutons flottants à intégrer avec les filtres... -->

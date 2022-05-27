@@ -24,6 +24,7 @@
 
     <!---  NAVABAR -->
     <nav class="navbar fixed-top  ">
+<<<<<<< Updated upstream
         <div class="d-flex flex-column align-items-center">
             <br>
             <a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
@@ -49,6 +50,44 @@
             </div>
         </div>
     </nav>
+=======
+
+<div class="d-flex flex-column align-items-center">
+<br>
+<a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  " alt="Accueil LE QG"></a>
+</div>
+
+<div class="row d-none d-sm-block">
+<div class="res  align-items-center ">
+    <a class="home " href="../accueil"><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
+    <!-- TODO link vers messagerie -->
+    <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../../views/img/chat.png" alt="messagerie" width="50">
+        </div>
+            <?php
+    if (!isset($_SESSION['currentUserID']))
+    {
+      echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+    } else
+    {
+      ?>
+       <div class="menu-deroulant">
+      <a class="connexion" href="../moncompte"><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>
+      <ul class="sous-menu">
+        <li><a href="../moncompte">mon compte</a></li>
+        <li><form method='POST' action='../accueil'>
+        <input type='hidden' name='type' value='logout'>
+        <input type='submit' value='Se déconnecter'>
+    </form></li>
+      </ul>
+      </div>
+      <?php
+    }
+    ?>
+</div>
+</div>
+</nav>
+>>>>>>> Stashed changes
 
     <!---  FIN NAVBAR -->
 
@@ -64,7 +103,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <img src="../views/img/oops.png" alt="">
+                    <img src="../../views/img/oops.png" alt="">
                     <div class="contenuoops">
                         <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
                         <p class="signatureoops">L'Équipe du QG </p>
@@ -75,6 +114,31 @@
             </div>
             </div>
         </div>
+    <!-- ------------ -->
+
+      <!-- pop up Faut devenir ami bg -->
+      <div class="modal fade popfilter" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Oops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img src="../../views/img/sadman.png" alt="">
+                    <div class="contenuoops">
+                        <p>Wait ! Pour devenir l'ami.e de cette personne, il faut te connecter bg.ette ! </p>
+                        <p class="signatureoops">L'Équipe du QG </p>
+                    </div>
+                    
+                </div>
+                    <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+            </div>
+        </div>
+
     <!-- ------------ -->
 
 
@@ -115,14 +179,37 @@
                     <!-- Boutons -->
                     <div class="text-center">
                         <div class="btn-grp" role="groupe">
+<<<<<<< Updated upstream
                             <button class=" modifierbtn  btn btn-secondary">DEVENIR AMIS</button>
                             <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
+=======
+                            <form class="inscrform" method='POST' enctype="multipart/form-data">
+                                <?php if(getIsFriend(getCurrentUser()[0][0], $datatab[0]['userID']) == 0) { ?>
+                                    <?php
+                                            if (!isset($_SESSION['currentUserID']))
+                                            {
+                                                echo '</form><div class=" modifierbtn btn btn-primary btn-block mb-4" data-toggle="modal" data-target="#friendsModal">DEVENIR AMIS</div>';
+
+                                            } else
+                                            {
+                                                echo '<button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">DEVENIR AMIS</button>';
+
+                                             } ?>
+                                        
+                                    <?php } else { ?>
+                               
+                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SUPPRIMER DES AMIS</button>
+                                <?php } ?>
+                            </form>
+
+>>>>>>> Stashed changes
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
                     data-target="#exampleModal">ENVOYER UN MESSAGE</button>
                             <!-- TODO LINK VERS LA MESSAGERIE QUAND ELLE EXISTERA-->
                             <!--SI PAS AMIS, FENETRE MODALE QUI S'OUVRE-->
                         </div>
+<<<<<<< Updated upstream
                         <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -143,6 +230,10 @@
                         </div>
                     </div>
                 </div>
+=======
+                        <?php } ?>
+        
+>>>>>>> Stashed changes
                     </div>
                 </div>
 
@@ -151,7 +242,7 @@
                 <?php
                     foreach($datatab[1] as $goodplan){
                 ?>
-                <div class="card mb-3" style="max-width: 70em;">
+                <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class=" cardlike col-md-4">
                             <i class="bi bi-heart-fill btn" href=""></i>

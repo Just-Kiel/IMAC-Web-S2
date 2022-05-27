@@ -18,13 +18,31 @@ header{
     margin-right: 2em;
 }
 
+<<<<<<< Updated upstream
 .res>div{
     margin-left: 1em;
     margin-right: 1em;
 }
 
 .res .chat { 
+=======
+.res img{
+    height: fit-content;
+}
+
+.connexion{ 
+    display: flex;
+    align-items: center;
+}
+
+ 
+
+.res .chat {
+>>>>>>> Stashed changes
     cursor: pointer;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
 }
 
 
