@@ -48,7 +48,7 @@
             <ul class="sous-menu">
               <li><a href="../moncompte">mon compte</a></li>
               <li>
-                <form method='POST' action='accueil'>
+                <form method='POST' action='.//accueil'>
                   <input type='hidden' name='type' value='logout'>
                   <input type='submit' value='Se déconnecter'>
                 </form>
@@ -162,6 +162,7 @@
     <div class="listCards">
 
       <?php
+      $temp = 1;
       foreach ($datatab[2] as $key => $goodplan) {
         if ($key % 2 == 0) {
       ?>
@@ -342,8 +343,9 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <form action="" method="post">
         <div class="modal-body">
-          <form action="" method="post">
+          
             <input <?php
                     if ($datatab[3] == 'city') {
                       echo "checked";
@@ -366,11 +368,12 @@
                     ?> type="radio" value="null" name="myfilters">&nbsp;Pas de filtre</option><br>
 
             <input type='hidden' name='type' value='filters'>
-          </form>
+          
         </div>
         <div class="modal-footer">
-          <input class="validew" type="submit" value="Valider" data-dismiss="modal">
+          <input class="validew" type="submit" value="Valider">
         </div>
+        </form>
       </div>
     </div>
   </div>
@@ -379,7 +382,7 @@
 
   <?php if (isset($_SESSION['currentUserID'])) { ?>
     <div class="add btn ">
-      <a class="addgp" href="addgoodplan"><img src="../../views/img/add.png" href="addgoodplan" alt="ajouter un bon plan" /></a>
+      <a class="addgp" href="../addgoodplan"><img src="../../views/img/add.png" href="addgoodplan" alt="ajouter un bon plan" /></a>
     </div>
   <?php
   }
@@ -408,9 +411,9 @@
         <div class="col-md-2 mb-3">
           <?php
           if (!isset($_SESSION['currentUserID'])) {
-            echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+            echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
           } else {
-            echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+            echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
           }
           ?>
         </div>
@@ -421,7 +424,7 @@
         </div>
 
         <div class="col-md-2 mb-3">
-          <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
+          <h6><a href="../quisommesnous">L'ÉQUIPE</a></h6>
         </div>
       </div>
 
@@ -435,9 +438,9 @@
           <div class="boutonsfoot">
             <?php
             if (!isset($_SESSION['currentUserID'])) {
-              echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+              echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
             } else {
-              echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+              echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
             }
             ?>
           </div>
@@ -445,7 +448,7 @@
       </div>
 
       <!-- Copyright -->
-      <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
+      <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="../mentionslegales" target="blank">Mentions Légales</a>
       </div>
       <!-- Copyright -->
     </div>

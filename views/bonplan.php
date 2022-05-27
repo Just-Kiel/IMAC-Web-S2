@@ -256,7 +256,7 @@
       <?php if (isset($_SESSION['currentUserID']))
       {?>
         <div class="add btn ">
-          <a class="addgp" href="addgoodplan"><img src="../views/img/add.png" href="addgoodplan" alt="ajouter un bon plan" /></a>
+          <a class="addgp" href="../addgoodplan"><img src="../../views/img/add.png" alt="ajouter un bon plan" /></a>
         </div>
         <?php
       }
@@ -285,9 +285,9 @@
         <div class="col-md-2 mb-3">
           <?php
           if (!isset($_SESSION['currentUserID'])) {
-            echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+            echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
           } else {
-            echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+            echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
           }
           ?>
         </div>
@@ -298,7 +298,7 @@
         </div>
 
         <div class="col-md-2 mb-3">
-          <h6><a href="quisommesnous">L'EQUIPE</a></h6>
+          <h6><a href="../quisommesnous">L'EQUIPE</a></h6>
         </div>
       </div>
 

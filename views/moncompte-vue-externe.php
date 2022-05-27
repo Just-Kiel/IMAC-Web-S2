@@ -139,7 +139,6 @@
                                 <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SUPPRIMER DES AMIS</a>
                                 <?php } ?>
                             </form>
-                            <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
                     data-target="#chatModal">ENVOYER UN MESSAGE</button>
@@ -261,14 +260,14 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="accueil">ACCUEIL</a></h6>
+                    <h6><a href="../accueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
                     <?php
                     if (!isset($_SESSION['currentUserID'])) {
-                        echo '<h6><a class="connexion" href="seconnecter" >MON COMPTE</a></h6>';
+                        echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
                     } else {
-                        echo '<h6><a class="connexion" href="moncompte" >MON COMPTE</a></h6>';
+                        echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
                     }
                     ?>
                 </div>
@@ -277,7 +276,7 @@
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
+                    <h6><a href="../quisommesnous">L'ÉQUIPE</a></h6>
                 </div>
             </div>
 
@@ -291,9 +290,9 @@
                     <div class="boutonsfoot">
                         <?php
                         if (!isset($_SESSION['currentUserID'])) {
-                            echo '<a class=" inscription btn btn-primary " href="seconnecter" role="button">REJOINDRE LE QG !</a>';
+                            echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
                         } else {
-                            echo '<a class=" inscription btn btn-primary " href="moncompte" role="button">REJOINDRE LE QG !</a>';
+                            echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
                         }
                         ?>
                     </div>
@@ -301,7 +300,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="../mentionslegales"
                     target="blank">Mentions Légales</a>
             </div>
 
