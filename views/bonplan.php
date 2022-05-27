@@ -281,7 +281,6 @@
           <h6><a href="../accueil">ACCUEIL</a></h6>
         </div>
 
-        <!-- TODO link vers mon compte si connecté sinon vers connexion -->
         <div class="col-md-2 mb-3">
           <?php
           if (!isset($_SESSION['currentUserID'])) {
