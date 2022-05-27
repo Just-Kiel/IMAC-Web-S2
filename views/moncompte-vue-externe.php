@@ -41,7 +41,7 @@
 <div class="res  align-items-center ">
     <a class="home " href="../accueil"><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
     <!-- TODO link vers messagerie -->
-    <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
+    <div class="chat" data-toggle="modal" data-target="#chatModal"><img  class="invert"  src="../../views/img/chat.png" alt="messagerie" width="50"></a>
     <?php
     if (!isset($_SESSION['currentUserID']))
     {
@@ -142,9 +142,7 @@
                             <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
-                    data-target="#exampleModal">ENVOYER UN MESSAGE</button>
-                            <!-- TODO LINK VERS LA MESSAGERIE QUAND ELLE EXISTERA-->
-                            <!--SI PAS AMIS, FENETRE MODALE QUI S'OUVRE-->
+                    data-target="#chatModal">ENVOYER UN MESSAGE</button>
                         </div>
                         <?php } ?>
                         <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->

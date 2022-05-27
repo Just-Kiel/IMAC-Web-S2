@@ -37,7 +37,7 @@
 <div class="res  align-items-center ">
     <a class="home " href="../accueil"><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
     <!-- TODO link vers messagerie -->
-    <a class="chat" href="#" ><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
+    <div class="chat" data-toggle="modal" data-target="#chatModal"><img  class="invert"  src="../../views/img/chat.png" alt="Chat" width="50"></a>
     <?php
     if (!isset($_SESSION['currentUserID']))
     {
