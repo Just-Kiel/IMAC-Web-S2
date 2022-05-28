@@ -18,13 +18,29 @@ header {
     margin-right: 2em;
 }
 
-.res>div {
+
+.res>div{
     margin-left: 1em;
     margin-right: 1em;
 }
 
+
+.res img{
+    height: fit-content;
+}
+
+.connexion{ 
+    display: flex;
+    align-items: center;
+}
+
+ 
+
 .res .chat {
     cursor: pointer;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
 }
 
 h1 {

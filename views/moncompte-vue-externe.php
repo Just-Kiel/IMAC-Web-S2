@@ -12,25 +12,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../../views/img/leQG_Flavicon.png">
     <link rel="stylesheet" href="../../views/moncompte-vue-externe-style.css">
-    <link rel="stylesheet" href="../views/polices.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <!-- POLICES -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
-    <!-- FIN POLICES -->
-
-    <title> LE QG - <?php echo $datatab[0]['firstname'] . " " . $datatab[0]['lastname']; ?> </title>
+    <title> LE QG - ACCUEIL </title>
 </head>
 
 <body>
 
     <!---  NAVABAR -->
     <nav class="navbar fixed-top  ">
+<<<<<<< Updated upstream
+        <div class="d-flex flex-column align-items-center">
+            <br>
+            <a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
+                    alt="Accueil LE QG"></a>
+        </div>
+        <div class="row d-none d-sm-block">
+            <div class="res  align-items-center ">
+                <a class="home " href="../accueil" target="blank"><img class="invert" src="../../views/img/accueil.png" alt="Accueil"
+                        width="50"></a>
+                <!-- TODO link vers messagerie -->
+                <div class="chat" data-toggle="modal" data-target="#chatModal">
+                    <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
+                </div>
+                <?php
+        if (!isset($_SESSION['currentUserID']))
+        {
+          echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+        } else
+        {
+          echo '<a class="connexion" href="../moncompte" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
+        }
+        ?>
+            </div>
+        </div>
+    </nav>
+=======
 
 <div class="d-flex flex-column align-items-center">
 <br>
@@ -41,8 +61,10 @@
 <div class="res  align-items-center ">
     <a class="home " href="../accueil"><img class="invert"  src="../../views/img/accueil.png" alt="Accueil" width="50"></a>
     <!-- TODO link vers messagerie -->
-    <div class="chat" data-toggle="modal" data-target="#chatModal"><img  class="invert"  src="../../views/img/chat.png" alt="messagerie" width="50"></a>
-    <?php
+    <div class="chat" data-toggle="modal" data-target="#chatModal">
+                  <img  class=" invert"  src="../../views/img/chat.png" alt="messagerie" width="50">
+        </div>
+            <?php
     if (!isset($_SESSION['currentUserID']))
     {
       echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
@@ -65,6 +87,7 @@
 </div>
 </div>
 </nav>
+>>>>>>> Stashed changes
 
     <!---  FIN NAVBAR -->
 
@@ -80,7 +103,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <img src="../views/img/oops.png" alt="">
+                    <img src="../../views/img/oops.png" alt="">
                     <div class="contenuoops">
                         <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
                         <p class="signatureoops">L'Équipe du QG </p>
@@ -93,8 +116,33 @@
         </div>
     <!-- ------------ -->
 
+      <!-- pop up Faut devenir ami bg -->
+      <div class="modal fade popfilter" id="friendsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Oops ! </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <img src="../../views/img/sadman.png" alt="">
+                    <div class="contenuoops">
+                        <p>Wait ! Pour devenir l'ami.e de cette personne, il faut te connecter bg.ette ! </p>
+                        <p class="signatureoops">L'Équipe du QG </p>
+                    </div>
+                    
+                </div>
+                    <input class="fermew" type="submit" value=" OK !" data-dismiss="modal">
+            </div>
+            </div>
+        </div>
 
-    <h1><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></h1>
+    <!-- ------------ -->
+
+
+    <h1>Compte</h1>
 
     <!-- Tableau contenant les onglets "MES INFOS" et "MES BONS PLANS" -->
     <div>
@@ -114,15 +162,15 @@
                         </div>
                         <div class="col-4">
                             <b>
-                                <p class="nomcat">Nom et prénom</pl>
+                                <p>Nom et prénom</pl>
                             </b>
-                            <p class="infutilisateur"><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></p>
+                            <p><?php echo $datatab[0]['firstname']." ".$datatab[0]['lastname']; ?></p>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT LE NOM ET LE PRÉNOM DE L'UTILISATEUR -->
 
                             <b>
-                                <p class="nomcat">Nombre de bons plans postés</p>
+                                <p>Nombre de bons plans postés</p>
                             </b>
-                            <p class="infutilisateur"><?php echo count($datatab[1]); ?></p>
+                            <p><?php echo count($datatab[1]); ?></p>
                             <!-- AFFICHER INFORMATION BDD CONCERNANT L'EMAIL DE L'UTILISATEUR -->
                         </div>
 
@@ -130,20 +178,38 @@
 
                     <!-- Boutons -->
                     <div class="text-center">
-                    <?php if ($datatab[0]['userID'] != getCurrentUser()[0][0]) { ?>
                         <div class="btn-grp" role="groupe">
+<<<<<<< Updated upstream
+                            <button class=" modifierbtn  btn btn-secondary">DEVENIR AMIS</button>
+                            <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
+=======
                             <form class="inscrform" method='POST' enctype="multipart/form-data">
                                 <?php if(getIsFriend(getCurrentUser()[0][0], $datatab[0]['userID']) == 0) { ?>
-                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">DEVENIR AMIS</a>
-                                <?php } else { ?>
-                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SUPPRIMER DES AMIS</a>
+                                    <?php
+                                            if (!isset($_SESSION['currentUserID']))
+                                            {
+                                                echo '</form><div class=" modifierbtn btn btn-primary btn-block mb-4" data-toggle="modal" data-target="#friendsModal">DEVENIR AMIS</div>';
+
+                                            } else
+                                            {
+                                                echo '<button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">DEVENIR AMIS</button>';
+
+                                             } ?>
+                                        
+                                    <?php } else { ?>
+                               
+                                <button type="submit" class=" modifierbtn btn btn-primary btn-block mb-4">SUPPRIMER DES AMIS</button>
                                 <?php } ?>
                             </form>
+
+>>>>>>> Stashed changes
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
-                    data-target="#chatModal">ENVOYER UN MESSAGE</button>
+                    data-target="#exampleModal">ENVOYER UN MESSAGE</button>
+                            <!-- TODO LINK VERS LA MESSAGERIE QUAND ELLE EXISTERA-->
+                            <!--SI PAS AMIS, FENETRE MODALE QUI S'OUVRE-->
                         </div>
-                        <?php } ?>
+<<<<<<< Updated upstream
                         <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -164,17 +230,22 @@
                         </div>
                     </div>
                 </div>
+=======
+                        <?php } ?>
+        
+>>>>>>> Stashed changes
                     </div>
                 </div>
 
-                <h1 class="sesbonsplans">Ses bons plans :</h1>
+                <h2>Ses bons plans :</h2>
 
                 <?php
                     foreach($datatab[1] as $goodplan){
                 ?>
-                <div class="card mb-3" style="max-width: 70em;">
+                <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class=" cardlike col-md-4">
+                            <i class="bi bi-heart-fill btn" href=""></i>
                             <img src=
                             <?php
                             echo "../../views/".$goodplan['mediaID'];
@@ -260,23 +331,16 @@
         <div class="container">
             <div class=" navfooter row d-flex  pt-5 mb-3">
                 <div class="col-md-2 mb-3">
-                    <h6><a href="../accueil">ACCUEIL</a></h6>
+                    <h6><a href="../acuueil">ACCUEIL</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <?php
-                    if (!isset($_SESSION['currentUserID'])) {
-                        echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
-                    } else {
-                        echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
-                    }
-                    ?>
+                    <h6><a href="#">MON COMPTE</a></h6>
                 </div>
-                <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
-                    <!-- TODO link vers messagerie -->
+                <div class="col-md-2 mb-3">
                     <h6><a href="#">MESSAGERIE</a></h6>
                 </div>
                 <div class="col-md-2 mb-3">
-                    <h6><a href="../quisommesnous">L'ÉQUIPE</a></h6>
+                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
                 </div>
             </div>
 
@@ -288,19 +352,16 @@
                     <p class="signature"> L'Équipe du QG</p>
                     <!-- Boutons -->
                     <div class="boutonsfoot">
-                        <?php
-                        if (!isset($_SESSION['currentUserID'])) {
-                            echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
-                        } else {
-                            echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
-                        }
-                        ?>
+                        <a class=" inscription btn btn-primary " href="seconnecter.php" role="button"
+                            target="blank">INSCRIPTION</a>
+                        <a class="inscription btn btn-primary " href="seconnecter.php" role="button"
+                            target="blank">CONNEXION</a>
                     </div>
                 </div>
             </div>
 
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="../mentionslegales"
+            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentions-legales.php"
                     target="blank">Mentions Légales</a>
             </div>
 

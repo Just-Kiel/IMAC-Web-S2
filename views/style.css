@@ -1,5 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
 
+
 /* -------------  index.php------------- */
 
 .navbar {
@@ -18,13 +19,26 @@ body {
     margin-right: 2em;
 }
 
-.res>div {
+
+.res>div{
     margin-left: 1em;
     margin-right: 1em;
 }
 
+.res img{
+    height: fit-content;
+}
+
+.connexion{ 
+    display: flex;
+    align-items: center ;
+}
+
 .res .chat {
     cursor: pointer;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
 }
 
 
@@ -238,10 +252,17 @@ header {
     grid-gap: 2em;
 }
 
-.listCards img {
+
+.listCards img{
     height: 100%;
-    object-fit: cover;
 }
+
+.listCards img {
+    height:100%;
+    object-fit: cover;
+    max-height:var(--max-height-card);
+}
+
 
 .listCards .card:nth-child(odd) .proprio {
     margin-left: auto;
@@ -259,8 +280,12 @@ header {
     margin-left: auto;
 }
 
+
 .card {
+    --max-height-card: 300px;
+
     margin: auto;
+    max-height:var(--max-height-card);
 }
 
 .pictos {

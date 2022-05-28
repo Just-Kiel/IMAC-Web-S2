@@ -29,3 +29,42 @@ p{
     font-style: normal;
     font-weight: 300;
 }
+
+.sous-menu{
+    list-style: none;
+    padding:1em;
+    padding-top:0.5em;
+    padding-bottom:0.5em;
+    border:none !important;    
+    
+}
+
+.sous-menu a{
+    text-decoration: none;
+    color:#000080;
+    font-weight: 600;
+}
+
+.sous-menu a:hover{
+    text-decoration: none;
+    color:#FF69B4;
+}
+
+.sous-menu [type="submit"]{
+
+    background-color:#C4D61F;
+    border-radius:0.5em;
+    color:white;
+    border:none;
+    padding:0.2em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+
+}
+
+.sous-menu [type="submit"]:hover{
+
+    background-color:#FF69B4;
+    border-radius:0.5em;
+    color:white;
+}

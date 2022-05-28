@@ -22,13 +22,29 @@ header {
     margin-right: 2em;
 }
 
-.res>div {
+
+.res>div{
     margin-left: 1em;
     margin-right: 1em;
 }
 
+
+.res img{
+    height: fit-content;
+}
+
+.connexion{ 
+    display: flex;
+    align-items: center;
+}
+
+ 
+
 .res .chat {
     cursor: pointer;
+    display: flex;
+    margin: 0 15px;
+    align-items: center;
 }
 
 h1 {
@@ -42,6 +58,155 @@ h1 {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.breadcrumb {
+    font-family: 'Rubik', sans-serif !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    margin-top: 1em !important;
+    margin-left: 8em;
+    margin-right: 8em;
+    background-color: #ffffff !important;
+}
+
+.breadcrumb a {
+    text-decoration: none !important;
+    color: #242424;
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.breadcrumb a:hover {
+    color: #FF69B4 !important;
+}
+
+.breadcrumb li::before {
+    content: "";
+    background-image: url("img/chevron-right.svg");
+    padding: 0.5em;
+    background-repeat: no-repeat;
+    padding-top: 0em;
+}
+
+.breadcrumb li:first-child::before {
+    content: "";
+    background-image: url("img/geo-alt-fill.svg");
+    padding: 0.7em;
+    background-repeat: no-repeat;
+    padding-top: 0em;
+}
+
+.page-active {
+    font-family: 'Rubik', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    color: #87888A !important;
+}
+
+.active {
+    background-color: #C4D61F !important;
+    border: solid #C4D61F !important;
+}
+
+.active:hover {
+    background-color: #FF69B4 !important;
+    border: solid #FF69B4 !important;
+}
+
+
+/* Nav sous cat */
+
+.categories {
+    margin-top: 3em;
+}
+
+.categories ul {
+    margin-left: 6em;
+    margin-right: 6em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.categories a {
+    background-color: #ffffff;
+    color: #242424;
+    border: solid #000080;
+}
+
+.categories a:hover {
+    background-color: #FF69B4;
+    color: #242424;
+    border: solid #FF69B4;
+}
+
+
+/* Fin nav sous cat */
+
+
+/* Bons plans de la catégorie */
+
+.listCards {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    grid-gap: 2em;
+}
+
+
+.listCards img {
+    height:100%;
+    object-fit: cover;
+    max-height:var(--max-height-card);
+
+}
+
+.listCards .card:nth-child(odd) .proprio {
+    margin-left: auto;
+}
+
+.listCards .card:nth-child(even) .proprio {
+    margin-right: auto;
+}
+
+.listCards .card:nth-child(odd) .pictos {
+    margin-right: auto;
+}
+
+.listCards .card:nth-child(even) .pictos {
+    margin-left: auto;
+}
+
+.card {
+    --max-height-card: 300px;
+
+    margin: auto;
+    max-height:var(--max-height-card);
+
+}
+
+.pictos {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.proprio {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.proprio h6 {
+    font-family: 'Amatic SC', cursive;
+    font-style: normal;
+    font-size: 1em;
+    letter-spacing: 0.1em;
     text-align: center;
 }
 
