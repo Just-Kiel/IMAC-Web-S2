@@ -221,40 +221,19 @@
                         <p class="card-text"><?php echo $goodplan['textContent'] ?></p>
                         <div class="btn-grp" role="groupe">
                             <!-- BDD -->
-                            <button class=" supprimerbtn btn btn-secondary" data-toggle="modal" data-target="#modifbonplan">SUPPRIMER</button>
+                            <form action="" method="post">
+                                <?php 
+                                $goodplanID = $goodplan['goodplanID'];
+                                echo "<input type='hidden' name='type' value=$goodplanID />";
+                                echo "<input class='supprimerbtn btn btn-secondary' name='buttonsupprimerbp' type='submit' value='SUPPRIMER'/>";
+                                ?>
+                            </form>
+                            
                         </div>
                         </div>
                     </div>
                     </div>
                 </div>
-
-                <div class="modal fade" id="modifbonplan" tabindex="-1" role="dialog" aria-labelledby="modifbonplanLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modifbonplanLabel">Confirmation suppression du bon plan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Es-tu sûr.e de vouloir supprimer ce bon plan ?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class=" fermerbtn btn btn-secondary"
-                                        data-dismiss="modal">Fermer</button>
-                                        
-                                        <form method="post">
-                                            <?php 
-                                            $goodplanID = $goodplan['goodplanID'];
-                                            echo "<input type='hidden' name='type' value=$goodplanID />";
-                                            echo "<input type='submit' name='buttonsupprimerbp' class='confirmerbtn btn btn-primary' value='Je confirme'/>";
-                                            ?>
-                                        </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <?php } ?>
                 <?php } ?>
             </div>

@@ -90,7 +90,7 @@ function addGoodPlan(){
 
 function deleteGoodPlan($goodplanID)
 {
-    $sql = "DELETE FROM goodplans WHERE goodplanID='$goodplanID'";
+    $sql = "DELETE FROM goodplans WHERE goodplanID=$goodplanID";
     try {
         connexion()->query($sql);
     } catch (PDOException $e) {
