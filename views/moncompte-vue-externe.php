@@ -80,7 +80,7 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                    <img src="../views/img/oops.png" alt="">
+                    <img src="../../views/img/oops.png" alt="">
                     <div class="contenuoops">
                         <p>La messagerie est en train de se faire une beauté. Revenez dans quelques temps pour discuter avec vos amis ! </p>
                         <p class="signatureoops">L'Équipe du QG </p>
