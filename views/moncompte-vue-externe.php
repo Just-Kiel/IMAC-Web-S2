@@ -24,33 +24,6 @@
 
     <!---  NAVABAR -->
     <nav class="navbar fixed-top  ">
-<<<<<<< Updated upstream
-        <div class="d-flex flex-column align-items-center">
-            <br>
-            <a href="../accueil"><img src="../../views/img/leQG_logo.png" width="500" class=" invert img-fluid  "
-                    alt="Accueil LE QG"></a>
-        </div>
-        <div class="row d-none d-sm-block">
-            <div class="res  align-items-center ">
-                <a class="home " href="../accueil" target="blank"><img class="invert" src="../../views/img/accueil.png" alt="Accueil"
-                        width="50"></a>
-                <!-- TODO link vers messagerie -->
-                <div class="chat" data-toggle="modal" data-target="#chatModal">
-                    <img  class=" invert"  src="../views/img/chat.png" alt="messagerie" width="50">
-                </div>
-                <?php
-        if (!isset($_SESSION['currentUserID']))
-        {
-          echo '<a class="connexion" href="../seconnecter" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
-        } else
-        {
-          echo '<a class="connexion" href="../moncompte" ><img class="invert"  src="../../views/img/sidentifier.png" alt="Connexion" width="50"></a>';
-        }
-        ?>
-            </div>
-        </div>
-    </nav>
-=======
 
 <div class="d-flex flex-column align-items-center">
 <br>
@@ -87,7 +60,6 @@
 </div>
 </div>
 </nav>
->>>>>>> Stashed changes
 
     <!---  FIN NAVBAR -->
 
@@ -179,10 +151,6 @@
                     <!-- Boutons -->
                     <div class="text-center">
                         <div class="btn-grp" role="groupe">
-<<<<<<< Updated upstream
-                            <button class=" modifierbtn  btn btn-secondary">DEVENIR AMIS</button>
-                            <!-- TODO FAIRE EN SORTE QUE LES DEUX DEVIENNENT AMIS AU NIVEAU DE LA BDD-->
-=======
                             <form class="inscrform" method='POST' enctype="multipart/form-data">
                                 <?php if(getIsFriend(getCurrentUser()[0][0], $datatab[0]['userID']) == 0) { ?>
                                     <?php
@@ -202,38 +170,12 @@
                                 <?php } ?>
                             </form>
 
->>>>>>> Stashed changes
                             <!-- SI DEJA AMIS ALORS LE BOUTON DEVIENT : SUPPRIMER DES AMIS -->
                             <button class=" modifierbtn  btn btn-secondary"  data-toggle="modal"
                     data-target="#exampleModal">ENVOYER UN MESSAGE</button>
                             <!-- TODO LINK VERS LA MESSAGERIE QUAND ELLE EXISTERA-->
                             <!--SI PAS AMIS, FENETRE MODALE QUI S'OUVRE-->
-                        </div>
-<<<<<<< Updated upstream
-                        <!-- Fenêtre modale pour le bouton SUPPRIMER COMPTE -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tu ne peux pas envoyer de messages à cet utilisateur.</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Deviens ami.e avec cet utilisateur pour pouvoir lui envoyer un message !</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class=" fermerbtn btn btn-secondary"
-                                    data-dismiss="modal">J'ai compris</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-=======
-                        <?php } ?>
-        
->>>>>>> Stashed changes
+                        </div>        
                     </div>
                 </div>
 

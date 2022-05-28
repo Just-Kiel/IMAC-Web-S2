@@ -1,25 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<<<<<<< Updated upstream
-    <meta charset=utf-8>
-    <meta name="description" content="Plateforme de bons plans, partage, étudiants, écologies, troc, astuces">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Copyright" content="Equipe du QG - IMAC 1">
-    <meta name="Language" content="Fr">
-    <meta name="Category" content="HTML - CSS">
-    <meta name="Keywords" content="HTML, bons plans, étudiants, IMAC, Champs sur Marne">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="../../views/img/leQG_Flavicon.png">
-    <link rel="stylesheet" href="../../views/categorie-style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-   
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-
-<title> LE QG - <?php echo $datatab[0][0]['title'];?> </title>
-=======
   <meta charset=utf-8>
   <meta name="description" content="Plateforme de bons plans, partage, étudiants, écologies, troc, astuces">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +19,6 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
   <title> LE QG - <?php echo $datatab[0][0]['title']; ?> </title>
->>>>>>> Stashed changes
 
 </head>
 
@@ -160,57 +140,6 @@
 <!------------ Fin Sous catégories ------------>
 
 
-<<<<<<< Updated upstream
-<!------------ Bon plans de la catégorie ------------>
-
-<div class="listCards">
-
-<?php
-  foreach ($datatab[2] as $key =>$goodplan) {
-    if($key%2==0){
-?>
-
-    <div class="card mb-3" style="max-width: 70em;">
-      <div class="row no-gutters">
-        <div class=" col-md-4">
-          <img src=
-          <?php
-          if(empty($goodplan['mediaID'])){
-            echo "../../views/img/cine.jpg";
-          } else {
-            echo "../../views/".$goodplan['mediaID'];
-          }
-          ?>
-          class="card-img invert img-fluid" alt="infos bon plan">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
-            <p class="card-text"><small class="text-muted">
-            <?php
-              $dateEtLieu = $goodplan['startingDate'];
-
-              if(empty($goodplan['cityID'])){
-                $dateEtLieu .= " en ligne";
-            } else {
-                $dateEtLieu .= " à : ".$goodplan['cityID'];
-            }
-              echo $dateEtLieu; 
-            ?>
-            </small></p>
-            <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
-            <div class="pictos">
-                <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
-                  <!-- TODO like possible partout -->
-                  <i class="bi bi-heart-fill btn" href=""></i>
-                  <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
-            </div>
-            <div class="proprio">
-                <!-- link vers la pop up du profil  -->
-                <!-- TODO link la photo de profil -->
-                <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
-                <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
-=======
     <!------------ Bon plans de la catégorie ------------>
   <div class="container">
       <div class="listCards row">
@@ -285,70 +214,12 @@
                   </div>
                 </div>
               </div>
->>>>>>> Stashed changes
             </div>
           </div>
         </div>
       </div>
     </div>
 
-<<<<<<< Updated upstream
-    <?php
-    } else {
-    ?>
-  
-    <div class="card mb-3" style="max-width: 70em;">
-      <div class="row no-gutters">
-      <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $goodplan['title']; ?></h5>
-            <p class="card-text"><small class="text-muted">
-            <?php
-              $dateEtLieu = $goodplan['startingDate'];
-
-              if(empty($goodplan['cityID'])){
-                $dateEtLieu .= " en ligne";
-            } else {
-                $dateEtLieu .= " à : ".$goodplan['cityID'];
-            }
-
-              echo $dateEtLieu; 
-            ?>
-            </small></p>
-            <p class="card-text"><?php echo $goodplan['textContent']; ?></p>
-            <div class="pictos">
-              <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>#commentaires"><i class="bi bi-chat-dots-fill btn" href="#"></i></a>
-                  <!-- TODO like possible partout -->
-                  <i class="bi bi-heart-fill btn" href=""></i>
-                  <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
-            </div>
-            <div class="proprio">
-                <!-- link vers la pop up du profil  -->
-                <!-- TODO link la photo de profil -->
-                <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
-                <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <img src=
-          <?php
-          if(empty($goodplan['mediaID'])){
-            echo "../../views/img/cine.jpg";
-          } else {
-            echo "../../views/".$goodplan['mediaID'];
-          }
-        ?> 
-        class="card-img invert img-fluid" alt="infos bon plan">
-        </div>
-      </div>
-    </div>
-</div>
-
-<?php
-    }
-  }
-=======
           <?php
           } else {
           ?>
@@ -425,7 +296,6 @@
           <?php
         }
       }
->>>>>>> Stashed changes
 ?>
       </div>
   </div>
