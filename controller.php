@@ -290,6 +290,8 @@ function viewSubCategoryPage($n, $f){
         }
 
         $user = getOneUser($goodplan['userID']);
+        $user[0]['mediaID'] = getOneMedia($user[0]['mediaID']);
+
         $goodplan['userID'] = $user[0];
 
         $data[1][$key] = $goodplan;

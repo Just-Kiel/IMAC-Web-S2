@@ -12,12 +12,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="../../views/img/leQG_Flavicon.png">
     <link rel="stylesheet" href="../../views/moncompte-vue-externe-style.css">
+    <link rel="stylesheet" href="../../views/polices.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
-    <title> LE QG - ACCUEIL </title>
+    <title> LE QG - Compte Externe </title>
 </head>
 
 <body>
@@ -187,7 +190,6 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class=" cardlike col-md-4">
-                            <i class="bi bi-heart-fill btn" href=""></i>
                             <img src=
                             <?php
                             echo "../../views/".$goodplan['mediaID'];
@@ -269,46 +271,60 @@
     <!-- Footer -->
     <footer class="page-footer container-fluid">
 
-        <!-- Footer Links -->
-        <div class="container">
-            <div class=" navfooter row d-flex  pt-5 mb-3">
-                <div class="col-md-2 mb-3">
-                    <h6><a href="../acuueil">ACCUEIL</a></h6>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <h6><a href="#">MON COMPTE</a></h6>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <h6><a href="#">MESSAGERIE</a></h6>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <h6><a href="qui-sommes-nous.php">QUI SOMMES-NOUS ?</a></h6>
-                </div>
-            </div>
+      <!-- Footer Links -->
+      <div class="container">
 
-            <div class=" row d-flex mb-md-0 mb-4">
-                <div class=" presentation col-md-8 col-12 mt-5">
-                    <p class="pitch">" Plus qu’un site de bon plans, LE QG est un véritable réseau social où chacun
-                        d'entre vous pourra contribuer et faire de cette plateforme un concentré d’informations
-                        pertinentes pour vous tous, étudiants de France ! "</p>
-                    <p class="signature"> L'Équipe du QG</p>
-                    <!-- Boutons -->
-                    <div class="boutonsfoot">
-                        <a class=" inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">INSCRIPTION</a>
-                        <a class="inscription btn btn-primary " href="seconnecter.php" role="button"
-                            target="blank">CONNEXION</a>
-                    </div>
-                </div>
-            </div>
+        <div class=" navfooter row d-flex  pt-5 mb-3">
 
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentions-legales.php"
-                    target="blank">Mentions Légales</a>
-            </div>
+              <div class="col-md-2 mb-3">
+                  <h6><a href="../accueil">ACCUEIL</a></h6>
+              </div>
 
+              <div class="col-md-2 mb-3">
+              <?php
+              if (!isset($_SESSION['currentUserID'])) {
+                echo '<h6><a class="connexion" href="../seconnecter" >MON COMPTE</a></h6>';
+              } else {
+                echo '<h6><a class="connexion" href="../moncompte" >MON COMPTE</a></h6>';
+              }
+              ?>
+              </div>
+
+              <div class="col-md-2 mb-3" data-toggle="modal" data-target="#chatModal">
+                <!-- TODO link vers messagerie -->
+                  <h6><a href="#">MESSAGERIE</a></h6>
+              </div>
+
+              <div class="col-md-2 mb-3">
+              <h6><a href="quisommesnous">L'ÉQUIPE</a></h6>
+          </div>
         </div>
-    </footer>
+
+        <div class=" row d-flex mb-md-0 mb-4">
+
+          <div class=" presentation col-md-8 col-12 mt-5">
+                <p class="pitch">" Plus qu’un site de bon plans, LE QG est un véritable réseau social où chacun d'entre vous pourra contribuer et faire de cette plateforme un concentré d’informations pertinentes pour vous tous, étudiants de France ! "</p>
+                <p class="signature"> L'Équipe du QG</p>
+
+                <!-- Boutons -->
+                <div class="boutonsfoot">
+                <?php
+                if (!isset($_SESSION['currentUserID'])) {
+                  echo '<a class=" inscription btn btn-primary " href="../seconnecter" role="button">REJOINDRE LE QG !</a>';
+                } else {
+                  echo '<a class=" inscription btn btn-primary " href="../moncompte" role="button">REJOINDRE LE QG !</a>';
+                }
+                ?>
+                </div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright LE QG - IMAC 1 LLMNP - <a href="mentionslegales" target="blank">Mentions Légales</a>
+        </div>
+        <!-- Copyright -->
+    </div>
+</footer>
 
     <!-- Script -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

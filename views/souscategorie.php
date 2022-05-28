@@ -169,9 +169,11 @@
                                 <a href="../viewgoodplan/<?php echo $goodplan['goodplanID']; ?>" class="profiter btn btn-primary">J'EN PROFITE !</a>
                           </div>
                           <div class="proprio">
-                              <!-- link vers la pop up du profil  -->
-                              <!-- TODO link la photo de profil -->
-                              <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+                              <a href=<?php
+                              echo "../compteexterne/" . $goodplan['userID']['userID'];
+                              ?>><img src=<?php
+                            echo "../../views/" . $goodplan['userID']['mediaID'][0]['url'];
+                            ?> alt="photo de profil" class="pp"></a>
                               <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
                           </div>
                         </div>
@@ -211,9 +213,11 @@
                               <button type="button" class="profiter btn btn-primary" >J'EN PROFITE !</button>
                         </div>
                         <div class="proprio">
-                            <!-- link vers la pop up du profil  -->
-                            <!-- TODO link la photo de profil -->
-                            <a href=""><img src="../../views/img/avatar1.png" alt="photo de profil" class="pp"></a>
+                            <a href=<?php
+                              echo "../compteexterne/" . $goodplan['userID']['userID'];
+                              ?>><img src=<?php
+                            echo "../../views/" . $goodplan['userID']['mediaID'][0]['url'];
+                            ?> alt="photo de profil" class="pp"></a>
                             <h6><?php echo $goodplan['userID']['firstname']." ".$goodplan['userID']['lastname']; ?></h6>
                         </div>
                       </div>
@@ -331,7 +335,6 @@
 <footer class="page-footer container-fluid">
 
       <!-- Footer Links -->
-      <!-- TODO reste tous les links ici à faire -->
       <div class="container">
 
         <div class=" navfooter row d-flex  pt-5 mb-3">
