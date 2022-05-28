@@ -12,6 +12,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" href="../../views/img/leQG_Flavicon.png">
   <link rel="stylesheet" href="../../views/bonplan-style.css">
+  <link rel="stylesheet" href="../../views/polices.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 

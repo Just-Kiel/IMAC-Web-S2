@@ -556,7 +556,7 @@ h1 {
 
 
 
-   .sous-menu {
+    .sous-menu {
 
     width: 120%;
     text-align: left;
@@ -565,16 +565,16 @@ h1 {
     overflow: hidden;
     max-height: 0;
     height: 50%;
-    
+
   } 
-  
+
     .sous-menu > li > a {
     height: 40px;
     width: 120%;
     margin-right: 2em;
     align-items: center;
     display: flex;
-  }  
+  } 
 
   @keyframes apparitionSousMenu {
     0% {

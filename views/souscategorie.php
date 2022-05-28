@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 
+    <!-- POLICES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Koulen&family=Rubik:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- FIN POLICES -->
+
 <title> LE QG - <?php echo $datatab[0][0]['title']; ?> </title>
 
 </head>
@@ -92,13 +98,13 @@
 <header>
 
 <div class="ban container md-4 col-12">
-    <div class="imgfixe1 md-8 col-4">
+    <div class="imgfixe1 md-8">
         <img src="../../views/img/girlonherphone.png" alt="illustration de fille sur son téléphone">
     </div>
     <div class="titrecategorie col-4">
     <h1><?php echo $datatab[0][0]['title'];?></h1>
     </div>
-    <div class="imgfixe2 md-8 col-4">
+    <div class="imgfixe2 md-8">
         <img src="../../views/img/manonhislaptop.png" alt="illustration de garçon sur son ordinateur">
     </div>
 </div>
