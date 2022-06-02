@@ -221,7 +221,15 @@
                         <p class="card-text"><?php echo $goodplan['textContent'] ?></p>
                         <div class="btn-grp" role="groupe">
                             <!-- BDD -->
-                            <button class=" supprimerbtn btn btn-secondary" data-toggle="modal" data-target="#modifbonplan">SUPPRIMER</button>
+                            <form method="post">
+                                <?php 
+                                $goodplanID = $goodplan['goodplanID'];
+                                echo "<input type='hidden' name='type' value=$goodplanID />";
+                                echo "<input type='submit' name='buttonsupprimerbp' class='confirmerbtn btn btn-primary' value='Je confirme'/>";
+                                ?>
+                                <button type="submit" class=" supprimerbtn btn btn-secondary">SUPPRIMER</button>
+                            </form>
+                            
                         </div>
                         </div>
                     </div>
